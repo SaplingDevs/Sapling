@@ -7,7 +7,10 @@
 
 # Sapling Features
 > - `infiniteTrades` added in `server` section
-> - `debugScreen` now updates in 1 gt cycles and shows an xyz cursor when the player crouches
+> - `debugScreen` improvements: 
+>   - Now shows an XYZ crosshair when the player crouches.
+>   - The chat is now visible while in the debug screen.
+>   - Data and display now cycle at 1gt.
 
 # Commands
 > - `freecamera` added
