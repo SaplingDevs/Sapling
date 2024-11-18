@@ -8,7 +8,8 @@ system.interval(() => {
     if (!(new JsonDB('ServerGamerules')).get('infiniteTrades')) return;
 
     const villagers = world.dimension.overworld.getEntities({
-        type: 'villager_v2'
+        type: 'villager_v2',
+        name: 'infinite'
     });
 
     for (const v of villagers) {
