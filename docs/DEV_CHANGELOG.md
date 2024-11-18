@@ -4,6 +4,7 @@
 # Bug fixes
 > - `./prof` shows more of 20 tps limit
 > - `instamineEndstone` from `server` section not works
+> - `instamineObsidian` and `instamineObsidian` in the `server` section are reversed
 
 # Sapling Features
 > - `infiniteTrades` added in `server` section
