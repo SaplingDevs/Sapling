@@ -1,0 +1,26 @@
+{
+	"format_version": "1.8.0",
+	"geometry.cxyz": {
+		"texturewidth": 32,
+		"textureheight": 40,
+		"visible_bounds_width": 3,
+		"visible_bounds_height": 2,
+		"visible_bounds_offset": [0, 1, 0],
+		"bones": [
+			{
+				"name": "ycxyz",
+				"pivot": [-0.5, 0, 0.5]
+			},
+			{
+				"name": "cxyz",
+				"parent": "ycxyz",
+				"pivot": [-0.5, 0, 0.5],
+				"cubes": [
+					{"origin": [-8.5, 0, -0.5], "size": [8, 1, 1], "uv": [0, 21]},
+					{"origin": [-0.5, 0, -0.5], "size": [1, 8, 1], "uv": [0, 11]},
+					{"origin": [-0.5, 0, 0.5], "size": [1, 1, 8], "uv": [1, 31]}
+				]
+			}
+		]
+	}
+}

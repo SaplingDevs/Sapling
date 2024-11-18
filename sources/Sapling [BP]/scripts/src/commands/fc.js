@@ -4,6 +4,12 @@ import { world, system } from "@script-api/server.js";
 import LANG from "../config/langs";
 
 new Command()
+    .setName('freecamera')
+    .setValidation(() => (new JsonDB('EngineGamerules')).get('freeCamera'))
+    .setCallback(FCCallback)
+    .build();
+
+new Command()
     .setName('fc')
     .setValidation(() => (new JsonDB('EngineGamerules')).get('freeCamera'))
     .setCallback(FCCallback)
@@ -12,6 +18,8 @@ new Command()
 const Cameras = new JsonDB('SaplingCameras');
 
 function FCCallback(sender) {
+    if (world.isHardcore) return;
+
     system.run(() => {
         const enabled = sender.hasTag('fc:toggle');
 

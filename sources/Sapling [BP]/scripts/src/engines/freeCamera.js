@@ -1,8 +1,9 @@
-import { MinecraftBlockTypes } from "@script-api/vanilla-data.js";
 import { system, world } from "@script-api/server.js"
 import { JsonDB } from "@script-api/sapling.js";
 
 system.interval(() => {
+    if (world.isHardcore) return;
+
     if (!(new JsonDB('EngineGamerules').get('freeCamera'))) {
         world.runCommand('tag @a remove fc:toggle');
         

@@ -1,0 +1,28 @@
+{
+    "namespace": "sa::debug:button",
+
+    "main@common_buttons.light_text_button": {
+        "focus_enabled": false,
+        "prevent_touch_input": true,
+        "$pressed_button_name": "button.hide_paperdoll_hud",
+        "size": [ 18, 18 ],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "offset": [ 38, 1 ],
+        "controls": [
+            {
+                "touch_icon": {
+                    "type": "image",
+                    "texture": "textures/ui/dev_glyph_color"
+                }
+            }
+        ],
+        "bindings": [
+            {
+                "binding_name": "#inventory_touch_button",
+                "binding_name_override": "#visible",
+                "binding_type": "global"
+            }
+        ]
+    }
+}

@@ -23,6 +23,29 @@ new Command()
     })
     .build();
 
+new Command()
+    .setName('sc')
+    .addArgument('string', 'feature_name')
+    .addArgument('boolean', 'feature_value')
+    .setCallback(ClientSubcommand)
+    .build();
+
+new Command()
+    .setName('ss')
+    .setValidation((sender) => CheckSaplingAdmin(sender))
+    .addArgument('string', 'feature_name')
+    .addArgument('boolean', 'feature_value')
+    .setCallback(ServerSubcommand)
+    .build();
+
+new Command()
+    .setName('se')
+    .setValidation((sender) => CheckSaplingAdmin(sender))
+    .addArgument('string', 'feature_name')
+    .addArgument('boolean', 'feature_value')
+    .setCallback(EngineSubcommand)
+    .build();
+
 // Subcommands
 function ClientSubcommand(sender, { feature_name, feature_value }) {
     const FeatureName = feature_name.toLowerCase();

@@ -44,7 +44,7 @@ function Prof() {
 		}
 		
 		const DataText = ''
-			+ `TPS: §r§${DATA.tps < 20 ? 'c' : 'a'}${parseInt(DATA.tps)}§r `
+			+ `TPS: §r§${DATA.tps < 20 ? ('c' + parseInt(DATA.tps)) : 'a20'}§r `
 			+ `Entities: §s${DATA.entities}§r\n`
 			+ `Chunks: §r§i${DATA.chunks}§r`
 		

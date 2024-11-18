@@ -17,7 +17,7 @@ system.interval(() => {
 			.container.getItem(player.selectedSlotIndex);
 		if (!Item) return;
 		
-		if (!pickaxes.includes(Item.typeId) || !Block.block.typeId.includes('deepslate')) return;
+		if (!pickaxes.includes(Item.typeId) || !Block.block.typeId.includes('obsidian')) return;
 		
 		player.addEffect('haste', 1, { amplifier: 128 });
 	});

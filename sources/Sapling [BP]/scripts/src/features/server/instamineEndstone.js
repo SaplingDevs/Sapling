@@ -17,7 +17,7 @@ system.interval(() => {
 			.container.getItem(player.selectedSlotIndex);
 		if (!Item) return;
 		
-		if (!pickaxes.includes(Item.typeId) || !Block.block.typeId.includes('endstone')) return;
+		if (!pickaxes.includes(Item.typeId) || !Block.block.typeId.includes('end_stone')) return;
 		
 		player.addEffect('haste', 1, { amplifier: 128 });
 	});

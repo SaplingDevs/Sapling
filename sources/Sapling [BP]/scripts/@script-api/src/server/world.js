@@ -32,6 +32,7 @@ export default class World {
 	
 	// Cloned Properties 
 	static gameRules = world.gameRules;
+	static isHardcore = world.isHardcore;
 	static dimension = { 
 		overworld: this.#overworld,
 		nether: this.#overworld,

@@ -39,7 +39,8 @@ const Server = CreateDB({
 		'sweepingEdge',
 		'cauldronConcrete',
 		'cauldronMud',
-		'phantomDisable'
+		'phantomDisable',
+		'infiniteTrades'
 	]
 }, 'ServerGamerules');
 

@@ -91,8 +91,15 @@ function Help(sender) {
         SLIMECHUNKS: './slimechunks',
         FAKEPLAYER: './fakeplayer --help\n' + FakeplayerCmd(undefined, true),
         GM: isAdmin ? './gm <d/s/c/g>' : null,
-        FC: ENGINE_DB.get('freeCamera') ? './fc': null,
-        RENDER: sender.hasTag('client:disableRendering') ? `./render <entityId>${renderText}`: null
+        FC: ENGINE_DB.get('freeCamera') ? './freecamera': null,
+        RENDER: sender.hasTag('client:disableRendering') ? `./render <entityId>${renderText}`: null,
+        // Shortcurts
+        SHORTCURTS: '§3§lCommand Shortcurts:§r' + List([
+            'sc: sapling -> client',
+            isAdmin ? 'ss: sapling -> server' : null,
+            isAdmin ? 'se: sapling -> engine' : null,
+            ENGINE_DB.get('freeCamera') ? 'fc: freecamera' : null,
+        ])
     }
 
     let helpText = `${DandelionLogo}§r\n`;
@@ -103,7 +110,7 @@ function Help(sender) {
         helpText += `\n§7${!Array.isArray(data) ? data : data[0] + data[1]}\n`;
     }
 
-    Utils.privateMessage(sender, helpText)
+    Utils.privateMessage(sender, helpText + '\n');
 }
 
 function ParseList(list) {
@@ -119,6 +126,7 @@ function ParseList(list) {
 function List(list) {
     let txt = '';
     list.forEach(prop => {
+        if (!prop) return;
         txt += `\n    §7- ${prop}`
     });
 
