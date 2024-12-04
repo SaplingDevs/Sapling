@@ -18,7 +18,7 @@ system.interval(() => {
     if (!new JsonDB('ServerGamerules').get('cauldronMud')) return;
 
     for(const id of dims) {
-        const items = world.dimension[id].getEntities({
+        const items = world.getDimension(id).getEntities({
             type: 'minecraft:item',
             tags: [ 'cc:dirt_to_mud' ]
         });

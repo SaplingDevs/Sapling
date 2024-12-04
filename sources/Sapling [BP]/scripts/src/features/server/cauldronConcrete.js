@@ -17,7 +17,7 @@ system.interval(() => {
     if (!(new JsonDB('ServerGamerules').get('cauldronConcrete'))) return;
 
     for(const id of dims) {
-        const items = world.dimension[id].getEntities({
+        const items = world.getDimension(id).getEntities({
             type: 'minecraft:item',
             tags: [ 'cc:concrete_powder' ]
         });

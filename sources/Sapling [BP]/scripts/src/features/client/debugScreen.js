@@ -39,7 +39,7 @@ function generateScreen(data) {
     const light = data.light > 7 ? `§e${data.light}` : `§c${data.light}`
 
     const tp00 = [
-        'Sapling Build: §u2.0',
+        'Sapling Build: §u2.0.2',
         `Platform: ${data.platform}`,
         `Memory: ${data.memory} (${data.memoryEquivalent})`,
         '',

@@ -29,6 +29,7 @@ export default class World {
 	static stopMusic = () => world.stopMusic();
 	static getPlayers = (options = {}) => world.getPlayers(options);
 	static getEntity = (id) => world.getEntity(id);
+	static getDimension = (id) => world.getDimension(id);
 	
 	// Cloned Properties 
 	static gameRules = world.gameRules;
