@@ -1,0 +1,269 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "§2Sapling §7Addon §u[RP]",
+        "description": "§2Developed by Alecs\n§3Credits to LeviLamina team for chunk particles",
+        "uuid": "a22382b7-a0bf-c46d-3627-4319d4b96d2b",
+        "version": [ 2, 0, 1 ],
+        "min_engine_version": [ 1, 17, 0 ]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "2314d91d-b041-caa9-9538-a8da76f06f81",
+            "version": [ 2, 0, 1 ]
+        }
+    ],
+    "subpacks": [
+        {
+            "folder_name": "channel_50",
+            "name": "Texture Channel: 50",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_49",
+            "name": "Texture Channel: 49",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_48",
+            "name": "Texture Channel: 48",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_47",
+            "name": "Texture Channel: 47",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_46",
+            "name": "Texture Channel: 46",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_45",
+            "name": "Texture Channel: 45",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_44",
+            "name": "Texture Channel: 44",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_43",
+            "name": "Texture Channel: 43",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_42",
+            "name": "Texture Channel: 42",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_41",
+            "name": "Texture Channel: 41",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_40",
+            "name": "Texture Channel: 40",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_39",
+            "name": "Texture Channel: 39",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_38",
+            "name": "Texture Channel: 38",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_37",
+            "name": "Texture Channel: 37",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_36",
+            "name": "Texture Channel: 36",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_35",
+            "name": "Texture Channel: 35",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_34",
+            "name": "Texture Channel: 34",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_33",
+            "name": "Texture Channel: 33",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_32",
+            "name": "Texture Channel: 32",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_31",
+            "name": "Texture Channel: 31",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_30",
+            "name": "Texture Channel: 30",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_29",
+            "name": "Texture Channel: 29",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_28",
+            "name": "Texture Channel: 28",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_27",
+            "name": "Texture Channel: 27",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_26",
+            "name": "Texture Channel: 26",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_25",
+            "name": "Texture Channel: 25",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_24",
+            "name": "Texture Channel: 24",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_23",
+            "name": "Texture Channel: 23",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_22",
+            "name": "Texture Channel: 22",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_21",
+            "name": "Texture Channel: 21",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_20",
+            "name": "Texture Channel: 20",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_19",
+            "name": "Texture Channel: 19",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_18",
+            "name": "Texture Channel: 18",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_17",
+            "name": "Texture Channel: 17",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_16",
+            "name": "Texture Channel: 16",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_15",
+            "name": "Texture Channel: 15",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_14",
+            "name": "Texture Channel: 14",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_13",
+            "name": "Texture Channel: 13",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_12",
+            "name": "Texture Channel: 12",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_11",
+            "name": "Texture Channel: 11",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_10",
+            "name": "Texture Channel: 10",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_9",
+            "name": "Texture Channel: 9",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_8",
+            "name": "Texture Channel: 8",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_7",
+            "name": "Texture Channel: 7",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_6",
+            "name": "Texture Channel: 6",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_5",
+            "name": "Texture Channel: 5",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_4",
+            "name": "Texture Channel: 4",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_3",
+            "name": "Texture Channel: 3",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_2",
+            "name": "Texture Channel: 2",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "channel_1",
+            "name": "Texture Channel: 1",
+            "memory_tier": 0
+        }
+    ]
+}

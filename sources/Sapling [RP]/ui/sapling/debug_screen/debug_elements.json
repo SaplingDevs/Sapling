@@ -1,0 +1,46 @@
+{
+    "namespace": "sa::debug:element",
+    "cxyz": {
+        "type": "custom",
+        "renderer": "live_player_renderer",
+        "size": [ 13, 13 ],
+        "anchor_from": "Bottom",
+        "anchor_to": "Bottom",
+        "layer": 100,
+        "offset": [ -0.5, 271 ]
+    },
+
+    "chat": {
+		"type": "panel",
+		"anchor_from": "left_middle",
+		"anchor_to": "left_middle",
+		"size": [ "30%", "100%c" ],
+		"max_size": [ "30%", "50%" ],
+        "offset": [ 0, 100 ],
+
+		"controls": [{
+			"stack_panel": {
+				"type": "stack_panel",
+				"anchor_from": "bottom_left",
+				"anchor_to": "bottom_left",
+				"factory": {
+					"name": "chat_item_factory",
+					"max_children_size": 10,
+					"control_ids": { "chat_item": "chat_item@hud.chat_grid_item" }
+				}
+			}
+		}],
+		"bindings": [
+			{
+				"binding_name": "#paper_doll_visible",
+				"binding_name_override": "#paper_doll",
+				"binding_type": "global"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "#paper_doll",
+				"target_property_name": "#visible"
+			}
+		]
+  	}
+}

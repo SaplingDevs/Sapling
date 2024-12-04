@@ -1,0 +1,36 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.player.cxyz": {
+			"loop": true,
+			"bones": {
+				"ycxyz": {
+					"position": [
+						0.0,
+						380.0,
+						0.0
+					],
+					"rotation": [
+						"query.camera_rotation(0)",
+						0,
+						0
+					], //"query.camera_rotation(0)" 0 for x, 1 for y
+					"scale": 1.5
+				},
+				"cxyz": {
+					"position": [
+						0.0,
+						0.0,
+						0.0
+					],
+					"rotation": [
+						0,
+						"-query.camera_rotation(1)",
+						0
+					], //"query.camera_rotation(1)" 0 for x, 1 for y
+					"scale": 1
+				}
+			}
+		}
+	}
+}

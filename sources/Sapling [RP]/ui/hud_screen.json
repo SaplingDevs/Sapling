@@ -1,0 +1,192 @@
+{
+	"namespace": "hud",
+
+	// Debug Screen
+	"hud_player_renderer": {
+		"type": "panel",
+		"size": [ 15, 15 ],
+	
+		"controls": [{
+			"hud_player": {
+				"offset": [ 0, -1000 ],
+				"type": "custom",
+				"renderer": "hud_player_renderer",
+				"layer": 1,
+				"animation_reset_name": "screen_animation_reset",
+				"anims": [
+					"@common.screen_exit_size_animation_push",
+					"@common.screen_exit_size_animation_pop",
+					"@common.screen_entrance_size_animation_push",
+					"@common.screen_entrance_size_animation_pop"
+				],
+				"bindings": [{
+				  	"binding_name": "#paper_doll_visible",
+					"binding_name_override": "#visible"
+				}]
+			}
+		}]
+	},
+	
+
+	"player_position": {
+    	"type": "image",
+    	"size": [ "100%c + 6px", "100%c + 2px" ],
+    	"texture": "textures/ui/Black",
+    	"alpha": 0.7,
+		"controls": [{
+			"player_position_text": {
+				"type": "label",
+				"anchor_from": "bottom_middle",
+				"anchor_to": "bottom_middle",
+				"layer": 1,
+
+				"enable_profanity_filter": false,
+				"color": "$chat_text_color",
+				"text": "#text",
+				"shadow": true,
+
+				"bindings": [{
+					"binding_name": "#player_position_text",
+					"binding_name_override": "#text",
+					"binding_condition": "always_when_visible",
+					"binding_type": "global"
+				}]
+			}
+		}],
+		"bindings": [
+			{
+				"binding_name": "#player_position_visible",
+				"binding_name_override": "#player_position",
+				"binding_condition": "always",
+				"binding_type": "global"
+			},
+			{
+				"binding_name": "#paper_doll_visible",
+				"binding_name_override": "#paper_doll",
+				"binding_type": "global"
+			},
+			{
+                "binding_type": "view",
+				"source_property_name": "((not #paper_doll) and (#player_position))",
+                "target_property_name": "#visible"
+            }
+		]
+  	},
+
+	"number_of_days_played": {
+		"type": "image",
+		"size": [ "100%c + 6px", "100%c + 2px" ],
+		"texture": "textures/ui/Black",
+		"alpha": 0.7,
+		"controls": [{
+			"number_of_days_played_text": {
+				"type": "label",
+				"anchor_from": "bottom_middle",
+				"anchor_to": "bottom_middle",
+				"layer": 1,
+
+				"enable_profanity_filter": false,
+				"color": "$chat_text_color",
+				"text": "#text",
+				"shadow": true,
+				
+				"bindings": [{
+					"binding_name": "#number_of_days_played_text",
+					"binding_name_override": "#text",
+					"binding_condition": "always_when_visible",
+					"binding_type": "global"
+				}]
+			}
+		}],
+		"bindings": [
+			{
+				"binding_name": "#number_of_days_played_visible",
+				"binding_name_override": "#days_played",
+				"binding_condition": "always",
+				"binding_type": "global"
+			},
+			{
+				"binding_name": "#paper_doll_visible",
+				"binding_name_override": "#paper_doll",
+				"binding_type": "global"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((not #paper_doll) and (#days_played))",
+				"target_property_name": "#visible"
+			}
+		]
+	},
+
+	"chat_panel": {
+		"type": "panel",
+		"anchor_from": "top_left",
+		"anchor_to": "top_left",
+		"size": [ "100%", "100%c" ],
+		"max_size": [ "100%", "50%" ],
+
+		"controls": [{
+			"stack_panel": {
+				"type": "stack_panel",
+				"anchor_from": "bottom_left",
+				"anchor_to": "bottom_left",
+				"factory": {
+					"name": "chat_item_factory",
+					"max_children_size": 50,
+					"control_ids": { "chat_item": "chat_item@hud.chat_grid_item" }
+				}
+			}
+		}],
+		"bindings": [
+			{
+				"binding_name": "#paper_doll_visible",
+				"binding_name_override": "#paper_doll",
+				"binding_type": "global"
+			},
+			{
+				"binding_type": "view",
+				"source_property_name": "((not #paper_doll))",
+				"target_property_name": "#visible"
+			}
+		]
+  	},
+
+	// Modifications
+	"hud_title_text/title_frame/title": {
+		"modifications": [
+			{
+			"array_name": "bindings",
+			"operation": "insert_back",
+			"value": {
+				"binding_type": "view",
+				"source_property_name": "(not (('%.1s' * #text) = '!'))",
+				"target_property_name": "#visible"
+			}
+		}]
+	},
+
+	"hud_title_text/subtitle_frame/subtitle": {
+		"modifications": [
+			{
+			"array_name": "bindings",
+			"operation": "insert_back",
+			"value": {
+				"binding_type": "view",
+				"source_property_name": "(not (('%.1s' * #text) = '!'))",
+				"target_property_name": "#visible"
+			}
+		}]
+	},
+	
+	"root_panel": {
+		"modifications": [{
+			"array_name": "controls",
+			"operation": "insert_front",
+			"value": [
+				{ "debug_panel@sa::debug:panel.main": {} },
+				{ "debug_btn@sa::debug:button.main": {} },
+				{ "debug_btn@sa::debug:element.chat": {} }
+			]
+		}]
+	}
+}

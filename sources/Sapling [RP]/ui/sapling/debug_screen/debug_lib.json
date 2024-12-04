@@ -1,0 +1,103 @@
+{
+    "namespace": "sa::debug:lib",
+
+    "title_panel": {
+        // Config variables
+        "$key|default": "!tp00.",
+        "$anchor|default": "top_left",
+        "$data_control": "",
+        // Element
+        "type": "image",
+        "size": [ "100%c", "100%c" ],
+        "texture": "textures/ui/Black",
+        "alpha": 0,
+        "anchor_to": "$anchor",
+        "anchor_from": "$anchor",
+        "controls": [{
+            "debug_text": {
+                "type": "label",
+                "text": "#text",
+                "layer": 100,
+                "font_size": "small",
+                "font_type": "$sapling_font",
+                "font_scale_factor": 2,
+                "shadow": true,
+                "controls": [{
+                    "$data_control": {
+                        "type": "panel",
+                        "bindings": [
+                                {
+                                "binding_name": "#hud_title_text_string"
+                            },{
+                                "binding_type": "view",
+                                "source_property_name": "(not (#hud_title_text_string = #preserved_text) and (('%.6s' * #hud_title_text_string) = $key))",
+                                "target_property_name": "#visible"
+                            },
+                            {
+                                "binding_name": "#hud_title_text_string",
+                                "binding_name_override": "#preserved_text",
+                                "binding_condition": "visibility_changed"
+                            }
+                        ]
+                    }
+                }],
+                "bindings": [{
+                    "binding_type": "view",
+                    "source_control_name": "$data_control",
+                    "source_property_name": "(#preserved_text - $key)",
+                    "target_property_name": "#text"
+                }]
+            }
+        }]
+    },
+
+    "subtitle_panel": {
+        // Config variables
+        "$key|default": "!sp00.",
+        "$anchor|default": "top_left",
+        "$data_control": "",
+        // Element
+        "type": "image",
+        "size": [ "100%c", "100%c" ],
+        "texture": "textures/ui/Black",
+        "alpha": 0,
+        "anchor_to": "$anchor",
+        "anchor_from": "$anchor",
+        "controls": [{
+            "debug_text": {
+                "type": "label",
+                "text": "#text",
+                "layer": 100,
+                "font_size": "small",
+                "font_type": "$sapling_font",
+                "font_scale_factor": 1.8,
+                "shadow": true,
+                "controls": [{
+                    "$data_control": {
+                        "type": "panel",
+                        "bindings": [
+                                {
+                                "binding_name": "#hud_subtitle_text_string"
+                            },{
+                                "binding_type": "view",
+                                "source_property_name": "(not (#hud_subtitle_text_string = #preserved_subtitle_text) and (('%.6s' * #hud_subtitle_text_string) = $key))",
+                                "target_property_name": "#visible"
+                            },
+                            {
+                                "binding_name": "#hud_subtitle_text_string",
+                                "binding_name_override": "#preserved_subtitle_text",
+                                "binding_condition": "visibility_changed"
+                            }
+                        ]
+                    }
+                }],
+                "bindings": [{
+                    "binding_type": "view",
+                    "source_control_name": "$data_control",
+                    "source_property_name": "(#preserved_subtitle_text - $key)",
+                    "target_property_name": "#text"
+                }]
+            }
+        }]
+    }
+}

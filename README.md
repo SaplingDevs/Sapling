@@ -4,7 +4,7 @@
 ![Sapling Banner](docs/assets/sapling.jpg)
 
 # Why Choose Sapling?
-> Sapling is built on our custom scripting API modules, giving us unmatched control over performance (Say goodbye to TPS drops!), scalability, support, and other key areas.
+> Sapling is built on our [custom scripting API modules](https://github.com/SaplingDevs/script-api), giving us unmatched control over performance (Say goodbye to TPS drops!), scalability, support, and other key areas.
 >
 > But what’s in it for users?  
 > For players like you and me, Sapling delivers a broad array of features—from simple mechanics like TNT duplication to advanced engines like simulatedHSS, and much more!
@@ -17,15 +17,18 @@
 
 We're proud to have reached **800+ members**! Your support helps us improve and grow. Keep spreading the word and enjoy the latest features!
 
-## [Explore our changelog!](CHANGELOG.md)
+## [Explore our changelog!](/docs/CHANGELOG.md)
 
 Stay up to date with the latest improvements, bug fixes, and new features. Our changelog records everything we do to give you the best experience possible!
 
-<!--
-    
-[![Contribute to Sapling](https://img.shields.io/badge/Contribute-%E2%9A%A1-green?style=for-the-badge)](https://github.com/SaplingDevs/Sapling/CONTRIBUTING.md)  
-Want to help improve Sapling? Check out our [contributing guide](https://github.com/SaplingDevs/Sapling/CONTRIBUTING.md) and join the project!
--->
+---
+
+# How to use
+1. Download the .mcpacks in the last release
+2. Import both files in your Minecraft 
+3. Put the BP & RP in your world and set enable the Beta APIs experiment.
+4. Use `/tag @s add sapling_admin` to have access to all functions
+5. Put `#help` or `./help` in the chat!
 
 ---
 
@@ -44,13 +47,14 @@ Want to help improve Sapling? Check out our [contributing guide](https://github.
 | 🛠️ Sapling Extension Compiler | 1-2 Months | ⌛ | Not yet |
 | 🫂 Custom Villages API | 1-2 Months | ⌛ | Not yet |
 | 🏠 Java Village Engine | 2-3 Months | ⌛ | Not yet |
---- 
 
 Here's a legend to guide you:
 
 - ✅: Task is completed. Woohoo! 🎉
 - 🚧: Task is under way. We're on it! 💪
 - ⏳: Task is up next. Exciting things are coming! 🌠
+
+---
 
 ### Inspirations & Special Thanks
 We’d like to extend special thanks to the following projects for their inspiration and contributions:

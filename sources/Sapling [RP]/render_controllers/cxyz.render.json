@@ -1,0 +1,18 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.cxyz": {
+			"textures": [
+				"Texture.cxyz"
+			],
+			"is_hurt_color": {},
+			"on_fire_color": {},
+			"geometry": "Geometry.cxyz",
+			"materials": [
+				{
+					"*": "Material.default"
+				}
+			]
+		}
+	}
+}
