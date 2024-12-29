@@ -4,7 +4,7 @@ const Blocks = [
     'regex:*concrete_powder', 'regex:*sand', 'regex:*anvil', 
     'regex:*sapling', 'regex:*ice', 'regex:*propagule',
     'regex:*rail', 'regex:*carrot', 'regex:*potato', 
-    'regex:*seeds'
+    'regex:*seeds', 'regex:*gravel', 'regex:*dragon'
 ];
 
 const NotAirBlocks = {
@@ -58,7 +58,8 @@ function getBlockRegex(item, toggle = false) {
     const blockTypes = [ 
         'concrete_powder', 'sand', 'anvil',
         'sapling', 'ice', 'rail', 'propagule',
-        'carrot', 'potato', 'seeds'
+        'carrot', 'potato', 'seeds', 'gravel',
+        'dragon'
     ];
 
     const regex = blockTypes.find(type => blockId.includes(type));
