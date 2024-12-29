@@ -14,7 +14,9 @@ const Client = CreateDB({
 		'chunkBorders',
 		'minecartStacking',
 		'redstoneIndicator',
-		'disableRendering'
+		'disableRendering',
+		'fullBright',
+		'netherFogRemover'
 	]
 }, null, false);
 
