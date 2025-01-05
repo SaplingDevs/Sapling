@@ -10,14 +10,56 @@
         "offset": [ -0.5, 271 ]
     },
 
+	"anim_debug_chat_bg_wait": {
+		"anim_type": "wait",
+		"duration": "$chat_item_lifetime",
+		"next": "@sa::debug:element.anim_debug_chat_bg_alpha"
+	},
+
+	"anim_debug_chat_bg_alpha": {
+		"anim_type": "alpha",
+		"easing": "in_quart",
+		"destroy_at_end": "chat_grid_item",
+		"duration": 1,
+		"from": 0.4,
+		"to": 0
+	},
+
+	"debug_chat_item": {
+		"type": "panel",
+		"layer": 1,
+		"size": [ "100%-2px", "100%c" ],
+		"anchor_from": "top_left",
+		"anchor_to": "top_left",
+		"bindings": [{
+			"binding_name": "(not #on_new_death_screen)",
+			"binding_name_override": "#visible"
+		}],
+		"controls": [{
+			"chat_background": {
+				"type": "image",
+				"texture": "textures/ui/Black",
+				"alpha": 0.4,
+				"size": [ "100%", "100%c" ],
+				"anims": [ "@sa::debug:element.anim_debug_chat_bg_wait" ],
+				"controls": [{
+					"chat_text@hud.chat_label": {
+						"anchor_from": "top_left",
+						"anchor_to": "top_left",
+						"offset": [ 2, 0 ]
+					}
+				}]
+			}
+		}]
+	},
+
     "chat": {
 		"type": "panel",
 		"anchor_from": "left_middle",
 		"anchor_to": "left_middle",
 		"size": [ "30%", "100%c" ],
 		"max_size": [ "30%", "50%" ],
-        "offset": [ 0, 100 ],
-
+        "offset": [ 0, 80 ],
 		"controls": [{
 			"stack_panel": {
 				"type": "stack_panel",
@@ -25,8 +67,8 @@
 				"anchor_to": "bottom_left",
 				"factory": {
 					"name": "chat_item_factory",
-					"max_children_size": 10,
-					"control_ids": { "chat_item": "chat_item@hud.chat_grid_item" }
+					"max_children_size": 6,
+					"control_ids": { "chat_item": "chat_item@sa::debug:element.debug_chat_item" }
 				}
 			}
 		}],

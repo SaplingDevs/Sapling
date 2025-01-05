@@ -44,7 +44,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 		let txt = '§lFakeplayer Guide:§r\n'
 	
 		for (let h in HelpGuide) {
-			txt += `    §7- [command] §3<username> §2${h} §u${HelpGuide[h]}§r\n`
+			txt += `  §7- [command] §3<username> §2${h} §u${HelpGuide[h]}§r\n`
 		}
 		
 		return helpMode ? txt.trim() : Utils.privateMessage(sender, txt.trim());

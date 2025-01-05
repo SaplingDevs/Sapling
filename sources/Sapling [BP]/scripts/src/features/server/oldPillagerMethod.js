@@ -15,7 +15,7 @@ export default function oldPillagerMethod(event) {
 		
 		if (item.typeId !== 'minecraft:ominous_bottle') continue;
 		
-		player.runCommand('effect @s bad_omen 6000');
+		player.runCommand('effect @s raid_omen 6000');
 		itemEntity.kill();
 	}
 }
