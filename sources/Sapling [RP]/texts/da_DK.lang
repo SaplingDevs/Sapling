@@ -72,7 +72,7 @@ sapling.help.feature.railDuping=Duplicates rails by moving them with a piston ne
 sapling.help.feature.dispenserBadOmen=Allows dispensers to use bad omen potions like splash potions.
 sapling.help.feature.oldPillagerMethod=Re-enables the old method of obtaining bad omen.
 sapling.help.feature.blazeMeal=Allows growing nether wart with blaze powder via dispensers.
-sapling.help.feature.renewableDeepslate=Converts basalt into deepslate when moved above Y=0 in the overworld.
+sapling.help.feature.renewableDeepslate=Converts basalt into deepslate when moved above Y
 sapling.help.feature.stoneCutterDamage=Makes stone cutters damage entities above them.
 sapling.help.feature.simulatedHssViewer=Displays the current fake HSS in the world.
 sapling.help.feature.dispensableBlocks=Allows dispensers to place gravity blocks, saplings, and more.

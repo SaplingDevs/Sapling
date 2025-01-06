@@ -45,15 +45,14 @@ function HelpCommand(sender) {
         new HelpCommandBuilder("help"),
         new HelpCommandBuilder("sapling", new SectionBuilder(SaplingModules), "<section> <feature> <boolean>"),
         new HelpCommandBuilder("prof"),
-        new HelpCommandBuilder("calc"),
-        new HelpCommandBuilder("materials"),
+        new HelpCommandBuilder("calc", [], "<expression>"),
+        new HelpCommandBuilder("materials", [], "<x1> <y1> <z1> <x2> <y2> <z2>"),
         new HelpCommandBuilder("slimechunks"),
         isHSSEnabled ? new HelpCommandBuilder("hss", hssSubCommands, "<subcommand> <args>") : null,
-        isAdmin ? new HelpCommandBuilder("gm") : null,
+        isAdmin ? new HelpCommandBuilder("gm", [], "<d/s/c/g>") : null,
         isRenderEnabled ? new HelpCommandBuilder("render") : null,
         isFreecameraEnabled ? new HelpCommandBuilder("freecamera") : null,
         new HelpCommandBuilder("fakeplayer", FakeplayerCmd(undefined, true).split('\n').slice(1), "<username> <action> <args?>"),
-        // new HelpCommand(""),
     ], sender);
     
     HelpCommands.forEach((l) => sender.sendMessage(l));

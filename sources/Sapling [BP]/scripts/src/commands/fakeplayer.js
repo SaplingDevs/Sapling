@@ -1,7 +1,6 @@
 import { Command } from "@script-api/core.js";
-import { system } from "@script-api/server.js";
+import { RawText, system } from "@script-api/server.js";
 import { Utils } from "@script-api/sapling.js";
-import LANG from "../config/langs.js";
 import Fakeplayer from "lib/Fakeplayer"
 
 const FakeplayersDB = new Map();
@@ -74,7 +73,9 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	if (action === 'spawn') {
 		// Check if it's already connected
 		if (FakeplayersDB.has(username)) {
-			return LANG('fakeplayerConnected', username, sender);
+			return sender.sendMessage(new RawText([
+				{ translate: "sapling.fakeplayer.connected", with: [username] }
+			]))
 		}
 		// Connect 
 		const fp = new Fakeplayer(username, sender);
@@ -117,7 +118,9 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	}, sender); 
 	
 	// Default Output
-	else LANG('invalidFeature')
+	else sender.sendMessage(new RawText([
+		{ translate: "sapling.fakeplayer.invalid.action", with: [ action ] }
+	]))
 }
 
 // Players DB
@@ -125,6 +128,9 @@ function CheckPlayer(username, callback, sender) {
 	if (FakeplayersDB.has(username)) {
 		const player = FakeplayersDB.get(username);
 		return callback(player);	
-	}	
-	LANG('invalidFakeplayer', '', sender)
+	}
+
+	sender.sendMessage(new RawText([
+		{ translate: "sapling.fakeplayer.invalid" }
+	]))
 }

@@ -5,15 +5,17 @@ import { saplingBuild } from "information.js";
 
 const PlayersData = new Map();
 packet.on('dataDrivenEntityTrigger', ({ entity, eventId }) => {
-    if (!entity || entity.typeId !== 'minecraft:player' || !eventId.startsWith('sa:')) return;
-    const playerName = entity.name;
+    try {
+        if (!entity || entity.typeId !== 'minecraft:player' || !eventId.startsWith('sa:')) return;
+        const playerName = entity.name;
 
-    if (!PlayersData.has(playerName)) PlayersData.set(playerName, {});
-    const newData = PlayersData.get(playerName);
-    const [ , key, value ] = eventId.split(':');
-    newData[key] = value;
+        if (!PlayersData.has(playerName)) PlayersData.set(playerName, {});
+        const newData = PlayersData.get(playerName);
+        const [ , key, value ] = eventId.split(':');
+        newData[key] = value;
 
-    PlayersData.set(playerName, newData);
+        PlayersData.set(playerName, newData);
+    } catch {}
 });
 
 
