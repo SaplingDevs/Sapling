@@ -74,6 +74,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 		// Check if it's already connected
 		if (FakeplayersDB.has(username)) {
 			return sender.sendMessage(new RawText([
+				{ text: "§e" },
 				{ translate: "sapling.fakeplayer.connected", with: [username] }
 			]))
 		}
@@ -119,6 +120,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	
 	// Default Output
 	else sender.sendMessage(new RawText([
+		{ text: "§c" },
 		{ translate: "sapling.fakeplayer.invalid.action", with: [ action ] }
 	]))
 }
@@ -131,6 +133,7 @@ function CheckPlayer(username, callback, sender) {
 	}
 
 	sender.sendMessage(new RawText([
+		{ text: "§c" },
 		{ translate: "sapling.fakeplayer.invalid" }
 	]))
 }

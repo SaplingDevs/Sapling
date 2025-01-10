@@ -1,8 +1,6 @@
-import { system, world, Vector3 } from "@script-api/server.js"
+import { system, world, Vector3, RawText } from "@script-api/server.js"
 import { Chunk } from "@script-api/sapling.js"
 import { Command } from "@script-api/core.js"
-import LANG from '../config/langs'
-
 
 new Command()
 	.setName('prof')
@@ -10,7 +8,9 @@ new Command()
 	.build();
 
 function Prof() {
-	LANG('prof');
+	world.sendMessage(new RawText([
+		{ translate: "sapling.base.prof" }
+	]))
 	
 	const overworld = world.dimension.overworld;
 	

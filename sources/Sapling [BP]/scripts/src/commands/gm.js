@@ -1,7 +1,6 @@
 import { CheckSaplingAdmin } from "@script-api/sapling.js";
 import { Command } from "@script-api/core.js";
-import LANG from "../config/langs.js";
-import { system } from "@script-api/server.js";
+import { RawText, system } from "@script-api/server.js";
 
 new Command()
     .setName('gm')
@@ -22,8 +21,8 @@ const ValidGameModes = {
 }
 
 function GmCallback(sender, { gamemode }) {
-    if (!CheckSaplingAdmin(sender)) return LANG('notAdmin', '', sender);
-    else if (!ValidGameModes[gamemode]) return LANG('invalidValue', '', sender);
+    if (!CheckSaplingAdmin(sender)) return sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.admin" }]));
+    else if (!ValidGameModes[gamemode]) return sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.value", with: [ gamemode ] }]))
     
     system.run(() => sender.setGameMode(ValidGameModes[gamemode]));
 }

@@ -1,6 +1,5 @@
 import { CheckSaplingAdmin, JsonDB, module, Utils } from "@script-api/sapling.js";
 import { Command } from "@script-api/core.js";
-import LANG from "../config/langs";
 
 // Main command
 new Command()
@@ -34,7 +33,7 @@ module({ HssTypes })
 
 // HSS Subcommands
 function CreateSubCommand(sender, { x, y, z, dimension, hssType }) {
-    if (!CheckSaplingAdmin(sender)) return LANG('notAdmin', '', sender);
+    if (!CheckSaplingAdmin(sender)) sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.admin" }]));
 
     const HSS = { SwampHut: 'SwampHut', NetherFortress: 'NetherFortress', PillagerOutpost: 'PillagerOutpost', OceanMonument: 'OceanMonument' }
     for (let _ in HSS) {
@@ -45,7 +44,7 @@ function CreateSubCommand(sender, { x, y, z, dimension, hssType }) {
     const dm = DimTypes[dimension.toLowerCase()];
     
     // Closures
-    if ([x,y,z,dm,ht].includes(null)) return Lang('invalidValue', '', sender);
+    if ([x,y,z,dm,ht].includes(null)) sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.value", with: [ "arg" ] }]))
 
     
     // Option
@@ -66,7 +65,7 @@ function CreateSubCommand(sender, { x, y, z, dimension, hssType }) {
 }
 
 function RemoveSubCommand(sender, { hssId }) {
-    if (!CheckSaplingAdmin(sender)) return LANG('notAdmin', '', sender);
+    if (!CheckSaplingAdmin(sender)) return sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.admin" }]));
 
     const HSS = { SwampHut: 'SwampHut', NetherFortress: 'NetherFortress', PillagerOutpost: 'PillagerOutpost', OceanMonument: 'OceanMonument' }
     for (let _ in HSS) {
@@ -106,14 +105,14 @@ function ListSubCommand(sender, { hssType }) {
             }
         }
 
-        if (!txt) return LANG('notData', '', sender);
+        if (!txt) return sender.sendMessage(new RawText([ { text: "§7" }, { translate: "sapling.base.data" }]));
         Utils.privateMessage(sender, '§qFake hss list:\n' + txt.trim());
     } else if (htl) {
         for (let h of HSS[htl].keys()) {
             txt += `§¶§7  - §e[${h}] §7${HSS[htl].get(h).split('/').join(' ')}\n`;
         }
         
-        if (!txt) return LANG('notData', '', sender);
+        if (!txt) return sender.sendMessage(new RawText([ { text: "§7" }, { translate: "sapling.base.data" }]));
         Utils.privateMessage(sender, `§qFake hss list §l§u[${htl}]:§r\n` + txt.trim());
     } 
 }

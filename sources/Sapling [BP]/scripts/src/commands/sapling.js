@@ -1,7 +1,6 @@
 import { CheckSaplingAdmin, JsonDB, module } from "@script-api/sapling.js";
-import { system } from "@script-api/server.js";
+import { RawText, system } from "@script-api/server.js";
 import { Command } from "@script-api/core.js";
-import LANG from "../config/langs.js";
 
 new Command()
     .setName('sapling')
@@ -52,13 +51,16 @@ function ClientSubcommand(sender, { feature_name, feature_value }) {
     const ModuleFeatures = module.exports['Client'];
     const Feature = ModuleFeatures[FeatureName];
 
-    if (!Feature) return LANG('invalidFeature');
+    if (!Feature) return sender.sendMessage(new RawText([{ translate: "sapling.error.feature", with: [feature_name] }]))
 
     system.run(() => {
         sender[feature_value ? 'addTag' : 'removeTag']('client:' + Feature);
     });
 
-    LANG(feature_value ? 'enabled' : 'disabled', Feature, sender);
+    sender.sendMessage(new RawText([
+        { text: "§7" },
+        { translate: `sapling.base.${feature_value ? 'enabled' : 'disabled'}`, with: [ Feature ] }
+    ]))
 }
 
 function ServerSubcommand(sender, { feature_name, feature_value }) {
@@ -67,13 +69,16 @@ function ServerSubcommand(sender, { feature_name, feature_value }) {
     const Feature = ModuleFeatures[FeatureName];
     const isAdmin = CheckSaplingAdmin(sender);
 
-    if (!isAdmin) return LANG('notAdmin');
-    else if (!Feature) return LANG('invalidFeature');
+    if (!isAdmin) return sender.sendMessage(new RawText([{ translate: "sapling.error.admin" }]));
+    else if (!Feature) return sender.sendMessage(new RawText([{ translate: "sapling.error.feature", with: [feature_name] }]))
 
     const DB = new JsonDB('ServerGamerules');
     DB.set(Feature, feature_value);
     
-    LANG(feature_value ? 'enabled' : 'disabled', Feature);
+    sender.sendMessage(new RawText([
+        { text: "§7" }, 
+        { translate: `sapling.base.${feature_value ? 'enabled' : 'disabled'}`, with: [ Feature ] }
+    ]))
 }
 
 function EngineSubcommand(sender, { feature_name, feature_value }) {
@@ -82,11 +87,14 @@ function EngineSubcommand(sender, { feature_name, feature_value }) {
     const Feature = ModuleFeatures[FeatureName];
     const isAdmin = CheckSaplingAdmin(sender);
 
-    if (!isAdmin) return LANG('notAdmin');
-    else if (!Feature) return LANG('invalidFeature');
+    if (!isAdmin) return sender.sendMessage(new RawText([{ translate: "sapling.error.admin" }]));
+    else if (!Feature) sender.sendMessage(new RawText([{ translate: "sapling.error.feature", with: [feature_name] }]))
 
     const DB = new JsonDB('EngineGamerules');
     DB.set(Feature, feature_value);
     
-    LANG(feature_value ? 'enabled' : 'disabled', Feature);
+    sender.sendMessage(new RawText([
+        { text: "§7" }, 
+        { translate: `sapling.base.${feature_value ? 'enabled' : 'disabled'}`, with: [ Feature ] }
+    ]))
 }

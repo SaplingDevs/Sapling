@@ -2,6 +2,7 @@ import { CheckSaplingAdmin, JsonDB, module } from "@script-api/sapling.js"
 import { Command } from "@script-api/core.js"
 import HSA from "../engines/hss/data";
 import { FakeplayerCmd } from "./fakeplayer";
+import configData from "./config";
 
 // Command
 new Command()
@@ -30,8 +31,8 @@ function HelpCommand(sender) {
     )]: null).filter((o) => o));
 
     // Commands
-    const isHSSEnabled = SaplingModules["Engine"]["simulatedHss"];
-    const isFreecameraEnabled = SaplingModules["Engine"]["freeCamera"];
+    const isHSSEnabled = isAdmin ? SaplingModules["Engine"]["simulatedHss"] : false;
+    const isFreecameraEnabled = isAdmin ? SaplingModules["Engine"]["freeCamera"] : false;
     const isRenderEnabled = SaplingModules["Client"]["disableRendering"];
 
     // Sub commands list
@@ -41,6 +42,11 @@ function HelpCommand(sender) {
         'list <hssType or --all>'
     ]).map((l) => "  §h- " + l);
 
+    const configSubcommands = [
+        'textureChannel <number> (1-50)',
+        'chunkAppearance <default/java>'
+    ].map((l) => "  §h- " + l);
+
     const HelpCommands = HelpBuilder([
         new HelpCommandBuilder("help"),
         new HelpCommandBuilder("sapling", new SectionBuilder(SaplingModules), "<section> <feature> <boolean>"),
@@ -48,6 +54,7 @@ function HelpCommand(sender) {
         new HelpCommandBuilder("calc", [], "<expression>"),
         new HelpCommandBuilder("materials", [], "<x1> <y1> <z1> <x2> <y2> <z2>"),
         new HelpCommandBuilder("slimechunks"),
+        new HelpCommandBuilder("config", configSubcommands, "<subcommand> <value>"),
         isHSSEnabled ? new HelpCommandBuilder("hss", hssSubCommands, "<subcommand> <args>") : null,
         isAdmin ? new HelpCommandBuilder("gm", [], "<d/s/c/g>") : null,
         isRenderEnabled ? new HelpCommandBuilder("render") : null,
@@ -56,6 +63,7 @@ function HelpCommand(sender) {
     ], sender);
     
     HelpCommands.forEach((l) => sender.sendMessage(l));
+    console.warn(JSON.stringify(HelpCommands));
 }
 
 function HelpBuilder(Commands) {
@@ -64,10 +72,16 @@ function HelpBuilder(Commands) {
     Commands.filter((o) => o).forEach(({ name, usage, content, description }) => {
         const CommandText = new RawText([
             { text: ("§7" + (Command.prefix + name + " " + usage).trim() + "§9 > §j" ) },
-            { translate: description }
+            { translate: description },
+            { text: "\n" },
+            ...content.flatMap((c) => 
+                typeof c === "string" 
+                    ? [ { text: c }, { text: "\n" } ] 
+                    : [ ...c.rawtext, { text: "\n" } ]
+            )
         ]);
 
-        lines.push(CommandText, ...content, '\n');
+        lines.push(CommandText, '\n');
     });
 
     return lines;
