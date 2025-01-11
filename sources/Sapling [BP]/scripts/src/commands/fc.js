@@ -26,7 +26,7 @@ function FCCallback(sender) {
         else sender.addTag('fc:toggle');
     
         sender.sendMessage(new RawText([
-            { text: "§7" },
+            { text: '§7[§l§2Sapling§r§7] '},
             { translate: `sapling.base.${enabled ? 'disabled' : 'enabled'}`, with: [ "freeCamera" ] }
         ]))
 

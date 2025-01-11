@@ -63,7 +63,6 @@ function HelpCommand(sender) {
     ], sender);
     
     HelpCommands.forEach((l) => sender.sendMessage(l));
-    console.warn(JSON.stringify(HelpCommands));
 }
 
 function HelpBuilder(Commands) {

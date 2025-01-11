@@ -21,6 +21,7 @@ function RenderCallback(sender, { _type }) {
         const mctype = `minecraft:${type}`;
 
         if (invalidValues.includes(type) || !(mctype in CollisionBoxes)) return sender.sendMessage(new RawText([
+            { text: "§c" },
             { translate: "sapling.error.value", with: [ type ] }
         ]))
 
@@ -32,6 +33,7 @@ function RenderCallback(sender, { _type }) {
         else sender.addTag(tag);
     
         sender.sendMessage(new RawText([
+            { text: '§7[§l§2Sapling§r§7] '},
             { translate: `sapling.base.${enabled ? 'disabled' : 'enabled'}`, with: [ msg ] }
         ]))
     });
