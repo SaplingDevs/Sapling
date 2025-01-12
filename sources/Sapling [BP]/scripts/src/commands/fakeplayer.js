@@ -59,7 +59,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	/*//////////////////
 	*	Fakeplayer
 	*///////////////////
-	action = action ? action.toLowerCase() : 'invalid';
+	action = action ? action.toLowerCase().trim() : 'invalid';
 	
 	const SingleActions = ['attack', 'jump', 'shift', 'minecraft', 'trident', 'stop', 'breakblock', 'build', 'dismount']
 	const SenderActions = ['respawn', 'teleport', 'look'];

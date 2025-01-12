@@ -8,7 +8,6 @@ new Command()
     .setCallback(GmCallback)
     .build();
 
-
 const ValidGameModes = {
     d: 'default',
     0: 'default',

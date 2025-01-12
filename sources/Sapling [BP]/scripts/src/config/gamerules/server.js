@@ -41,7 +41,7 @@ const Server = CreateDB({
 		'cauldronMud',
 		'phantomDisable',
 		'infiniteTrades',
-		'pistonSpongeDrying'
+		'pistonSpongeDrying',
 	]
 }, 'ServerGamerules');
 

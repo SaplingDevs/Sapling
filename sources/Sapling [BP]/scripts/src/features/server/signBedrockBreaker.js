@@ -4,6 +4,8 @@ const DIRECTIONS =  { Up: 'above', Down: 'below', North: 'north', South: 'south'
 const PLACE_DIRECTIONS = { North: 2, South: 3, East: 5, West: 4 }
 
 export default function signBedrockBreaker(event) {
+	if(!event.isFirstEvent) return;
+	
 	const { itemStack, source, block, blockFace } = event;
 	
 	const id = itemStack.typeId;

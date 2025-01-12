@@ -1,7 +1,7 @@
 import { world, system, packet, server } from "@script-api/server.js";
 import { MemoryTier } from "@script-api/vanilla-data.js";
 import { Chunk, Utils } from "@script-api/sapling.js";
-import { saplingBuild } from "information.js";
+import { saplingBuild, saplingExtensions } from "information.js";
 
 const PlayersData = new Map();
 packet.on('dataDrivenEntityTrigger', ({ entity, eventId }) => {
@@ -40,9 +40,10 @@ function generateScreen(data) {
     server.tps = Math.round(server.tps);
 	const tps = (server.tps >= 20 ? `§a20` : `§c${server.tps}`) + '§r';
     const light = data.light > 7 ? `§e${data.light}` : `§c${data.light}`
+    const isModded = saplingExtensions.size > 0;
 
     const tp00 = [
-        `Sapling Build: §u${saplingBuild}`,
+        `Sapling Build: §u${saplingBuild} ${isModded ? '§9[Modded]' : ''}`,
         `Platform: ${data.platform}`,
         `Memory: ${data.memory} (${data.memoryEquivalent})`,
         '',

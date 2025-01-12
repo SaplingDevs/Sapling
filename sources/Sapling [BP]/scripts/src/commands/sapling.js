@@ -47,6 +47,8 @@ new Command()
 
 // Subcommands
 function ClientSubcommand(sender, { feature_name, feature_value }) {
+    if (!sender.isValid) return;
+    
     const FeatureName = feature_name.toLowerCase();
     const ModuleFeatures = module.exports['Client'];
     const Feature = ModuleFeatures[FeatureName];

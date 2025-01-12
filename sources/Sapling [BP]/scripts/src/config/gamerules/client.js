@@ -16,7 +16,7 @@ const Client = CreateDB({
 		'redstoneIndicator',
 		'disableRendering',
 		'fullBright',
-		'netherFogRemover'
+		'netherFogRemover',
 	]
 }, null, false);
 
