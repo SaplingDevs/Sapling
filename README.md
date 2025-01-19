@@ -11,7 +11,7 @@
 
 ---
 
-[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/SaplingDevs/Sapling/total?style=for-the-badge&logo=github&label=Downloads&link=https%3A%2F%2Fgithub.com%2FSaplingDevs%2FSapling%2Freleases)](https://github.com/SaplingDevs/Sapling/releases) [![Discord](https://img.shields.io/discord/1014734234889486366?style=for-the-badge&logo=discord&label=Discord%20Community%20%7C%20800%2B%20members&color=%237289DA)](https://discord.gg/96Uyt3KWT5)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/SaplingDevs/Sapling/total?style=for-the-badge&logo=github&label=Downloads&link=https%3A%2F%2Fgithub.com%2FSaplingDevs%2FSapling%2Freleases)](https://github.com/SaplingDevs/Sapling/releases) [![Discord](https://img.shields.io/discord/1014734234889486366?style=for-the-badge&logo=discord&label=Discord%20Community%20%7C%20900%2B%20members&color=%237289DA)](https://discord.gg/96Uyt3KWT5)
 
 ## [Join the community!](https://discord.gg/96Uyt3KWT5)
 
