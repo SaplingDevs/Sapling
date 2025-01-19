@@ -5,14 +5,14 @@
 		"description": "Developed by §uAlecs",
 		"uuid": "803a4d54-12b2-42a1-ad1c-65d33a3c8296",
 		"min_engine_version": [ 1, 20, 0 ],
-		"version": [ 2, 1, 0 ]
+		"version": [ 2, 1, 1 ]
 	},
 	"modules": [
 		{
 			"description": "Behavior Pack Module",
 			"type": "data",
 			"uuid": "54953981-b2d6-24df-8865-dc49b58d5a5b",
-			"version": [ 2, 1, 0 ]
+			"version": [ 2, 1, 1 ]
 		},
 		{
 			"description": "Gametest Module",
@@ -20,7 +20,7 @@
 			"language": "javascript",
 			"entry": "scripts/main.js",
 			"uuid": "18eeb320-42c9-3051-81a4-f6b62795010d",
-			"version": [ 2, 1, 0 ]
+			"version": [ 2, 1, 1 ]
 		}
 	],
 	"capabilities": ["script_eval"],

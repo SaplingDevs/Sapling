@@ -4,14 +4,14 @@
         "name": "§2Sapling §7Addon §u[RP]",
         "description": "§2Developed by Alecs\n§3Credits to LeviLamina team for chunk particles",
         "uuid": "a22382b7-a0bf-c46d-3627-4319d4b96d2b",
-        "version": [ 2, 0, 2 ],
+        "version": [ 2, 1, 1 ],
         "min_engine_version": [ 1, 17, 0 ]
     },
     "modules": [
         {
             "type": "resources",
             "uuid": "2314d91d-b041-caa9-9538-a8da76f06f81",
-            "version": [ 2, 0, 2 ]
+            "version": [ 2, 1, 1 ]
         }
     ],
     "subpacks": [
