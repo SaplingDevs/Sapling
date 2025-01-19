@@ -15,7 +15,7 @@
 
 ## [Join the community!](https://discord.gg/96Uyt3KWT5)
 
-We're proud to have reached **800+ members**! Your support helps us improve and grow. Keep spreading the word and enjoy the latest features!
+We're proud to have reached **900+ members**! Your support helps us improve and grow. Keep spreading the word and enjoy the latest features!
 
 ## [Explore our changelog!](/docs/CHANGELOG.md)
 
@@ -42,9 +42,7 @@ Stay up to date with the latest improvements, bug fixes, and new features. Our c
 
 | Sapling API   | Duration   | State   | Since |
 | :-----------  | :--------: | :-----: | :---: |
-| 📦 Extensions API | 1-2 Months | ⌛ | Not yet |
-| 📥 Extension Loader in game | 1-2 Months | ⌛ | Not yet |
-| 🛠️ Sapling Extension Compiler | 1-2 Months | ⌛ | Not yet |
+| 📦 Extensions API | 1-2 Months | ✅ | v2.1 |
 | 🫂 Custom Villages API | 1-2 Months | ⌛ | Not yet |
 | 🏠 Java Village Engine | 2-3 Months | ⌛ | Not yet |
 
