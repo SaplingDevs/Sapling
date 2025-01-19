@@ -82,3 +82,4 @@ sapling.help.feature.cauldronMud=Converts dirt to mud in a cauldron with water.
 sapling.help.feature.phantomDisable=Disables phantoms in the world.
 sapling.help.feature.infiniteTrades=Allows infinite trading with villagers named `infinite`.
 sapling.help.feature.pistonSpongeDrying=Enables pistons to dry sponges when they move.
+sapling.help.feature.hopperCartTransfer=Allows hopper minecarts to transfer items directly to containers.

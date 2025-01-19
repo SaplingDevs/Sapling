@@ -1,7 +1,7 @@
 import { world, system, packet, server } from "@script-api/server.js";
 import { MemoryTier } from "@script-api/vanilla-data.js";
 import { Chunk, Utils } from "@script-api/sapling.js";
-import { saplingBuild, saplingExtensions } from "information.js";
+import { saplingBuild, saplingExtensions, saplingDebugScreen } from "information.js";
 
 const PlayersData = new Map();
 packet.on('dataDrivenEntityTrigger', ({ entity, eventId }) => {
@@ -42,6 +42,10 @@ function generateScreen(data) {
     const light = data.light > 7 ? `§e${data.light}` : `§c${data.light}`
     const isModded = saplingExtensions.size > 0;
 
+    const ExtensionContent = [];
+    saplingDebugScreen.forEach((extension) => ExtensionContent.push(...extension));
+
+
     const tp00 = [
         `Sapling Build: §u${saplingBuild} ${isModded ? '§9[Modded]' : ''}`,
         `Platform: ${data.platform}`,
@@ -54,7 +58,8 @@ function generateScreen(data) {
         `Chunk: [ ${data.cx}, ${data.cz} ]${data.cs ? '  §aisSlime' : ''}`,
         `Facing: ${data.facingDirection}`,
         `Client Light: ${light}`,
-        `Biome: §qminecraft:${data.biome}`
+        `Biome: §qminecraft:${data.biome}`,
+        ...ExtensionContent
     ].join('§r\n');
     
     return tp00;

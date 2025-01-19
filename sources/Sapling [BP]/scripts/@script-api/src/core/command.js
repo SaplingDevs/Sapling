@@ -1,5 +1,6 @@
 import { world, system } from '@minecraft/server';
 import Parser from './src/regex';
+import { JsonDB } from '@script-api/sapling.js';
 
 let commands = {};
 class Command {
@@ -12,12 +13,33 @@ class Command {
   }
   
   // Build Command
-  build() {
+  build(extension = false) {
     let [ cmd, rmd ] = [ Command.prefix + this.#data.name, '#' + this.#data.name];
     
     if (!this.#data.args) this.#data.args = [];
     if (!this.#data.description) this.#data.description = '';
-    if (!this.#data.validation) this.#data.validation = () => true;
+    if (!extension && !this.#data.validation) this.#data.validation = () => true;
+    else if (extension) {
+      this.#data.validation = (sender) => {
+        const isAdmin = sender.hasTag("sapling_admin");
+        const validation = this.#data.extensionValidation;
+        const gamerules = { 
+          ...Object.fromEntries(sender.getTags().map((t) => t.startsWith("client:") ? [ t.replace("client:", ""), true ] : null).filter((t) => t)),
+          ...(new JsonDB("ServerGamerules").parse()),
+          ...(new JsonDB("EngineGamerules").parse())
+      }
+
+        if (validation?.checkAdmin && !isAdmin) return false;
+        if (validation?.requiredGamerules.length > 0) {
+            let checked = 0;
+            validation.requiredGamerules.forEach((g) => checked += gamerules[g] ? 1 : 0);
+            if (validation.requiredGamerules.length !== checked) return false;
+        }
+
+        return true;
+      }
+    }
+
 
     this.#data.reference = false;
 

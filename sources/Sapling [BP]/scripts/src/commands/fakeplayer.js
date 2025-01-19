@@ -53,7 +53,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	/*//////////////////
 	*	Script Engine
 	*///////////////////
-	/* Comming soon) */
+	/* Comming soon */
 	
 	
 	/*//////////////////

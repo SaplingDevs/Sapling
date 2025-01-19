@@ -42,6 +42,7 @@ const Server = CreateDB({
 		'phantomDisable',
 		'infiniteTrades',
 		'pistonSpongeDrying',
+		'hopperCartTransfer'
 	]
 }, 'ServerGamerules');
 

@@ -2,7 +2,7 @@ import { CheckSaplingAdmin, JsonDB, module } from "@script-api/sapling.js"
 import { Command } from "@script-api/core.js"
 import HSA from "../engines/hss/data";
 import { FakeplayerCmd } from "./fakeplayer";
-import configData from "./config";
+import { saplingExtensions } from "information.js";
 
 // Command
 new Command()
@@ -18,8 +18,46 @@ const hssData = {
     hssTypes: `\n      §3HssTypes: §b ${HssTypes.join(', ')}`,
 }
 
+const DandelionLogo = [
+    "    §e[][]",
+    "  §e[]§g[]§p[]§e[]",
+    "§e[]§p[]§e[]§n[]§g[]§e[]",
+    "  §e[]§n[]§g[]§e[]",
+    "    §2[][]          §l§3Sapling §uGuide§r",
+    "§2[]§q[]§a[]§q[]",
+    "  §2[]§a[]§q[][]§2[]",
+    "    §a[]§2[][]",
+    "    §q[]§2[]",
+].join('\n') + "\n\n";
+
+
 function HelpCommand(sender) {
     const isAdmin = CheckSaplingAdmin(sender);
+    const ExtensionCommands = [];
+    const gamerules = { 
+        ...Object.fromEntries(Object.values(module.exports["Client"]).map((g) => [ g, sender.hasTag("client:" + g)])),
+        ...(new JsonDB("ServerGamerules").parse()),
+        ...(new JsonDB("EngineGamerules").parse())
+    }
+
+    saplingExtensions.forEach((extension) => {
+        const { config, commands } = extension;
+        const cmds = Object.keys(commands).map((c) => commands[c]);
+
+        cmds.forEach((cmd) => {
+            const validation = cmd.extensionValidation;
+            
+            if (validation?.checkAdmin && !isAdmin) return;
+            if (validation?.requiredGamerules.length > 0) {
+                let checked = 0;
+                validation.requiredGamerules.forEach((g) => checked += gamerules[g] ? 1 : 0);
+                if (validation.requiredGamerules.length !== checked) return;
+            }
+
+            const ExtensionCommand = new HelpCommandBuilder(cmd.name, [], cmd.description, config);
+            ExtensionCommands.push(ExtensionCommand);
+        });
+    });
 
     const SaplingModules = Object.fromEntries([ 
         [ 0, "Server", "ServerGamerules", isAdmin ],
@@ -47,7 +85,16 @@ function HelpCommand(sender) {
         'chunkAppearance <default/java>'
     ].map((l) => "  §h- " + l);
 
-    const HelpCommands = HelpBuilder([
+    const ShortCurtsElements = [
+        [ "#sc", "#sapling client" ],
+        isAdmin ? [ "#ss", "#sapling server" ] : null,
+        isAdmin ? [ "#se", "#sapling engine" ] : null,
+        isFreecameraEnabled ? [ "#fc", "#freecamera" ] : null,
+    ].filter((e) => e).map(([ s, o ]) => `  §7- ${s} -> ${o}`);
+
+    const ShortCurts = [ "§3Sapling Shortcurts: ", ...ShortCurtsElements ].join("\n");
+
+    const HelpCommands = [ DandelionLogo, ...HelpBuilder([
         new HelpCommandBuilder("help"),
         new HelpCommandBuilder("sapling", new SectionBuilder(SaplingModules), "<section> <feature> <boolean>"),
         new HelpCommandBuilder("prof"),
@@ -60,7 +107,8 @@ function HelpCommand(sender) {
         isRenderEnabled ? new HelpCommandBuilder("render") : null,
         isFreecameraEnabled ? new HelpCommandBuilder("freecamera") : null,
         new HelpCommandBuilder("fakeplayer", FakeplayerCmd(undefined, true).split('\n').slice(1), "<username> <action> <args?>"),
-    ], sender);
+        ...ExtensionCommands
+    ], sender), ShortCurts];
     
     HelpCommands.forEach((l) => sender.sendMessage(l));
 }
@@ -89,25 +137,60 @@ function HelpBuilder(Commands) {
 class RawText { constructor(data) { return { "rawtext": data } }}
 
 class HelpCommandBuilder {
-    constructor(name, content = [], usage = "") {
+    constructor(name, content = [], usage = "", config = false) {
         this.name = name;
         this.usage = usage;
         this.content = content;
-        this.description = `sapling.help.command.${name}`;
+
+        if (config && !config.automaticTranslations && !config.descriptionKeys[`sapling.help.command.${name}`]) {
+            this.description = "";
+        } else if (config && !config.automaticTranslations && config.descriptionKeys[`sapling.help.command.${name}`]) {
+            this.description = config.descriptionKeys[`sapling.help.command.${name}`];
+        } else if (!config || config.automaticTranslations) {
+            this.description = `sapling.help.command.${name}`;
+        }
     }
 }
 
-class SectionBuilder {
+export class SectionBuilder {
     constructor(object) {
         const Sections = Object.keys(object)
             .map((section) => [ ("  §3" + section + ":"),  
                 ...Object.keys(object[section])
                 .map((f) => new RawText([
                     { text: ("    §7- " + ("[" + (object[section][f] ? "§2+" : "§4-") + "§7]") + " " + f + "§u > §j") },
-                    { translate: ("sapling.help.feature." + f) }
+                    SectionBuilder.checkExtension(f) 
+                        ? { text: SectionBuilder.getDescription(f) }
+                        : { translate: ("sapling.help.feature." + f) }
                 ]))
             ]).flat();
         
         return Sections;
+    }
+
+    static checkExtension(f) {
+        let isFromExtension = false;
+        saplingExtensions.forEach((extension) => isFromExtension = (f in extension.gamerules));
+
+        return isFromExtension;
+    }
+
+    static getDescription(f) {
+        const { config } = SectionBuilder.getExtension(f);
+
+        if (config && !config.automaticTranslations && !config.descriptionKeys[`sapling.help.feature.${f}`]) {
+            return "";
+        } else if (config && !config.automaticTranslations && config.descriptionKeys[`sapling.help.feature.${f}`]) {
+            return config.descriptionKeys[`sapling.help.feature.${f}`];
+        } else if (!config || config.automaticTranslations) {
+            return `sapling.help.feature.${f}`;
+        }
+    }
+
+    static getExtension(f) {
+        let ext = {};
+        saplingExtensions.forEach((extension) => ext = (f in extension.gamerules)? extension : null);
+
+        return ext;
     }
 }

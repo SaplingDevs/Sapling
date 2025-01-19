@@ -14,14 +14,14 @@ function setTextureChannel(sender, value, feature, { min, max }) {
     if (value < min || value > max) return sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.value", with: [ `Expected value in the range [ ${min} - ${max} ]`] } ]))
     
     setNewClientValue(sender, feature, value);
-    return sender.sendMessage(new RawText([ { text: '§7[§l§2Sapling§r§7] '},, { translate: "sapling.base.value", with: [ '§b' + value ] } ]))
+    return sender.sendMessage(new RawText([ { text: '§7[§l§2Sapling§r§7] '}, { translate: "sapling.base.value", with: [ '§b' + value ] } ]))
 }
 
 function setChunkAppearance(sender, value, feature, possibilities) {
     if (!possibilities.includes(value)) return sender.sendMessage(new RawText([ { text: "§c" }, { translate: "sapling.error.value", with: [ `Expected value [ ${possibilities.join(', ')} ]` ] } ]))
 
     setNewClientValue(sender, feature, value);
-    return sender.sendMessage(new RawText([ { text: '§7[§l§2Sapling§r§7] '},, { translate: "sapling.base.value", with: [ '§b' + value ] } ]))
+    return sender.sendMessage(new RawText([ { text: '§7[§l§2Sapling§r§7] '}, { translate: "sapling.base.value", with: [ '§b' + value ] } ]))
 }
 
 // Utils
