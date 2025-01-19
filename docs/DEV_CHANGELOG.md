@@ -4,6 +4,7 @@
 > - `help` command has been reworked.
 >   - Now shows descriptions for `commands` and `features`.
 > - New `lang` system via `.lang` files.
+>   - Translated to: `es_MX, es_ES, fr_FR, fr_CA, ja_JP, ko_KO, pt_BR, pt_PT, ru_RU, tr_TR & de_DE`
 > - New `extensions` support
 >   - Check our [extension example repository](https://github.com/SaplingDevs/Sapling-Extension-Example).
 
