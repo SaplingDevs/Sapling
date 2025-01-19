@@ -3,6 +3,7 @@ import { packet } from "@script-api/server.js";
 packet.on('itemUseOn', (event) => {
     const enable = event.source.hasTag('client:minecartStacking');
     if (!enable || !event.itemStack.typeId.includes('minecart')) return;
+    else if (!event.block.typeId.includes("rail")) return;
 
     const player = event.source;
     const gamemode = player.getGameMode();

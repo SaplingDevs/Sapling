@@ -1,7 +1,6 @@
 import { CollisionBoxes } from "@script-api/vanilla-data.js";
 import { Command } from "@script-api/core.js";
 import { system } from "@script-api/server.js";
-import LANG from "../config/langs";
 
 new Command()
     .setName('render')
@@ -21,7 +20,10 @@ function RenderCallback(sender, { _type }) {
         const type = _type.replace('minecraft:', '');
         const mctype = `minecraft:${type}`;
 
-        if (invalidValues.includes(type) || !(mctype in CollisionBoxes)) return LANG('invalidValue', '', sender);
+        if (invalidValues.includes(type) || !(mctype in CollisionBoxes)) return sender.sendMessage(new RawText([
+            { text: "§c" },
+            { translate: "sapling.error.value", with: [ type ] }
+        ]))
 
         const tag = `cr:${type}`;
         const msg = `render:${type}`;
@@ -30,6 +32,9 @@ function RenderCallback(sender, { _type }) {
         if (enabled) sender.removeTag(tag)
         else sender.addTag(tag);
     
-        LANG(enabled ? 'enabled' : 'disabled', msg, sender);
+        sender.sendMessage(new RawText([
+            { text: '§7[§l§2Sapling§r§7] '},
+            { translate: `sapling.base.${enabled ? 'disabled' : 'enabled'}`, with: [ msg ] }
+        ]))
     });
 }

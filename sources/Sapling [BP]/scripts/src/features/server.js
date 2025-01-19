@@ -1,5 +1,6 @@
 import { Tracker, module, JsonDB } from "@script-api/sapling.js";
 import { packet, system } from "@script-api/server.js";
+import { saplingExtensions } from "information.js";
 
 import './server/tntTweaks.js'
 
@@ -23,7 +24,7 @@ new Tracker('ServerGamerules', ({ gamerule, value }) => {
     if (!features.has(gamerule)) return;
 
     const featureData = features.get(gamerule);
-
+    
     if (featureData.packet == 'none') return;
     
     if (value) {

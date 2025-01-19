@@ -30,7 +30,6 @@ const module = data => {
 	if (typeof data != 'object') return;
 	// Upload to module
 	for (const key in data) {
-		if (Object.hasOwnProperty.call(data, key))
 		module.exports[key] = data[key];
 	}
 }

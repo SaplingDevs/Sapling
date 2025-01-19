@@ -17,5 +17,4 @@ system.interval(() => {
     }
 
     tick = !tick;
-
 }, 5);

@@ -1,7 +1,6 @@
 import { JsonDB } from "@script-api/sapling.js";
 import { Command } from "@script-api/core.js";
-import { world, system } from "@script-api/server.js";
-import LANG from "../config/langs";
+import { world, system, RawText } from "@script-api/server.js";
 
 new Command()
     .setName('freecamera')
@@ -26,7 +25,10 @@ function FCCallback(sender) {
         if (enabled) sender.removeTag('fc:toggle')
         else sender.addTag('fc:toggle');
     
-        LANG(enabled ? 'disabled' : 'enabled', 'freeCamera', sender);
+        sender.sendMessage(new RawText([
+            { text: '§7[§l§2Sapling§r§7] '},
+            { translate: `sapling.base.${enabled ? 'disabled' : 'enabled'}`, with: [ "freeCamera" ] }
+        ]))
 
         enabled ? DisabledToggle(sender) : EnabledToggle(sender);
     });

@@ -30,4 +30,8 @@ export default class System {
 	}
 
 	static currentTick = system.currentTick;
+
+	static afterEvents = system.afterEvents;
+	
+	static beforeEvents = system.beforeEvents;
 }

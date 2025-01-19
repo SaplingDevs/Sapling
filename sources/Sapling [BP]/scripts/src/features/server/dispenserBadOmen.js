@@ -18,7 +18,7 @@ export default function dispenserBadOmen(event) {
 	
 	if (blocks.length <= 0) return;
 	
-	event.entity.runCommand('effect @a[r=8] bad_omen 6000');
+	event.entity.runCommand('effect @a[r=8] raid_omen 6000');
 	event.entity.runCommand('summon splash_potion ~~~');
 	
 	event.entity.kill();

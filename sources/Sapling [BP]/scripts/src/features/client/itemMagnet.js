@@ -10,21 +10,23 @@ packet.on('playerBreakBlock', (ev) => {
 });
 
 packet.on('entitySpawn', (ev) => {
-	// Closures
-	if (ev.entity.typeId !== 'minecraft:item' || ev.cause !== 'Spawned') return;
-	
-	// Feature
-	const item = ev.entity;
-	const brokenEvent = BrokenEvents.find(be => calcDistance(be.block.location, item.location) < 7);
-	if (!brokenEvent || !brokenEvent.player.hasTag('client:itemMagnet')) return;
-	
-	const ItemStack = item.getComponent('item').itemStack;
-	const Inventory = brokenEvent.player.getComponent('inventory').container;
-	
-	if (canAdd(Inventory, ItemStack)) {
-		Inventory.addItem(ItemStack)
-		item.remove();
-	}
+	try {
+		// Closures
+		if (ev.entity.typeId !== 'minecraft:item' || ev.cause !== 'Spawned') return;
+		
+		// Feature
+		const item = ev.entity;
+		const brokenEvent = BrokenEvents.find(be => calcDistance(be.block.location, item.location) < 7);
+		if (!brokenEvent || !brokenEvent.player.hasTag('client:itemMagnet')) return;
+		
+		const ItemStack = item.getComponent('item').itemStack;
+		const Inventory = brokenEvent.player.getComponent('inventory').container;
+		
+		if (canAdd(Inventory, ItemStack)) {
+			Inventory.addItem(ItemStack)
+			item.remove();
+		}
+	} catch {}
 });
 
 function canAdd(inventory, itemStack) {

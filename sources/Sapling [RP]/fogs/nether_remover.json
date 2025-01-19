@@ -1,0 +1,38 @@
+{
+  "format_version": "1.16.100",
+  "minecraft:fog_settings": {
+    "description": { "identifier": "sa:nether_remover" },
+    "distance": {
+      "air": {
+        "fog_start": 0.99,
+        "fog_end": 1.0,
+        "fog_color": "#590000",
+        "render_distance_type": "render"
+      },
+      "water": {
+        "fog_start": 0.5,
+        "fog_end": 15,
+        "fog_color": "#590000",
+        "render_distance_type": "fixed"
+      },
+      "weather": {
+        "fog_start": 0.23,
+        "fog_end": 0.7,
+        "fog_color": "#590000",
+        "render_distance_type": "render"
+      },
+      "lava": {
+        "fog_start": 0.0,
+        "fog_end": 0.64,
+        "fog_color": "#590000",
+        "render_distance_type": "fixed"
+      },
+      "lava_resistance": {
+        "fog_start": 2.0,
+        "fog_end": 4.0,
+        "fog_color": "#590000",
+        "render_distance_type": "fixed"
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import { Command } from "@script-api/core.js";
-import { system } from "@script-api/server.js";
+import { RawText, system } from "@script-api/server.js";
 import { Utils } from "@script-api/sapling.js";
-import LANG from "../config/langs.js";
 import Fakeplayer from "lib/Fakeplayer"
 
 const FakeplayersDB = new Map();
@@ -44,7 +43,7 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 		let txt = '§lFakeplayer Guide:§r\n'
 	
 		for (let h in HelpGuide) {
-			txt += `    §7- [command] §3<username> §2${h} §u${HelpGuide[h]}§r\n`
+			txt += `  §7- [command] §3<username> §2${h} §u${HelpGuide[h]}§r\n`
 		}
 		
 		return helpMode ? txt.trim() : Utils.privateMessage(sender, txt.trim());
@@ -54,13 +53,13 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	/*//////////////////
 	*	Script Engine
 	*///////////////////
-	/* Comming soon) */
+	/* Comming soon */
 	
 	
 	/*//////////////////
 	*	Fakeplayer
 	*///////////////////
-	action = action ? action.toLowerCase() : 'invalid';
+	action = action ? action.toLowerCase().trim() : 'invalid';
 	
 	const SingleActions = ['attack', 'jump', 'shift', 'minecraft', 'trident', 'stop', 'breakblock', 'build', 'dismount']
 	const SenderActions = ['respawn', 'teleport', 'look'];
@@ -74,7 +73,10 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	if (action === 'spawn') {
 		// Check if it's already connected
 		if (FakeplayersDB.has(username)) {
-			return LANG('fakeplayerConnected', username, sender);
+			return sender.sendMessage(new RawText([
+				{ text: "§e" },
+				{ translate: "sapling.fakeplayer.connected", with: [username] }
+			]))
 		}
 		// Connect 
 		const fp = new Fakeplayer(username, sender);
@@ -117,7 +119,10 @@ export function FakeplayerCmd(ev = { message: '' }, helpMode = false) {
 	}, sender); 
 	
 	// Default Output
-	else LANG('invalidFeature')
+	else sender.sendMessage(new RawText([
+		{ text: "§c" },
+		{ translate: "sapling.fakeplayer.invalid.action", with: [ action ] }
+	]))
 }
 
 // Players DB
@@ -125,6 +130,10 @@ function CheckPlayer(username, callback, sender) {
 	if (FakeplayersDB.has(username)) {
 		const player = FakeplayersDB.get(username);
 		return callback(player);	
-	}	
-	LANG('invalidFakeplayer', '', sender)
+	}
+
+	sender.sendMessage(new RawText([
+		{ text: "§c" },
+		{ translate: "sapling.fakeplayer.invalid" }
+	]))
 }

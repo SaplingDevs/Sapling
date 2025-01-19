@@ -1,14 +1,23 @@
-import { CheckSaplingAdmin, JsonDB, module, Utils } from "@script-api/sapling.js";
-import { world } from "@script-api/server.js";
-import { Command } from "@script-api/core.js";
-import configData from "./config.js"
-import { FakeplayerCmd } from "./fakeplayer.js";
+import { CheckSaplingAdmin, JsonDB, module } from "@script-api/sapling.js"
+import { Command } from "@script-api/core.js"
+import HSA from "../engines/hss/data";
+import { FakeplayerCmd } from "./fakeplayer";
+import { saplingExtensions } from "information.js";
 
+// Command
 new Command()
-    .setName('help')
-    .setCallback(Help)
+    .setName("help")
+    .setCallback(HelpCommand)
     .build();
-        
+    
+// Data
+const HssTypes = Object.keys(HSA.hssList);
+const dimension = [ "overworld", "nether", "the_end" ];
+const hssData = {
+    dimension: `\n      §3Dimension: §b ${dimension.join(', ')}`,
+    hssTypes: `\n      §3HssTypes: §b ${HssTypes.join(', ')}`,
+}
+
 const DandelionLogo = [
     "    §e[][]",
     "  §e[]§g[]§p[]§e[]",
@@ -19,116 +28,169 @@ const DandelionLogo = [
     "  §2[]§a[]§q[][]§2[]",
     "    §a[]§2[][]",
     "    §q[]§2[]",
-].join('\n');
-    
+].join('\n') + "\n\n";
 
-function Help(sender) {
+
+function HelpCommand(sender) {
     const isAdmin = CheckSaplingAdmin(sender);
-
-    const SERVER_DB = new JsonDB('ServerGamerules');
-    const ENGINE_DB = new JsonDB('EngineGamerules');
-    const filteredTags = sender.getTags()
-        .filter((t) => t.startsWith('cr:'))
-        .map((t) => t.replace('cr:', ''));
-
-    const renderText = filteredTags.length > 0 ? `\n    §6Disabled: §7${filteredTags.join(', ')}` : ''
-
-    const SERVER = Object.values(module.exports['Server'])
-        .map(_ => `${_} ${SERVER_DB.get(_) ? '§2true§r' : '§4false§r'}`);
-
-    const ENGINE = Object.values(module.exports['Engine'])
-        .map(_ => `${_} ${ENGINE_DB.get(_) ? '§2true§r' : '§4false§r'}`);
-
-    const CLIENT = Object.values(module.exports['Client'])
-        .map(_ => `${_} ${sender.hasTag('client:' + _) ? '§2true§r' : '§4false§r'}`);
-
-    const CONFIG = Object.keys(configData)
-        .map(_ => {
-            let txt = `${_}`;
-            const data = configData[_];
-            if (data.type == 'number') txt += ` <${data.type}: [ §b${data.expected.min} - ${data.expected.max}§7 ]>`
-            else if (data.type == 'string') txt += ` <${data.type}: [ §b${data.expected.join(', ')}§7 ]>`
-            else txt += ` <${data.type}>`
-
-            return (!isAdmin && !data.isClient) ? null : txt;
-        }).filter(_ => _ !== null);
-
-    const HssTypes = Object.values(module.exports['HssTypes']);
-    const dimension = Object.keys(world.dimension).filter(_ => !_.startsWith('minecraft'));
-    const hssData = {
-        dimension: `\n        §3Dimension: §b ${dimension.join(', ')}`,
-        hssTypes: `\n        §3HssTypes: §b ${HssTypes.join(', ')}`,
+    const ExtensionCommands = [];
+    const gamerules = { 
+        ...Object.fromEntries(Object.values(module.exports["Client"]).map((g) => [ g, sender.hasTag("client:" + g)])),
+        ...(new JsonDB("ServerGamerules").parse()),
+        ...(new JsonDB("EngineGamerules").parse())
     }
-    const HSS = !isAdmin ? [ 'list <hssType or --all>' ] : [
+
+    saplingExtensions.forEach((extension) => {
+        const { config, commands } = extension;
+        const cmds = Object.keys(commands).map((c) => commands[c]);
+
+        cmds.forEach((cmd) => {
+            const validation = cmd.extensionValidation;
+            
+            if (validation?.checkAdmin && !isAdmin) return;
+            if (validation?.requiredGamerules.length > 0) {
+                let checked = 0;
+                validation.requiredGamerules.forEach((g) => checked += gamerules[g] ? 1 : 0);
+                if (validation.requiredGamerules.length !== checked) return;
+            }
+
+            const ExtensionCommand = new HelpCommandBuilder(cmd.name, [], cmd.description, config);
+            ExtensionCommands.push(ExtensionCommand);
+        });
+    });
+
+    const SaplingModules = Object.fromEntries([ 
+        [ 0, "Server", "ServerGamerules", isAdmin ],
+        [ 1, "Client", "client:" ],
+        [ 0, "Engine", "EngineGamerules", isAdmin ],
+    ].map(([t, mod, db, shows = true]) => shows ? [ mod, Object.fromEntries(t 
+        ? [ ...(Object.values(module.exports[mod]).map(f => [ f, sender.hasTag(db + f) ] )) ] 
+        : [ ...(Object.values(module.exports[mod]).map(f => [ f, (new JsonDB(db).get(f)) ] )) ]
+    )]: null).filter((o) => o));
+
+    // Commands
+    const isHSSEnabled = isAdmin ? SaplingModules["Engine"]["simulatedHss"] : false;
+    const isFreecameraEnabled = isAdmin ? SaplingModules["Engine"]["freeCamera"] : false;
+    const isRenderEnabled = SaplingModules["Client"]["disableRendering"];
+
+    // Sub commands list
+    const hssSubCommands = (!isAdmin ? [ 'list <hssType or --all>' ] : [
         `create <x> <y> <z> <dimension> <hssType>` + hssData.dimension + hssData.hssTypes,
         'remove <hssId>',
         'list <hssType or --all>'
-    ]
+    ]).map((l) => "  §h- " + l);
 
-    const CMDS = {
-        HELP: './help',
-        SAPLING: [ 
-            `./sapling ${!isAdmin ? '<client>' : '<section>'} <feature> <boolean>`,
-            !isAdmin 
-                // Not admin
-                ? '\n  §2Client:§r' + ParseList(CLIENT)
-                // Admin
-                : '\n  §2Server:§r' + ParseList(SERVER)
-                + '\n  §2Client:§r' + ParseList(CLIENT)
-                + '\n  §2Engine:§r' + ParseList(ENGINE)
-        ],
-        CONFIG: [
-            `./config <subcommand> <value>`,
-            List(CONFIG)
-        ],
-        PROF: './prof',
-        CALC: './calc <expression>',
-        MATERIALS: './materials <x1> <y1> <z1> <x2> <y2> <z2>',
-        HSS: ENGINE_DB.get('simulatedHss') ? [
-            `./hss <subcommand> <args>`,
-            List(HSS)
-        ] : null,
-        SLIMECHUNKS: './slimechunks',
-        FAKEPLAYER: './fakeplayer --help\n' + FakeplayerCmd(undefined, true),
-        GM: isAdmin ? './gm <d/s/c/g>' : null,
-        FC: ENGINE_DB.get('freeCamera') ? './freecamera': null,
-        RENDER: sender.hasTag('client:disableRendering') ? `./render <entityId>${renderText}`: null,
-        // Shortcurts
-        SHORTCURTS: '§3§lCommand Shortcurts:§r' + List([
-            'sc: sapling -> client',
-            isAdmin ? 'ss: sapling -> server' : null,
-            isAdmin ? 'se: sapling -> engine' : null,
-            ENGINE_DB.get('freeCamera') ? 'fc: freecamera' : null,
-        ])
-    }
+    const configSubcommands = [
+        'textureChannel <number> (1-50)',
+        'chunkAppearance <default/java>'
+    ].map((l) => "  §h- " + l);
 
-    let helpText = `${DandelionLogo}§r\n`;
-    for (const cmd in CMDS) {
-        const data = CMDS[cmd];
-        if (!data) continue;
+    const ShortCurtsElements = [
+        [ "#sc", "#sapling client" ],
+        isAdmin ? [ "#ss", "#sapling server" ] : null,
+        isAdmin ? [ "#se", "#sapling engine" ] : null,
+        isFreecameraEnabled ? [ "#fc", "#freecamera" ] : null,
+    ].filter((e) => e).map(([ s, o ]) => `  §7- ${s} -> ${o}`);
 
-        helpText += `\n§7${!Array.isArray(data) ? data : data[0] + data[1]}\n`;
-    }
+    const ShortCurts = [ "§3Sapling Shortcurts: ", ...ShortCurtsElements ].join("\n");
 
-    Utils.privateMessage(sender, helpText + '\n');
+    const HelpCommands = [ DandelionLogo, ...HelpBuilder([
+        new HelpCommandBuilder("help"),
+        new HelpCommandBuilder("sapling", new SectionBuilder(SaplingModules), "<section> <feature> <boolean>"),
+        new HelpCommandBuilder("prof"),
+        new HelpCommandBuilder("calc", [], "<expression>"),
+        new HelpCommandBuilder("materials", [], "<x1> <y1> <z1> <x2> <y2> <z2>"),
+        new HelpCommandBuilder("slimechunks"),
+        new HelpCommandBuilder("config", configSubcommands, "<subcommand> <value>"),
+        isHSSEnabled ? new HelpCommandBuilder("hss", hssSubCommands, "<subcommand> <args>") : null,
+        isAdmin ? new HelpCommandBuilder("gm", [], "<d/s/c/g>") : null,
+        isRenderEnabled ? new HelpCommandBuilder("render") : null,
+        isFreecameraEnabled ? new HelpCommandBuilder("freecamera") : null,
+        new HelpCommandBuilder("fakeplayer", FakeplayerCmd(undefined, true).split('\n').slice(1), "<username> <action> <args?>"),
+        ...ExtensionCommands
+    ], sender), ShortCurts];
+    
+    HelpCommands.forEach((l) => sender.sendMessage(l));
 }
 
-function ParseList(list) {
-    let txt = '', i = 0;
-    list.forEach(prop => {
-        txt += `\n${(i&1) ? '      §7-' : '    §7-'} ${prop}`
-        i++;
+function HelpBuilder(Commands) {
+    const lines = [];
+
+    Commands.filter((o) => o).forEach(({ name, usage, content, description }) => {
+        const CommandText = new RawText([
+            { text: ("§7" + (Command.prefix + name + " " + usage).trim() + "§9 > §j" ) },
+            { translate: description },
+            { text: "\n" },
+            ...content.flatMap((c) => 
+                typeof c === "string" 
+                    ? [ { text: c }, { text: "\n" } ] 
+                    : [ ...c.rawtext, { text: "\n" } ]
+            )
+        ]);
+
+        lines.push(CommandText, '\n');
     });
 
-    return txt;
+    return lines;
 }
 
-function List(list) {
-    let txt = '';
-    list.forEach(prop => {
-        if (!prop) return;
-        txt += `\n    §7- ${prop}`
-    });
+class RawText { constructor(data) { return { "rawtext": data } }}
 
-    return txt;
+class HelpCommandBuilder {
+    constructor(name, content = [], usage = "", config = false) {
+        this.name = name;
+        this.usage = usage;
+        this.content = content;
+
+        if (config && !config.automaticTranslations && !config.descriptionKeys[`sapling.help.command.${name}`]) {
+            this.description = "";
+        } else if (config && !config.automaticTranslations && config.descriptionKeys[`sapling.help.command.${name}`]) {
+            this.description = config.descriptionKeys[`sapling.help.command.${name}`];
+        } else if (!config || config.automaticTranslations) {
+            this.description = `sapling.help.command.${name}`;
+        }
+    }
+}
+
+export class SectionBuilder {
+    constructor(object) {
+        const Sections = Object.keys(object)
+            .map((section) => [ ("  §3" + section + ":"),  
+                ...Object.keys(object[section])
+                .map((f) => new RawText([
+                    { text: ("    §7- " + ("[" + (object[section][f] ? "§2+" : "§4-") + "§7]") + " " + f + "§u > §j") },
+                    SectionBuilder.checkExtension(f) 
+                        ? { text: SectionBuilder.getDescription(f) }
+                        : { translate: ("sapling.help.feature." + f) }
+                ]))
+            ]).flat();
+        
+        return Sections;
+    }
+
+    static checkExtension(f) {
+        let isFromExtension = false;
+        saplingExtensions.forEach((extension) => isFromExtension = (f in extension.gamerules));
+
+        return isFromExtension;
+    }
+
+    static getDescription(f) {
+        const { config } = SectionBuilder.getExtension(f);
+
+        if (config && !config.automaticTranslations && !config.descriptionKeys[`sapling.help.feature.${f}`]) {
+            return "";
+        } else if (config && !config.automaticTranslations && config.descriptionKeys[`sapling.help.feature.${f}`]) {
+            return config.descriptionKeys[`sapling.help.feature.${f}`];
+        } else if (!config || config.automaticTranslations) {
+            return `sapling.help.feature.${f}`;
+        }
+    }
+
+    static getExtension(f) {
+        let ext = {};
+        saplingExtensions.forEach((extension) => ext = (f in extension.gamerules)? extension : null);
+
+        return ext;
+    }
 }

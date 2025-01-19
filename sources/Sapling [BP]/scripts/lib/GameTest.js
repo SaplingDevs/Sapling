@@ -1,5 +1,5 @@
 import * as gt from "@minecraft/server-gametest";
-import { system, world } from "@script-api/server.js";
+import { system, Vector3, world, BlockVolume } from "@script-api/server.js";
 import FakePlayer from "lib/Fakeplayer";
 
 gt.register('fakeplayer', 'instance', (test) => {
@@ -12,12 +12,15 @@ gt.register('fakeplayer', 'instance', (test) => {
 // Load gametest instance
 function LoadInstance() {
 	const over = world.dimension['overworld'];
-	const c = 999999980;
+	const c = 1000000;
 	
 	if (LoadInstance.loaded) return;
 
-	over.runCommand('gametest clearall')
-	over.runCommand(`execute positioned ${c} 256 ${c} run gametest run fakeplayer:instance`);
+	try {
+		over.fillBlocks(new BlockVolume(new Vector3(c+1, -64, c+1), new Vector3(c-2, 319, c+3)), "air");
+	} catch {}
+
+	system.timeout(() => over.runCommand(`execute positioned ${c} 256 ${c} run gametest run fakeplayer:instance`), 1);
 	
 	LoadInstance.loaded = true;
 }

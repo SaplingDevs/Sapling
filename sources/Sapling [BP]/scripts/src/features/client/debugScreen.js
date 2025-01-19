@@ -1,18 +1,21 @@
 import { world, system, packet, server } from "@script-api/server.js";
 import { MemoryTier } from "@script-api/vanilla-data.js";
 import { Chunk, Utils } from "@script-api/sapling.js";
+import { saplingBuild, saplingExtensions, saplingDebugScreen } from "information.js";
 
 const PlayersData = new Map();
 packet.on('dataDrivenEntityTrigger', ({ entity, eventId }) => {
-    if (!entity || entity.typeId !== 'minecraft:player' || !eventId.startsWith('sa:')) return;
-    const playerName = entity.name;
+    try {
+        if (!entity || entity.typeId !== 'minecraft:player' || !eventId.startsWith('sa:')) return;
+        const playerName = entity.name;
 
-    if (!PlayersData.has(playerName)) PlayersData.set(playerName, {});
-    const newData = PlayersData.get(playerName);
-    const [ , key, value ] = eventId.split(':');
-    newData[key] = value;
+        if (!PlayersData.has(playerName)) PlayersData.set(playerName, {});
+        const newData = PlayersData.get(playerName);
+        const [ , key, value ] = eventId.split(':');
+        newData[key] = value;
 
-    PlayersData.set(playerName, newData);
+        PlayersData.set(playerName, newData);
+    } catch {}
 });
 
 
@@ -37,9 +40,14 @@ function generateScreen(data) {
     server.tps = Math.round(server.tps);
 	const tps = (server.tps >= 20 ? `§a20` : `§c${server.tps}`) + '§r';
     const light = data.light > 7 ? `§e${data.light}` : `§c${data.light}`
+    const isModded = saplingExtensions.size > 0;
+
+    const ExtensionContent = [];
+    saplingDebugScreen.forEach((extension) => ExtensionContent.push(...extension));
+
 
     const tp00 = [
-        'Sapling Build: §u2.0.2',
+        `Sapling Build: §u${saplingBuild} ${isModded ? '§9[Modded]' : ''}`,
         `Platform: ${data.platform}`,
         `Memory: ${data.memory} (${data.memoryEquivalent})`,
         '',
@@ -50,7 +58,8 @@ function generateScreen(data) {
         `Chunk: [ ${data.cx}, ${data.cz} ]${data.cs ? '  §aisSlime' : ''}`,
         `Facing: ${data.facingDirection}`,
         `Client Light: ${light}`,
-        `Biome: §qminecraft:${data.biome}`
+        `Biome: §qminecraft:${data.biome}`,
+        ...ExtensionContent
     ].join('§r\n');
     
     return tp00;

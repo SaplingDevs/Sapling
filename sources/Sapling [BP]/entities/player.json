@@ -267,7 +267,8 @@
           {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:taiga_mutated"},
           {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "the_end", "subject": "self" }]}, "event": "sa:client_biome:the_end"},
           {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:warm_ocean"},
-          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "warped_forest", "subject": "self" }]}, "event": "sa:client_biome:warped_forest"}
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "warped_forest", "subject": "self" }]}, "event": "sa:client_biome:warped_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "pale_garden", "subject": "self" }]}, "event": "sa:client_biome:pale_garden"}
         ]
       }
     },
@@ -387,6 +388,7 @@
       "sa:client_biome:the_end": {},
       "sa:client_biome:warm_ocean": {},
       "sa:client_biome:warped_forest": {},
+      "sa:client_biome:pale_garden": {},
       
       "minecraft:gain_bad_omen": {
         "add": {
