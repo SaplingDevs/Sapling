@@ -1,6 +1,5 @@
 # Welcome to Sapling Docs!
 
-::: tip
-# TIP
+::: tip Tipsito
 Cuidado con cina, anda tocando chilitos
 :::
