@@ -17,7 +17,7 @@
 
 We're proud to have reached **900+ members**! Your support helps us improve and grow. Keep spreading the word and enjoy the latest features!
 
-## [Explore our changelog!](/docs/CHANGELOG.md)
+## [Explore our changelog!](/docs/pages/CHANGELOG.md)
 
 Stay up to date with the latest improvements, bug fixes, and new features. Our changelog records everything we do to give you the best experience possible!
 
