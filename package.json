@@ -1,0 +1,14 @@
+{
+  "name": "sapling",
+  "version": "1.0.0",
+  "description": "> Sapling is an open-source suite of utilities and tools for Minecraft Bedrock, focused primarily on TMC. It enhances Quality of Life (QoL), optimizes performance, ensures parity, and offers a variety of engines, server-side and client-side features, and more!",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "docs": "git add . && git commit -m \"Update Sapling Docs\" && git push"
+  },
+  "author": "",
+  "license": "ISC"
+}
