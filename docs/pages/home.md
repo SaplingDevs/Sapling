@@ -1,6 +1,6 @@
 # Welcome to Sapling Docs!
 
-::: warning
+::: warn
 Erm what the sigma
 :::
 
