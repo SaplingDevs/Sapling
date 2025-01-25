@@ -1,9 +1,9 @@
 # Welcome to Sapling Docs!
 
 ::: warning
-  Erm what the sigma
+Erm what the sigma
 :::
 
 ::: tip
-  Erm what the sigma
+Erm what the sigma x2
 :::
