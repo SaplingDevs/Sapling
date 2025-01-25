@@ -5,6 +5,11 @@ Cuidado con cina, anda tocando chilitos
 :::
 
 
-```javascript
-console.log("hello")
+```javascript{1,3}
+// Example code (Resaltado)
+// Resaltada (línea 1)
+function greet() { 
+  console.log("Hello, World!"); 
+}
+// Resaltada (línea 3)
 ```
