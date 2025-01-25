@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "docs": "git add . && git commit -m \"Update Sapling Docs\" && git push"
+    "docs": "cls && git add . && git commit -m \"Update Sapling Docs\" && git push"
   },
   "author": "",
   "license": "ISC"
