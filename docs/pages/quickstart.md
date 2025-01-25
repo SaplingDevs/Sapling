@@ -1,5 +1,6 @@
-# Welcome to Sapling quick start!
+# Que necesitas saber antes de instalar Sapling?
 
-::: tip Hii
-hallo
+::: info
+- Sapling require el experimento `Beta-APIs`.
+- Requeriras tener la tag `sapling_admin` para obtener acceso a todo el contenido de Sapling.
 :::
