@@ -1,10 +1,10 @@
-# Bienvenido a Quickstart de Sapling!
+# Welcome to Sapling's quickstart!
 
-#### Algunas cosas a tomar en cuenta al instalar Sapling son:
+#### Some things to keep in mind before install Sapling:
 
 ::: info
-- Sapling require el experimento `Beta-APIs`.
-- Requeriras tener la tag `sapling_admin` para obtener acceso a todo el contenido de Sapling.
+- Sapling requires `Beta-APIs` experiment.
+- You need the tag `sapling_admin` to acces to all Sapling content.
 :::
 
 ---
