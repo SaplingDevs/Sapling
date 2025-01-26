@@ -1,5 +1,5 @@
-# Welcome to Sapling docs!
-## In this page you can find all docs of Sapling!
+# Welcome to Sapling Docs!
+## On this page, you can find all the documentation for Sapling!
 
-> - ### You wanna start with Sapling? Check our [Quick Start](/docs/quickstart/) page!
-> - ### You wanna check all changes of Sapling? Check the [Changelog](/docs/changelog/) page!
+> - ### Want to get started with Sapling? Check out our [Quick Start](/docs/quickstart/) page!
+> - ### Want to see all the changes in Sapling? Visit the [Changelog](/docs/changelog/) page!
