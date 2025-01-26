@@ -10,12 +10,13 @@
 
 ---
 
+# Installation guides
+
 ## Installing Sapling
+> To install Saling in you device
 
 ## Updating Sapling
 > When Sapling is updated, you only need to download the new files from the latest version release (`Sapling` and `SaplingCUI`) and import them into the game.
-
----
 
 ## Install Sapling in BDS (Bedrock Dedicated Server)
 > To install
