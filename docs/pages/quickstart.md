@@ -14,9 +14,9 @@
 
 ## Installing Sapling
 > To install Sapling on your device, download the files `Sapling` and `SaplingCUI` from the latest [release](https://github.com/SaplingDevs/Sapling/releases). After importing both files into your game, follow these steps:
-> - \1. Go to `Settings` > `Global resources` > `My packs` and enable `Sapling Addon [RP]`.
-> - \2. Go to your `world settings` > `Behavior packs` > `Available` and enable `Sapling Addon [BP]`.
-> - \3. In the `Experiments` section of your world settings, enable the `Beta APIs` experiment.
+> - **1.** Go to `Settings` > `Global resources` > `My packs` and enable `Sapling Addon [RP]`.
+> - **2.** Go to your `world settings` > `Behavior packs` > `Available` and enable `Sapling Addon [BP]`.
+> - **3.** In the `Experiments` section of your world settings, enable the `Beta APIs` experiment.
 
 #### And that's it! Now you can use Sapling in your world.
 
