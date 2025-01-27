@@ -35,7 +35,12 @@
 > - **8.** Open the file and add this content:
 
 ```
-[ { "pack_id" : "803a4d54-12b2-42a1-ad1c-65d33a3c8296", "version" : [ 2, 1, 1 ] } ]
+[ 
+  { 
+    "pack_id" : "803a4d54-12b2-42a1-ad1c-65d33a3c8296", 
+    "version" : [ 2, 1, 1 ] 
+  }
+]
 ```
 
 
