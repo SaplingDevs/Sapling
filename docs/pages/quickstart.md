@@ -33,8 +33,7 @@
 > - **6.** After exporting your world with experimental modes enabled, move the world to your BDS folder > `worlds`. The path should look like this: `BDS/worlds/myworld`.
 > - **7.** Create a file named `world_behavior_packs.json` in your world folder if it doesn't exist and open it.
 > - **8.** Open the file and add this content:
-
-```
+> ```
 [ 
   { 
     "pack_id" : "803a4d54-12b2-42a1-ad1c-65d33a3c8296", 
@@ -42,8 +41,6 @@
   }
 ]
 ```
-
-
 > - **9.** The value of the `"version"` property depends on the version of your Sapling. You can check the Sapling internal version in `development_behavior_packs/Sapling/manifest.json` under the `version` property.
 
 #### And that's it! Now you can use Sapling on your server.
