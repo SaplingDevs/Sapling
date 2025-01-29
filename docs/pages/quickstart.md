@@ -43,3 +43,22 @@
 > - **2.** Update the `"version"` values in the `world_behavior_packs.json` file in your world folder. The internal version of Sapling can be found in `manifest.json` inside the Sapling files.
 
 #### And that's it! Now you can use the latest version of Sapling on your server.
+
+---
+
+# Sapling Tips
+
+## Texture Channels
+::: tip
+You've probably noticed a gear icon when enabling `SaplingCUI` in your global resources and wondered what it's for. Let me explain:
+
+> A texture channel allows you to separate the visibility of certain visual elements (like Redstone indicators and chunk borders) from other players! This means that if you set a specific texture channel, you won't see visual features enabled by another player unless you're using the same channel. For example, if your friend is using texture channel `4` and you're using `10`, neither of you will see the other's visual elements.
+:::
+
+## How to Set It Up?
+> Setting up a texture channel is simple. Just follow these steps:
+> - Select a texture channel from the gear icon in `SaplingCUI` (e.g., `7`).
+> - Enter your world with `Sapling` installed and use the following command:
+>   `#config textureChannel 7` (or the texture channel you selected).
+
+#### And that's it! Your texture channel is now configured.
