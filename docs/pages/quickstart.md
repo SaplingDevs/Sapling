@@ -55,7 +55,7 @@ You've probably noticed a gear icon when enabling `SaplingCUI` in your global re
 > A texture channel allows you to separate the visibility of certain visual elements (like Redstone indicators and chunk borders) from other players! This means that if you set a specific texture channel, you won't see visual features enabled by another player unless you're using the same channel. For example, if your friend is using texture channel `4` and you're using `10`, neither of you will see the other's visual elements.
 :::
 
-## How to Set It Up?
+### How to Set It Up?
 > Setting up a texture channel is simple. Just follow these steps:
 > - Select a texture channel from the gear icon in `SaplingCUI` (e.g., `7`).
 > - Enter your world with `Sapling` installed and use the following command:
