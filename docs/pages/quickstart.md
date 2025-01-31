@@ -59,6 +59,6 @@ You've probably noticed a gear icon when enabling `SaplingCUI` in your global re
 > Setting up a texture channel is simple. Just follow these steps:
 > - Select a texture channel from the gear icon in `SaplingCUI` (e.g., `7`).
 > - Enter your world with `Sapling` installed and use the following command:
->   `#config textureChannel 7` (or the texture channel you selected).
+>   - `#config textureChannel 7` (or the texture channel you selected).
 
 #### And that's it! Your texture channel is now configured.
