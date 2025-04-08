@@ -1,9 +1,0 @@
-{
-	"ui_defs": [
-		// Debug screen files
-		"ui/sapling/debug_screen/debug_lib.json",
-		"ui/sapling/debug_screen/debug_panel.json",
-		"ui/sapling/debug_screen/debug_button.json",
-		"ui/sapling/debug_screen/debug_elements.json"
-	]
-}
