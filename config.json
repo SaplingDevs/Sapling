@@ -1,0 +1,66 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Bedrock-OSS/regolith-schemas/main/config/v1.4.json",
+  "author": "AlecsDeveloper",
+  "name": "Sapling Addon",
+  "packs": {
+    "behaviorPack": "./src/main/resources/data",
+    "resourcePack": "./src/main/resources/assets"
+  },
+  "regolith": {
+    "dataPath": "./src/main/javascript",
+    "filterDefinitions": {
+      "pruner": {
+        "runWith": "shell",
+        "command": "Remove-Item -Path \"./data/\" -Recurse -Force"
+      },
+      "compiler": {
+        "runWith": "shell",
+        "command": "tsc"
+      },
+      "packer": {
+        "url": "github.com/MCDevKit/regolith-library",
+        "version": "1.0.3"
+      }
+    },
+    "formatVersion": "1.4.0",
+    "profiles": {
+      "default": {
+        "export": {
+          "build": "standard",
+          "readOnly": false,
+          "target": "development"
+        },
+        "filters": [
+          {
+            "filter": "compiler"
+          },
+          {
+            "filter": "pruner"
+          }
+        ]
+      },
+      "pack": {
+        "export": {
+          "bpName": "${config.name} BP",
+          "rpName": "${config.name} RP",
+          "target": "none",
+          "readOnly": false
+        },
+        "filters": [
+          {
+            "filter": "compiler"
+          },
+          {
+            "filter": "pruner"
+          },
+          {
+            "filter": "packer",
+            "settings": {
+              "output": "build/${config.name}.mcaddon"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
