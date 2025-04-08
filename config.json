@@ -7,11 +7,19 @@
 		"resourcePack": "./source/resources/assets"
 	},
 	"regolith": {
-		"dataPath": "./sources/javascript",
+		"dataPath": "./source/javascript",
 		"filterDefinitions": {
-			"gametests": {
-				"url": "github.com/Bedrock-OSS/regolith-filters",
-				"version": "1.7.2"
+			"pruner": {
+				"command": "Remove-Item -Path \"./data/\" -Recurse -Force",
+				"runWith": "shell"
+			},
+			"compiler": {
+				"command": "tsc",
+				"runWith": "shell"
+			},
+			"packer": {
+				"url": "github.com/MCDevKit/regolith-library",
+				"version": "1.0.3"
 			}
 		},
 		"formatVersion": "1.4.0",
@@ -22,8 +30,37 @@
 					"readOnly": false,
 					"target": "development"
 				},
-				"filters": []
-			}
+				"filters": [
+					{
+						"filter": "compiler"
+					},
+					{
+						"filter": "pruner"
+					}
+				]
+			},
+			"pack": {
+        "export": {
+          "bpName": "${config.name} BP",
+          "rpName": "${config.name} RP",
+          "target": "none",
+          "readOnly": false
+        },
+        "filters": [
+          {
+            "filter": "compiler"
+          },
+          {
+            "filter": "pruner"
+          },
+          {
+            "filter": "packer",
+            "settings": {
+              "output": "build/${config.name}.mcaddon"
+            }
+          }
+        ]
+      }
 		}
 	}
 }

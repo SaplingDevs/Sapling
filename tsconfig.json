@@ -1,0 +1,49 @@
+{
+  "ts-node": {
+    "esm": true
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "module": "es2020",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": [
+      "es2022",
+      "DOM"
+    ],
+    "strict": false,
+    "target": "es2020",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "strictBindCallApply": true,
+    "useUnknownInCatchVariables": false,
+    "noImplicitOverride": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowUnusedLabels": true,
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "preserveConstEnums": true,
+    "newLine": "lf",
+    "types": [],
+    "noLib": false,
+    "sourceMap": true,
+    "pretty": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowUnreachableCode": true,
+    "noImplicitReturns": false,
+    "noImplicitUseStrict": false,
+    "outDir": "./.regolith/tmp/BP/scripts",
+    "rootDir": "./source/javascript",
+    "listFiles": false,
+    "baseUrl": "./source/javascript",
+    "paths": {}
+  },
+  "exclude": [
+    "source/resources/data/scripts",
+    "./.regolith/**/*"
+  ]
+}
