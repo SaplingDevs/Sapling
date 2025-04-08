@@ -1,0 +1,22 @@
+{
+  "name": "sapling",
+  "version": "1.0.0",
+  "description": "\"# Sapling\"",
+  "homepage": "https://github.com/SaplingDevs/Sapling#readme",
+  "bugs": {
+    "url": "https://github.com/SaplingDevs/Sapling/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaplingDevs/Sapling.git"
+  },
+  "license": "ISC",
+  "scripts": {
+    "compile:addon": "regolith run"
+  },
+  "devDependencies": {
+    "@minecraft/server": "^2.0.0-beta.1.21.70-stable",
+    "@minecraft/server-ui": "^2.0.0-beta.1.21.70-stable",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,2 +1,5 @@
-/build
-/.regolith
+**/node_modules/
+**/package-lock.json
+**/.regolith/
+**/.idea
+**/src/main/resources/data/scripts/
