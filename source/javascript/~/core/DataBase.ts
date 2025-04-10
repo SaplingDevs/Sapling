@@ -60,7 +60,6 @@ export class DataBase {
       if (!globalThis.BStorage[this.DatabaseID][key]) this.size++;
       globalThis.BStorage[this.DatabaseID][key] = value;
 
-      console.log(key, value, globalThis.BStorage[this.DatabaseID][key])
       this.__send_event("/update");
     });
 
@@ -74,6 +73,25 @@ export class DataBase {
   has(key: string) {
     return key in globalThis.BStorage[this.DatabaseID];
   }
+
+  async forEach (callback, forAwait = false) {
+    const db = globalThis.BStorage[this.DatabaseID];
+
+		let data = Object.keys(db);
+		if (forAwait) {
+			for await (let key of data) callback(key, db[key]);
+		} else {
+			for (let key of data) callback(key, db[key]);
+		}
+	}
+
+  values () {
+		return Object.values(globalThis.BStorage[this.DatabaseID]);
+	}
+	
+	keys () {	
+		return Object.keys(globalThis.BStorage[this.DatabaseID]);
+	}
 
   remove(key: string) {
     this.__database_fallback(() => {
