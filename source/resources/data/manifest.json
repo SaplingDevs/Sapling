@@ -5,7 +5,7 @@
       "description": "By AlecsDeveloper",
       "uuid": "d0e12ee5-ac67-42ab-8618-98c2470fb15a",
       "version": [ 3, 0, 0 ],
-      "min_engine_version": [ 3, 0, 0 ]
+      "min_engine_version": [ 1, 21, 70 ]
   },
   "modules": [
       {
@@ -21,9 +21,14 @@
           "version": [ 3, 0, 0 ]
       }
   ],
+  "capabilities": ["script_eval"],
   "dependencies": [
       {
           "module_name": "@minecraft/server",
+          "version": "2.0.0-beta"
+      },
+      {
+          "module_name": "@minecraft/server-ui",
           "version": "2.0.0-beta"
       },
       {

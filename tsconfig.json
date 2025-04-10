@@ -30,7 +30,7 @@
     "newLine": "lf",
     "types": [],
     "noLib": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "pretty": true,
     "forceConsistentCasingInFileNames": true,
     "allowUnreachableCode": true,
@@ -40,7 +40,10 @@
     "rootDir": "./source/javascript",
     "listFiles": false,
     "baseUrl": "./source/javascript",
-    "paths": {}
+    "paths": {
+      "*": ["source/javascript/*"],
+      "~/*": ["source/javascript/~/*"]
+    }
   },
   "exclude": [
     "source/resources/data/scripts",
