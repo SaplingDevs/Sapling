@@ -10,10 +10,10 @@ globalThis.BStorage = {};
 
 // Database IPC
 system.afterEvents.scriptEventReceive.subscribe((Event) => {
-  if (!Event.id.startsWith(DataBase.EventID) || Event.sourceType !== ScriptEventSource.Server) return;
+  if (!Event.id.startsWith(DataBaseBuilder.EventID) || Event.sourceType !== ScriptEventSource.Server) return;
 
   const DatabaseID = Event.message;
-  const action = Event.id.replace(DataBase.EventID, "");
+  const action = Event.id.replace(DataBaseBuilder.EventID, "");
   
   if (action === "/load") {
     const DBSaved = world.getDynamicProperty(DatabaseID) as string;
@@ -21,7 +21,7 @@ system.afterEvents.scriptEventReceive.subscribe((Event) => {
     if (DBSaved) globalThis.BStorage[DatabaseID] = JSON.parse(DBSaved);
     else world.setDynamicProperty(DatabaseID, JSON.stringify(globalThis.BStorage[DatabaseID]));
 
-    system.sendScriptEvent(DataBase.EventID + "/loaded", DatabaseID);
+    system.sendScriptEvent(DataBaseBuilder.EventID + "/loaded", DatabaseID);
   }
 
   else if (action === "/update") {
@@ -36,7 +36,7 @@ type DataBaseValue = string|number|boolean|object
 
 
 // Database builder
-export class DataBase {
+export class DataBaseBuilder {
   size: number;
   loaded: boolean;
   DatabaseID: string;
@@ -55,7 +55,7 @@ export class DataBase {
 
 
   // Database methods
-  set(key: string, value: DataBaseValue): DataBase {
+  set(key: string, value: DataBaseValue): DataBaseBuilder {
     this.__database_fallback(() => {
       if (!globalThis.BStorage[this.DatabaseID][key]) this.size++;
       globalThis.BStorage[this.DatabaseID][key] = value;
@@ -93,7 +93,7 @@ export class DataBase {
 		return Object.keys(globalThis.BStorage[this.DatabaseID]);
 	}
 
-  remove(key: string): DataBase {
+  remove(key: string): DataBaseBuilder {
     this.__database_fallback(() => {
       delete globalThis.BStorage[this.DatabaseID][key];
       this.__send_event("/update");
@@ -104,21 +104,21 @@ export class DataBase {
 
   // Internal core
   private __send_event(EventID: string) {
-    system.run(() => system.sendScriptEvent(`${DataBase.EventID}${EventID}`, this.DatabaseID));
+    system.run(() => system.sendScriptEvent(`${DataBaseBuilder.EventID}${EventID}`, this.DatabaseID));
   }
 
   private __load_database() {
     this.__create_register();
 
-    system.run(() => system.sendScriptEvent(`${DataBase.EventID}/load`, this.DatabaseID));
+    system.run(() => system.sendScriptEvent(`${DataBaseBuilder.EventID}/load`, this.DatabaseID));
   }
 
   private __create_register() {
     const register = system.afterEvents.scriptEventReceive.subscribe((Event) => {
-      if (!Event.id.startsWith(DataBase.EventID) || Event.sourceType !== ScriptEventSource.Server) return;
+      if (!Event.id.startsWith(DataBaseBuilder.EventID) || Event.sourceType !== ScriptEventSource.Server) return;
 
       const DatabaseID = Event.message;
-      const action = Event.id.replace(DataBase.EventID, "");
+      const action = Event.id.replace(DataBaseBuilder.EventID, "");
 
       if (action !== "/loaded" || DatabaseID !== this.DatabaseID) return;
 
