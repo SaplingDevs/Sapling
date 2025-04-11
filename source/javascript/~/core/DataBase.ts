@@ -55,7 +55,7 @@ export class DataBase {
 
 
   // Database methods
-  set(key: string, value: DataBaseValue){
+  set(key: string, value: DataBaseValue): DataBase {
     this.__database_fallback(() => {
       if (!globalThis.BStorage[this.DatabaseID][key]) this.size++;
       globalThis.BStorage[this.DatabaseID][key] = value;
@@ -66,15 +66,15 @@ export class DataBase {
     return this;
   }
 
-  get(key: string, fallback: DataBaseValue = false) {
+  get(key: string, fallback: DataBaseValue = false): DataBaseValue {
     return globalThis.BStorage[this.DatabaseID][key] || fallback;
   }
 
-  has(key: string) {
+  has(key: string): boolean {
     return key in globalThis.BStorage[this.DatabaseID];
   }
 
-  async forEach (callback, forAwait = false) {
+  async forEach (callback, forAwait = false): Promise<void> {
     const db = globalThis.BStorage[this.DatabaseID];
 
 		let data = Object.keys(db);
@@ -85,15 +85,15 @@ export class DataBase {
 		}
 	}
 
-  values () {
+  values (): DataBaseValue[] {
 		return Object.values(globalThis.BStorage[this.DatabaseID]);
 	}
 	
-	keys () {	
+	keys (): string[] {	
 		return Object.keys(globalThis.BStorage[this.DatabaseID]);
 	}
 
-  remove(key: string) {
+  remove(key: string): DataBase {
     this.__database_fallback(() => {
       delete globalThis.BStorage[this.DatabaseID][key];
       this.__send_event("/update");
