@@ -1,17 +1,22 @@
+import { Player, world } from "@minecraft/server";
 import {
   CommandDispatcher,
   literal,
   argument,
   type CommandContext,
-  type ArgumentType} from "../~/brigadier";
+  type ArgumentType,
+  StringArgumentType,
+} from "../~/brigadier";
 
 export class CommandBuilder {
-  private name!: string;
-  private args: { name: string, type: ArgumentType<any> }[] = [];
-  private description: string;
-  private callback!: (ctx: CommandContext<any>) => void;
+  static __commands: Map<string, CommandBuilder> = new Map();
 
-  static __dispatcher = new CommandDispatcher();
+  name!: string;
+  description: string;
+  
+  private args: { name: string, type: ArgumentType<any> }[] = [];
+  private callback!: (ctx: CommandContext<any>|null) => void;
+  private dispatcher = new CommandDispatcher();
 
   // Build methods
   setName(name: string) {
@@ -29,18 +34,20 @@ export class CommandBuilder {
     return this;
   }
 
-  setCallback(callback: (ctx: CommandContext<any>) => void) {
-    this.callback = callback;
+  setCallback(callback: (ctx: CommandContext<any>, sender: Player) => void) {
+    this.callback = (ctx: CommandContext<any>) => {
+      const PlayerID = ctx.get("@player_id").replace("@", "").replaceAll("%20", " ");
+      const Sender = world.getPlayers({ name: PlayerID })[0];
+
+      callback(ctx, Sender);
+    };
+
     return this;
   }
 
   private build() {
     if (!this.name || !this.callback) throw new Error("Missing name or callback");
-  
-    if (this.args.length === 0) {
-      return literal(this.name).executes(this.callback);
-    }
-  
+
     let chain = argument(this.args.at(-1)!.name, this.args.at(-1)!.type)
       .executes(this.callback);
   
@@ -49,18 +56,21 @@ export class CommandBuilder {
       chain = argument(arg.name, arg.type).then(chain);
     }
   
-    return literal(this.name).then(chain);
+    return literal(this.name).then(chain)
   }
   
 
   register() {
-    CommandBuilder.__dispatcher.register(this.build());
+    this.setArg("@player_id", new StringArgumentType("quotable_phrase"));
+
+    CommandBuilder.__commands.set(this.name, this)
+    this.dispatcher.register(this.build());
   }
 
 
   // Public method
-  static execute(input: string) {
-    CommandBuilder.__dispatcher.execute(input, null);
+  execute(input: string) {
+    this.dispatcher.execute(input, null)
   }
 }
 
