@@ -17,6 +17,9 @@ const ServerFeatures = new GameRulePack([
   // Cauldron Conversion Features
   "cauldronConcrete",
   "cauldronMud",
+  // Dispenser Features
+  "dispensableBlocks",
+  "dispensableBadOmen",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
