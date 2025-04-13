@@ -14,6 +14,9 @@ const ServerFeatures = new GameRulePack([
   "anvilBedrockBreaker",
   "signBedrockBreaker",
   "cauldronBedrockBreaker",
+  // Cauldron Conversion Features
+  "cauldronConcrete",
+  "cauldronMud",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
