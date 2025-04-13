@@ -10,8 +10,10 @@ const ServerFeatures = new GameRulePack([
   "instamineObsidian",
   "instamineDeepslate",
   "instamineEndstone",
-  "",
-  "",
+  // Bedrock Breaking Features
+  "anvilBedrockBreaker",
+  "signBedrockBreaker",
+  "cauldronBedrockBreaker",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
