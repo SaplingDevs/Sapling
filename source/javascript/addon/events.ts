@@ -1,3 +1,4 @@
 import "addon/events/chatSend"
 import "addon/events/entitySpawn"
 import "addon/events/explosion"
+import "addon/events/globalInterval"
