@@ -1,7 +1,7 @@
 import { EntitySpawnAfterEvent } from "@minecraft/server";
-import { ServerFeatures } from "../../../config/gamerules"
-import { Utils } from "../../../classes/Utils";
-import { BlockStepLocation } from "../../../types";
+import { ServerFeatures } from "config/gamerules"
+import { Utils } from "classes/Utils";
+import { BlockStepLocation } from "types";
 
 export default function tntDuping(Event: EntitySpawnAfterEvent) {
   if (Event.entity.typeId !== 'minecraft:tnt') return;

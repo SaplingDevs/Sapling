@@ -1,3 +1,3 @@
-import "./events/chatSend"
-import "./events/entitySpawn"
-import "./events/explosion"
+import "addon/events/chatSend"
+import "addon/events/entitySpawn"
+import "addon/events/explosion"

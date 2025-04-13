@@ -1,5 +1,5 @@
 import { system, ItemStack, ExplosionBeforeEvent } from "@minecraft/server";
-import { ServerFeatures } from "../../../config/gamerules"
+import { ServerFeatures } from "config/gamerules"
 
 const TNT_BLOCKS = new Map();
 
@@ -8,8 +8,6 @@ export default function tntTweaks(Event: ExplosionBeforeEvent){
 	const tntNotExplodes = ServerFeatures.DataBase.get('tntnoexplodes');
 	const tntNoDrops = ServerFeatures.DataBase.get('tntnodrops',);
 	const tntDropIce = ServerFeatures.DataBase.get('tntdropice');
-
-	console.log(tntDropIce)
 
 	// Blocks
 	let blocks = Event.getImpactedBlocks()

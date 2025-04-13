@@ -1,6 +1,6 @@
-import "./config/gamerules"
-import "./addon/events"
-import "./addon/commands"
+import "config/gamerules"
+import "addon/events"
+import "addon/commands"
 
-import data from "./config/data"
+import data from "config/data"
 console.log(`Sapling ${data.version} loaded!`);

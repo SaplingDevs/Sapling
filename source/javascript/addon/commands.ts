@@ -1,1 +1,1 @@
-import "./commands/sapling"
+import "addon/commands/sapling"

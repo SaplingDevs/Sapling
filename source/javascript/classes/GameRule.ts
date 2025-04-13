@@ -1,5 +1,5 @@
 import { system } from "@minecraft/server";
-import { DataBaseBuilder } from "../~/core";
+import { DataBaseBuilder } from "~/core";
 
 export class GameRulePack {
   private rules: Record<string, string>;

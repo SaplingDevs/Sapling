@@ -1,7 +1,7 @@
 import { ChatSendBeforeEvent } from "@minecraft/server";
-import { Packet } from "../../~/server";
-import { CommandBuilder } from "../../classes/Command";
-import { Utils } from "../../classes/Utils";
+import { Packet } from "~/server";
+import { CommandBuilder } from "classes/Command";
+import { Utils } from "classes/Utils";
 
 Packet.on("before::chatSend", (Event: ChatSendBeforeEvent) => {
   if (!Event.message.startsWith("#") && !Event.message.startsWith("./")) return;

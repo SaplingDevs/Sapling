@@ -1,6 +1,6 @@
-import { CommandBuilder, CommandContext, BoolArgumentType, StringArgumentType } from "../../classes/Command";
-import { ServerFeatures } from "../../config/gamerules";
-import { Utils } from "../../classes/Utils";
+import { CommandBuilder, CommandContext, BoolArgumentType, StringArgumentType } from "classes/Command";
+import { ServerFeatures } from "config/gamerules";
+import { Utils } from "classes/Utils";
 import { Player } from "@minecraft/server";
 
 

@@ -1,5 +1,5 @@
 import { Block, Player, RawMessage } from "@minecraft/server";
-import { BlockStepLocation } from "../types";
+import { BlockStepLocation } from "types";
 
 export class Utils {
   static blockStep(block: Block, location: BlockStepLocation, steps: number= 1) {
