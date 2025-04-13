@@ -39,7 +39,7 @@
     "outDir": "./.regolith/tmp/BP/scripts",
     "rootDir": "./source/javascript",
     "listFiles": false,
-    "baseUrl": "./source/javascript",
+    "baseUrl": "./source/javascript/",
     "paths": {
       "*": ["source/javascript/*"],
       "~/*": ["source/javascript/~/*"]

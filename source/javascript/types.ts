@@ -1,0 +1,1 @@
+export type BlockStepLocation = "north"|"south"|"east"|"west"|"below"|"above"

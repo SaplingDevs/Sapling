@@ -1,4 +1,4 @@
-import { Dimension, ScriptEventSource, system, world } from "@minecraft/server";
+import { ScriptEventSource, system, world } from "@minecraft/server";
 
 declare global {
   interface GlobalThis {
@@ -27,8 +27,6 @@ system.afterEvents.scriptEventReceive.subscribe((Event) => {
   else if (action === "/update") {
     const DBSaved = JSON.stringify(globalThis.BStorage[DatabaseID])
     world.setDynamicProperty(DatabaseID, DBSaved); 
-
-    console.log(DatabaseID, "Updated:", DBSaved)
   }
 });
 

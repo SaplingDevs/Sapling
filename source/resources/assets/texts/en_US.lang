@@ -1,1 +1,12 @@
+sapling.base.enabled=%s enabled.
+sapling.base.disabled=%s disabled.
+sapling.base.lang=New language set!
+sapling.base.prof=Evaluating world data...
+sapling.base.data=No stored data found.
+sapling.base.value=New value set: %s.
+sapling.error.admin=You are not an admin.
+sapling.error.value=Error: Invalid value: %s.
+sapling.error.lang=Error: Invalid language!
+sapling.error.feature=Error: Invalid feature: %s.
+
 sapling.command.error=Unknow sapling command: %s. Please check that the command exists and that you have permission to use it
