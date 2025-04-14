@@ -6,6 +6,8 @@ import { PistonAssets, PistonDirections, Vector3 } from "~/server";
 
 
 export function renewableSoulSand(Event: EntityDieAfterEvent) {
+  if (!ServerFeatures.DataBase.get("renewablesoulsand")) return;
+  
 	const MOBS = [ "minecraft:zombie", "minecraft:skeleton", "minecraft:stray", "minecraft:enderman" ];
 	
 	if (!['fireTick','fire'].includes(Event.damageSource.cause)) return;
@@ -15,6 +17,8 @@ export function renewableSoulSand(Event: EntityDieAfterEvent) {
 }
 
 export async function railDuping({ piston }: PistonActivateAfterEvent) {
+  if (!ServerFeatures.DataBase.get("railduping")) return;
+
   const State = piston.state;
   const PistonBlock = piston.block;
   const Facing = PistonDirections[PistonBlock.permutation.getState('facing_direction')];
@@ -32,7 +36,7 @@ export async function railDuping({ piston }: PistonActivateAfterEvent) {
     Blocks.push(BlockLoc);
   }
 
-  await system.waitTicks(1);
+  await system.waitTicks(2);
 
   const Rails = Blocks
     .map(loc => PistonBlock.dimension.getBlock(loc))
@@ -50,6 +54,8 @@ export async function railDuping({ piston }: PistonActivateAfterEvent) {
 }
 
 export async function pistonSpongeDrying({ piston }: PistonActivateAfterEvent) {
+  if (!ServerFeatures.DataBase.get("pistonspongedrying")) return;
+
   const State = piston.state;
   const PistonBlock = piston.block;
   const Facing = PistonDirections[PistonBlock.permutation.getState('facing_direction')];
@@ -67,7 +73,7 @@ export async function pistonSpongeDrying({ piston }: PistonActivateAfterEvent) {
     Blocks.push(BlockLoc);
   }
 
-  await system.waitTicks(1);
+  await system.waitTicks(2);
 
   const Sponges = Blocks
     .map(loc => PistonBlock.dimension.getBlock(loc))
@@ -77,6 +83,8 @@ export async function pistonSpongeDrying({ piston }: PistonActivateAfterEvent) {
 }
 
 export async function renewableDeepslate({ piston }: PistonActivateAfterEvent) {
+  if (!ServerFeatures.DataBase.get("renewabledeepslate")) return;
+
   const State = piston.state;
   const PistonBlock = piston.block;
   const Facing = PistonDirections[PistonBlock.permutation.getState('facing_direction')];
@@ -94,7 +102,7 @@ export async function renewableDeepslate({ piston }: PistonActivateAfterEvent) {
     Blocks.push(BlockLoc);
   }
 
-  await system.waitTicks(1)
+  await system.waitTicks(2)
 
   const Basalt = Blocks
     .map(loc => PistonBlock.dimension.getBlock(loc))
