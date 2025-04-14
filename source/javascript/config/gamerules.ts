@@ -6,6 +6,7 @@ const ServerFeatures = new GameRulePack([
   "tntNotExplodes",
   "tntNoDrops",
   "tntDropIce",
+  "tntDispenserRefill",
   // Instamine Features
   "instamineObsidian",
   "instamineDeepslate",
@@ -20,15 +21,14 @@ const ServerFeatures = new GameRulePack([
   // Dispenser Features
   "dispensableBlocks",
   "dispensableBadOmen",
+  "blazeMeal",
   // Silk Touch Features
   "silkTouchGetBuddingAmethyst",
   "silkTouchGetSpawners",
   // Entity Features
   "phantomDisable",
-  "blazeMeal",
   "infiniteTrades",
   "entityCramming",
-  "oldPillagerMethod",
   "pigmanFarmWarts",
   "ravagerDestroyCherryLeaves",
 ]);

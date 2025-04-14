@@ -24,6 +24,8 @@ export function dispenserBadOmen(event: EntitySpawnAfterEvent) {
   } catch {}
 }
 
+
+
 export function dispensableBlocks(event: EntitySpawnAfterEvent) {
   if (!isFeatureEnabled("dispensableblocks")) return;
   else if (event.entity.typeId !== "minecraft:item") return;
@@ -46,6 +48,40 @@ export function dispensableBlocks(event: EntitySpawnAfterEvent) {
     event.entity.kill();
   } catch {}
 }
+
+
+
+export function blazeMeal(Event: EntitySpawnAfterEvent) {
+  if (!ServerFeatures.DataBase.get("blazemeal")) return;
+
+  try {
+    if (Event.entity.typeId !== 'minecraft:item') return;
+    const item = Event.entity.getComponent('item').itemStack;
+    
+    if (item.typeId !== 'minecraft:blaze_powder') return;
+    else if (item.amount > 1) return;
+    
+    const _b = Event.entity.dimension.getBlock(Event.entity.location);
+    if (_b.typeId !== 'minecraft:nether_wart') return;
+        
+    const blocks = [ 'up', 'north', 'south', 'east', 'west']
+      .map(side => Utils.blockStep(_b, side as BlockStepLocation))
+      .filter(b => b.typeId == 'minecraft:dispenser');
+    
+    if (blocks.length <= 0) return;
+    
+    // Place new wart 
+    const { x, y, z } = _b.location
+    
+    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 2] run setblock ~~~ nether_wart["age" = 3]`)
+    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 1] run setblock ~~~ nether_wart["age" = 2]`)
+    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 0] run setblock ~~~ nether_wart["age" = 1]`)
+    Event.entity.runCommand(`particle minecraft:crop_growth_emitter ${x} ${y} ${z}`)
+    
+    Event.entity.kill();
+  } catch {}
+}
+
 
 // Utils
 function isFeatureEnabled(name: string) {

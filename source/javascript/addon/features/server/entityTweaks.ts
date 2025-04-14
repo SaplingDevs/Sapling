@@ -1,7 +1,5 @@
-import { Dimension, EntityDieAfterEvent, EntitySpawnAfterEvent, world } from "@minecraft/server";
-import { Utils } from "classes/Utils";
+import { Dimension, EntitySpawnAfterEvent, world } from "@minecraft/server";
 import { ServerFeatures } from "config/gamerules";
-import { BlockStepLocation } from "types";
 
 
 export function phantomDisable({ entity }: EntitySpawnAfterEvent) {
@@ -10,65 +8,6 @@ export function phantomDisable({ entity }: EntitySpawnAfterEvent) {
   if (entity.typeId !== 'minecraft:phantom') return;
   entity.remove();
 }
-
-
-
-export function blazeMeal(Event: EntitySpawnAfterEvent) {
-  if (!ServerFeatures.DataBase.get("blazemeal")) return;
-
-  try {
-    if (Event.entity.typeId !== 'minecraft:item') return;
-    const item = Event.entity.getComponent('item').itemStack;
-    
-    if (item.typeId !== 'minecraft:blaze_powder') return;
-    else if (item.amount > 1) return;
-    
-    const _b = Event.entity.dimension.getBlock(Event.entity.location);
-    if (_b.typeId !== 'minecraft:nether_wart') return;
-        
-    const blocks = [ 'up', 'north', 'south', 'east', 'west']
-      .map(side => Utils.blockStep(_b, side as BlockStepLocation))
-      .filter(b => b.typeId == 'minecraft:dispenser');
-    
-    if (blocks.length <= 0) return;
-    
-    // Place new wart 
-    const { x, y, z } = _b.location
-    
-    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 2] run setblock ~~~ nether_wart["age" = 3]`)
-    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 1] run setblock ~~~ nether_wart["age" = 2]`)
-    Event.entity.runCommand(`execute positioned ${x} ${y} ${z} if block ~~~ nether_wart["age" = 0] run setblock ~~~ nether_wart["age" = 1]`)
-    Event.entity.runCommand(`particle minecraft:crop_growth_emitter ${x} ${y} ${z}`)
-    
-    Event.entity.kill();
-  } catch {}
-}
-
-
-
-export function oldPillagerMethod(Event: EntityDieAfterEvent) {
-  if (!ServerFeatures.DataBase.get("oldpillagermethod")) return;
-	if (Event.deadEntity.typeId !== 'minecraft:pillager') return;
-
-	const player = Event.damageSource.damagingEntity;
-	const entity = Event.deadEntity;
-	
-	const items = entity.dimension.getEntities({
-		location: entity.location,
-		maxDistance: 4,
-		type: 'minecraft:item'
-	});
-	
-	for (const itemEntity of items) {
-		const item = itemEntity.getComponent('item').itemStack;
-		
-		if (item.typeId !== 'minecraft:ominous_bottle') continue;
-		
-		player.runCommand('effect @s bad_omen 6000');
-		itemEntity.kill();
-	}
-}
-
 
 
 // 5 Ticks
@@ -91,9 +30,8 @@ export function infiniteTrades() {
 
 
 // 2 Ticks
-const ov = world.getDimension("overworld");
-
 export function entityCramming() {
+  const ov = world.getDimension("overworld");
   const Enabled = !ServerFeatures.DataBase.get("entitycramming");
   if (Enabled) return ov.runCommand('scoreboard objectives remove SaplingDG');
 
@@ -107,7 +45,7 @@ export function entityCramming() {
 
 export function pigmanFarmWarts() {
   if (!ServerFeatures.DataBase.get("pigmanfarmwarts")) return;
-
+  const ov = world.getDimension("overworld");
   ov.runCommand('execute at @e[type=zombie_pigman] if block ~~1~ nether_wart ["age" = 3] run setblock ~~1~ nether_wart destroy');
 }
 
@@ -116,6 +54,8 @@ export function pigmanFarmWarts() {
 // 10 Ticks
 export function ravagerDestroyCherryLeaves() {
   if (!ServerFeatures.DataBase.get("ravagerdestroycherryleaves")) return;
+
+  const ov = world.getDimension("overworld");
   const ravagers = ov.getEntities({ type: 'minecraft:ravager' });
 
   for (let _r of ravagers) {
