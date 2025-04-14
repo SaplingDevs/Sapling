@@ -27,10 +27,16 @@ const ServerFeatures = new GameRulePack([
   "silkTouchGetSpawners",
   // Entity Features
   "phantomDisable",
+  "oldPillagerMethod",
   "infiniteTrades",
   "entityCramming",
   "pigmanFarmWarts",
   "ravagerDestroyCherryLeaves",
+  // Loot Tables Features
+  "huskDropSand",
+  "ghastDropQuartz",
+  "guardianDropSponges",
+  "silverfishDropGravel",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");

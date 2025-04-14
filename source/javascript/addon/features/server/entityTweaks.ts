@@ -1,4 +1,4 @@
-import { Dimension, EntitySpawnAfterEvent, world } from "@minecraft/server";
+import { Dimension, EntityDieAfterEvent, EntitySpawnAfterEvent, world } from "@minecraft/server";
 import { ServerFeatures } from "config/gamerules";
 
 
@@ -7,6 +7,29 @@ export function phantomDisable({ entity }: EntitySpawnAfterEvent) {
 
   if (entity.typeId !== 'minecraft:phantom') return;
   entity.remove();
+}
+
+export function oldPillagerMethod(Event: EntityDieAfterEvent) {
+  if (!ServerFeatures.DataBase.get("oldpillagermethod")) return;
+	if (Event.deadEntity.typeId !== 'minecraft:pillager') return;
+
+	const player = Event.damageSource.damagingEntity;
+	const entity = Event.deadEntity;
+	
+	const items = entity.dimension.getEntities({
+		location: entity.location,
+		maxDistance: 4,
+		type: 'minecraft:item'
+	});
+	
+	for (const itemEntity of items) {
+		const item = itemEntity.getComponent('item').itemStack;
+		
+		if (item.typeId !== 'minecraft:ominous_bottle') continue;
+		
+		player.runCommand('effect @s bad_omen 6000');
+		itemEntity.kill();
+	}
 }
 
 
