@@ -33,8 +33,6 @@ export function silkTouchGetSpawners(Event: PlayerBreakBlockBeforeEvent) {
 	};
 }
 
-
-
 function SpawnItem(block: Block, ItemID: string) {
   system.run(() => block.dimension.spawnItem(new ItemStack(ItemID, 1), block.location));
 }

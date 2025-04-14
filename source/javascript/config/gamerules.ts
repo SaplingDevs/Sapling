@@ -20,9 +20,17 @@ const ServerFeatures = new GameRulePack([
   // Dispenser Features
   "dispensableBlocks",
   "dispensableBadOmen",
-  // Silk Touch FEatures
+  // Silk Touch Features
   "silkTouchGetBuddingAmethyst",
   "silkTouchGetSpawners",
+  // Entity Features
+  "phantomDisable",
+  "blazeMeal",
+  "infiniteTrades",
+  "entityCramming",
+  "oldPillagerMethod",
+  "pigmanFarmWarts",
+  "ravagerDestroyCherryLeaves",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
