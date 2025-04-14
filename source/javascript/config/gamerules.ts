@@ -1,42 +1,48 @@
 import { GameRulePack } from "classes/GameRule";
 
 const ServerFeatures = new GameRulePack([
-  // TNT Features
+  // TNT features
   "tntDuping",
   "tntNotExplodes",
   "tntNoDrops",
   "tntDropIce",
   "tntDispenserRefill",
-  // Instamine Features
+  // Instamine features
   "instamineObsidian",
   "instamineDeepslate",
   "instamineEndstone",
-  // Bedrock Breaking Features
+  // Bedrock breaking features
   "anvilBedrockBreaker",
   "signBedrockBreaker",
   "cauldronBedrockBreaker",
-  // Cauldron Conversion Features
+  // Cauldron conversion features
   "cauldronConcrete",
   "cauldronMud",
-  // Dispenser Features
+  // Dispenser features
   "dispensableBlocks",
   "dispensableBadOmen",
   "blazeMeal",
-  // Silk Touch Features
+  // Silk touch features
   "silkTouchGetBuddingAmethyst",
   "silkTouchGetSpawners",
-  // Entity Features
+  // Entities features
   "phantomDisable",
   "oldPillagerMethod",
   "infiniteTrades",
   "entityCramming",
   "pigmanFarmWarts",
   "ravagerDestroyCherryLeaves",
-  // Loot Tables Features
+  // Loot tables features
   "huskDropSand",
   "ghastDropQuartz",
   "guardianDropSponges",
   "silverfishDropGravel",
+  // Block features
+  "endPortalGBD",
+  "renewableSoulSand",
+  "railDuping",
+  "pistonSpongeDrying",
+  "renewableDeepslate",
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
