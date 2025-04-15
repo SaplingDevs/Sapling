@@ -43,6 +43,9 @@ const ServerFeatures = new GameRulePack([
   "railDuping",
   "pistonSpongeDrying",
   "renewableDeepslate",
+  // Damage features
+  "stoneCutterDamage",
+  "sweepingEdge"
 ]);
 
 ServerFeatures.loadToDatabase("Sapling::ServerFeatures");

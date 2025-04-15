@@ -1,4 +1,4 @@
-import { Block, Player, RawMessage } from "@minecraft/server";
+import { Block, Player, RawMessage, world } from "@minecraft/server";
 import { BlockStepLocation } from "types";
 
 export class Utils {
@@ -35,6 +35,14 @@ export class Utils {
 
   static CheckSaplingAdmin(player: Player): Boolean {
     return player.hasTag("SaplingAdmin");
+  }
+
+  static getAllEntities(options) {
+    const overworld = world.getDimension('overworld').getEntities(options);
+    const nether = world.getDimension('nether').getEntities(options);
+    const the_end = world.getDimension('the_end').getEntities(options);
+  
+    return [ ...overworld, ...nether, ...the_end ];
   }
 }
 

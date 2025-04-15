@@ -4,6 +4,7 @@ import * as instamine from "addon/features/server/instamine";
 import * as entity from "addon/features/server/entityTweaks";
 import { endPortalGBD } from "addon/features/server/blockTweaks";
 import { cauldronConversion } from "addon/features/server/cauldron";
+import { stoneCutterDamage } from "addon/features/server/damageTweaks";
 
 let tick = 0;
 
@@ -21,6 +22,8 @@ system.runInterval(() => {
     entity.pigmanFarmWarts();
 
     endPortalGBD();
+
+    stoneCutterDamage();
   }
 
   // 5 Ticks
