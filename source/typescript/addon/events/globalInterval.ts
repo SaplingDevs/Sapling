@@ -5,12 +5,14 @@ import * as entity from "addon/features/server/entityTweaks";
 import { endPortalGBD } from "addon/features/server/blockTweaks";
 import { cauldronConversion } from "addon/features/server/cauldron";
 import { stoneCutterDamage } from "addon/features/server/damageTweaks";
+import toolChanger from "addon/features/client/toolChanger";
+import xpBarMending from "addon/features/client/xpBarMending";
 
 let tick = 0;
 
 system.runInterval(() => {
   cauldronConversion();
-
+  xpBarMending();
 
   // 2 Ticks
   if (tick % 2 === 0) {
@@ -24,6 +26,11 @@ system.runInterval(() => {
     endPortalGBD();
 
     stoneCutterDamage();
+  }
+
+  // 4 Ticks
+  if (tick % 4 === 0) {
+    toolChanger();
   }
 
   // 5 Ticks
