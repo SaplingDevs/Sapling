@@ -37,9 +37,9 @@
     "noImplicitReturns": false,
     "noImplicitUseStrict": false,
     "outDir": "./.regolith/tmp/BP/scripts",
-    "rootDir": "./source/javascript",
+    "rootDir": "./source/typescript",
     "listFiles": false,
-    "baseUrl": "./source/javascript",
+    "baseUrl": "./source/typescript",
     "paths": {
       "*": ["*"],
       "~/*": ["~/*"]

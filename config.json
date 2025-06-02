@@ -7,7 +7,7 @@
 		"resourcePack": "./source/resources/assets"
 	},
 	"regolith": {
-		"dataPath": "./source/javascript",
+		"dataPath": "./source/typescript",
 		"filterDefinitions": {
 			"pruner": {
 				"command": "Remove-Item -Path \"./data/\" -Recurse -Force",

@@ -12,11 +12,12 @@
   },
   "license": "ISC",
   "scripts": {
-    "compile:addon": "regolith run"
+    "dev": "regolith watch",
+    "export": "regolith run pack"
   },
   "devDependencies": {
-    "@minecraft/server": "^2.0.0-beta.1.21.70-stable",
-    "@minecraft/server-ui": "^2.0.0-beta.1.21.70-stable",
+    "@minecraft/server": "2.1.0-beta.1.21.90-preview.27",
+    "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.27",
     "typescript": "^5.7.3"
   }
 }

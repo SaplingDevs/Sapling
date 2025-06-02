@@ -10,6 +10,7 @@
   "modules": [
       {
           "type": "data",
+          "description": "Sapling BP",
           "uuid": "062f1e27-ad52-42ce-bd89-544d2fd8bc8e",
           "version": [ 3, 0, 0 ]
       },
@@ -17,6 +18,7 @@
           "type": "script",
           "uuid": "42a1adc1-a257-4fff-a34c-194051537c32",
           "language": "javascript",
+          "description": "Sapling API",
           "entry": "scripts/index.js",
           "version": [ 3, 0, 0 ]
       }
@@ -25,11 +27,11 @@
   "dependencies": [
       {
           "module_name": "@minecraft/server",
-          "version": "2.0.0-beta"
+          "version": "2.1.0-beta"
       },
       {
           "module_name": "@minecraft/server-ui",
-          "version": "2.0.0-beta"
+          "version": "2.1.0-beta"
       },
       {
           "uuid": "3f9776bc-1414-4ceb-9d14-298784ddcda3",
