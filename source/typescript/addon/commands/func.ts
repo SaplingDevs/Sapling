@@ -23,9 +23,7 @@ function SaplingCallback(origin: CommandOrigin, feature: string, value: boolean)
   const source = world.getAllPlayers().filter(p => p.id === origin.sourceEntity.id)[0];
   if (!source) return;
 
-  const RawFeature = feature.toLowerCase();
-
-  system.run(() => source[value ? "addTag" : "removeTag"](`client:${RawFeature}`));
+  system.run(() => source[value ? "addTag" : "removeTag"](`client:${feature}`));
 
   source.sendMessage(Utils.RawTextBuilder([
     { text: '§7[§l§2Sapling§r§7] '},

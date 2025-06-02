@@ -8,14 +8,12 @@ import type {
 } from "@minecraft/server";
 import { Vec3 } from "types";
 
-// Almacenamos evento + tick
 let BrokenEvents: { event: PlayerBreakBlockBeforeEvent; tick: number }[] = [];
 
-// Limpieza opcional de eventos viejos
 system.runInterval(() => {
   const now = system.currentTick;
   BrokenEvents = BrokenEvents.filter(({ tick }) => now - tick <= 10);
-}, 20); // cada segundo
+}, 20);
 
 export function itemMagnetBreakEvent(event: PlayerBreakBlockBeforeEvent) {
   if (event.player.getGameMode() === GameMode.Creative) return;
@@ -32,7 +30,7 @@ export function itemMagnetSpawnEvent(event: EntitySpawnAfterEvent) {
     const recentBroken = BrokenEvents.find(({ event: broken, tick }) =>
       now - tick <= 2 &&
       calcDistance(broken.block.location, item.location) < 7 &&
-      broken.player.hasTag("client:itemmagnet")
+      broken.player.hasTag("client:itemMagnet")
     );
 
     if (!recentBroken) return;

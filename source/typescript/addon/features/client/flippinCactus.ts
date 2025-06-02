@@ -2,7 +2,7 @@ import { Block, BlockPermutation, PlayerInteractWithBlockBeforeEvent, system } f
 import { MinecraftBlockTypes } from "~/vanilla-data";
 
 export default function flippinCactus(Event: PlayerInteractWithBlockBeforeEvent) {
-  const enable = Event.player.hasTag('client:flippincactus');
+  const enable = Event.player.hasTag('client:flippinCactus');
   if (!enable || Event.itemStack?.typeId !== 'minecraft:cactus') return;
   else if (!Event.isFirstEvent) return;
 

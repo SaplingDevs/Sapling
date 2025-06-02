@@ -54,7 +54,7 @@ ServerFeatures.loadToDatabase("Sapling::ServerFeatures");
 const ClientFeatures = new GameRulePack([
   "flippinCactus",
   "itemMagnet",
-  "minecartStaking",
+  "minecartStacking",
   "toolChanger",
   "smartHoe",
   "xpBarMending"
