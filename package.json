@@ -18,6 +18,7 @@
   "devDependencies": {
     "@minecraft/server": "2.1.0-beta.1.21.90-preview.27",
     "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.27",
+    "esbuild": "^0.25.5",
     "typescript": "^5.7.3"
   }
 }

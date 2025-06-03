@@ -17,6 +17,10 @@
 				"command": "tsc",
 				"runWith": "shell"
 			},
+			"bundler": {
+				"command": "tsc --noEmit; if ($?) { esbuild ./data/index.ts --bundle --minify --external:@minecraft/* --format=esm --target=es2020 --banner:js=\"\" --outfile=./BP/scripts/index.js 2>$null }",
+				"runWith": "shell"
+			},
 			"packer": {
 				"url": "github.com/MCDevKit/regolith-library",
 				"version": "1.0.3"
@@ -48,7 +52,7 @@
         },
         "filters": [
           {
-            "filter": "compiler"
+            "filter": "bundler"
           },
           {
             "filter": "pruner"
