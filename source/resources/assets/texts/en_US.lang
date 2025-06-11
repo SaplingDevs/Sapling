@@ -10,3 +10,4 @@ sapling.error.lang=Error: Invalid language!
 sapling.error.feature=Error: Invalid feature: %s.
 
 sapling.command.error=Unknow sapling command: %s. Please check that the command exists and that you have permission to use it
+sapling.manager.display=%s

@@ -1,0 +1,313 @@
+{
+  "namespace": "fp_forms::home",
+
+  "HomeForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "!fp:home",
+    "$render": [{ "Content@fp_forms::home.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "image",
+    "size": [ "70%", "75%" ],
+    "use_anchored_offset": true,
+    "texture": "textures/ui/White",
+    "color": "$oreui_component",
+    "controls": [
+      { "FormSections@fp_forms::home.FormSections": {} }
+    ]
+  },
+
+  "FormSections": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      { "HeaderSection@fp_forms::home.HeaderSection": {} },
+      { "ContentSection@fp_forms::home.ContentSection": {} }
+    ]
+  },
+
+   /* Form Sections */
+  "HeaderSection": {
+    "type": "panel",
+    "size": [ "100%", 18 ],
+    "controls": [
+      { "FormHeader@fp_forms::home.FormHeader": {} }
+    ]
+  },
+
+  "ContentSection": {
+    "type": "panel",
+    "size": [ "100%", "100% - 18px" ],
+    "controls": [
+      { "Buttons@common.scrolling_panel" : {
+        "offset": [ 0, 0 ],
+        "size": [ "100% - 6px", "100% - 6px" ],
+        "$show_background": false,
+        "$scrolling_content": "fp_forms::home.ButtonsFactory",
+        "$scroll_size": [ 5, "100% - 4px" ],
+        "$scrolling_pane_size": [ "100%", "100%" ],
+        "$scrolling_pane_offset": [ 0, 0 ],
+        "$scroll_bar_right_padding_size": [ 0, 0 ]
+      }}
+    ]
+  },
+
+  /* Form Factories */
+  "ButtonsFactory": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "orientation": "vertical",
+    "controls": [
+      { "ManagerControls": {
+        "type": "panel",
+        "size": [ "100%", "100%c" ],
+        "controls": [ { "ManagerControls@fp_forms::home.ManagerControls": {} } ]
+      }},
+      { "ManagerPlayers": {
+        "type": "panel",
+        "size": [ "100%", "100%c" ],
+        "controls": [ { "ManagerPlayers@fp_forms::home.ManagerPlayers": {} } ]
+      }}
+    ]
+  },
+
+  /* Form Components */
+  // Header
+  "FormHeader": {
+    "layer": 1,
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/White",
+    "color": "$oreui_gray",
+    "controls": [ { 
+      "header": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", 16 ],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "texture": "textures/ui/White",
+        "color": "$oreui_white",
+        "controls": [ { 
+          "title": {
+            "type": "label",
+            "offset": [ 4, 0 ],
+            "text": "Fakeplayer Manager: Home",
+            "color": "$oreui_dark",
+            "font_type": "MinecraftTen",
+            "anchor_from": "left_middle",
+            "anchor_to": "left_middle"
+          }
+        }]
+      }
+    }]
+  },
+
+  // Button Managers
+  "ManagerControls": {
+    "type": "stack_panel",
+    "size": [ "100%", 40 ],
+    "orientation": "horizontal",
+    "controls": [
+      // External Controls (UI Config)
+      { "External": {
+        "type": "panel",
+        "size": [ "50%", "100%" ]
+      }},
+
+      // Form Controls (Scripting)
+      { "Scripting": {
+        "type": "stack_panel",
+        "size": [ "50%", "100%" ],
+        "orientation": "horizontal",
+        "collection_name": "form_buttons",
+        "controls": [
+          { "Connect@sa_cmp::buttons.OreUI_White": { "collection_index": 20, "$button_text": "New player" }},
+          { "Import@sa_cmp::buttons.OreUI_White": { "collection_index": 21, "$button_text": "Import players" }}
+        ]
+      }}
+    ]
+  },
+
+  "ManagerPlayers": {
+    "type": "grid",
+    "size": ["100%", "100%c"],
+    "grid_dimensions": [ 3, 3 ],
+    "grid_item_template": "fp_forms::home.Player_Tab",
+    "grid_fill_direction": "horizontal",
+    "grid_rescaling_type": "horizontal",
+    "anchor_from": "center",
+    "anchor_to": "center",
+
+    "factory": {
+      "name": "buttons",
+      "control_name": "fp_forms::home.Player_Tab"
+    },
+
+    "collection_name": "form_buttons",
+    "bindings": [
+      {
+        "binding_name": "#form_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#form_text * 1)",
+        "target_property_name": "#maximum_grid_items"
+      }
+    ]
+  },
+
+  "Player_Tab": {
+    "type": "panel",
+    "size": [ 80, 80 ],
+    "controls": [
+      { "btn@common_buttons.light_text_button": {
+        // Button Style
+        "layer": 100,
+        "size": [ "100%", "100%" ],
+        "$border_visible": false,
+        "$default_button_texture": "textures/ui/Black",
+        "$hover_button_texture": "textures/ui/White",
+        "$pressed_button_texture": "textures/ui/White",
+        "$locked_button_texture": "textures/ui/White",
+        
+        "$pressed_alpha": 0.05,
+        "$default_button_alpha": 0,
+        "$default_hover_alpha": 0.05,
+        "$default_pressed_alpha": 0.05,
+        // Button Config
+        "$pressed_button_name": "button.form_button_click",
+        "$button_text": "#null",
+        "$button_text_binding_type": "collection",
+        "$button_text_grid_collection_name": "form_buttons",
+        "bindings": [{ "binding_type": "collection_details", "binding_collection_name": "form_buttons" }]
+      }},
+      { "components": {
+        "type": "panel",
+        "layer": 10,
+        "size": [ 78, 78 ],
+        "controls":[
+          { "background": {
+            "layer": 10,
+            "type": "image",
+            "size": [ "100%", "100%" ],
+            "texture": "textures/ui/White",
+            "color": "$oreui_dark"
+          }},
+
+          { "data": {
+            "layer": 20,
+            "type": "label",
+            "text": "#raw_text",
+            "size": [ 76, 10 ],
+            "anchor_from": "left_middle",
+            "anchor_to": "left_middle",
+            "offset": [ 4, 0 ],
+            "color": "$oreui_white",
+            "bindings": [
+              { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+              { "binding_type": "view", "source_property_name": "(#form_button_text - ('%.19s' * #form_button_text))", "target_property_name": "#raw_text" }
+            ]
+          }},
+          
+          { "types": {
+            "layer": 20,
+            "type": "panel",
+            "size": [ 45, 10 ],
+            "anchor_from": "bottom_right",
+            "anchor_to": "bottom_right",
+            "controls": [
+              { "local": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/ui/White",
+                "color": "$oreui_info",
+                "controls": [ { "type_text": { "type": "label", "text": "local", "color": "$c_eeeeee", "layer": 40 } }],
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.15s' * #form_button_text) - ('%.10s' * #form_button_text))", "target_property_name": "#tab_type" },
+                  { "binding_type": "view", "source_property_name": "(#tab_type = 'local')", "target_property_name": "#visible" }
+                ]
+              }},
+              { "world": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/ui/White",
+                "color": "$oreui_warn",
+                "controls": [ { "type_text": { "type": "label", "text": "world", "color": "$oreui_dark", "layer": 40 } }],
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.15s' * #form_button_text) - ('%.10s' * #form_button_text))", "target_property_name": "#tab_type" },
+                  { "binding_type": "view", "source_property_name": "(#tab_type = 'world')", "target_property_name": "#visible" }
+                ]
+              }},
+              { "owner": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/ui/White",
+                "color": "$oreui_red_dark",
+                "controls": [ { "type_text": { "type": "label", "text": "owner", "color": "$c_eeeeee", "layer": 40 } }],
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.15s' * #form_button_text) - ('%.10s' * #form_button_text))", "target_property_name": "#tab_type" },
+                  { "binding_type": "view", "source_property_name": "(#tab_type = 'owner')", "target_property_name": "#visible" }
+                ]
+              }}
+            ]
+          }},
+
+          { "dimensions": {
+            "layer": 20,
+            "type": "panel",
+            "size": [ 20, 20 ],
+            "anchor_from": "top_left",
+            "anchor_to": "top_left",
+            "controls": [
+              { "overworld": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/sapling_ui/dimensions/overworld",
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.17s' * #form_button_text) - ('%.16s' * #form_button_text))", "target_property_name": "#dimension" },
+                  { "binding_type": "view", "source_property_name": "(#dimension = 0)", "target_property_name": "#visible" }
+                ]
+              }},
+              { "nether": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/sapling_ui/dimensions/nether",
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.17s' * #form_button_text) - ('%.16s' * #form_button_text))", "target_property_name": "#dimension" },
+                  { "binding_type": "view", "source_property_name": "(#dimension = 1)", "target_property_name": "#visible" }
+                ]
+              }},
+              { "the_end": {
+                "layer": 30,
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "texture": "textures/sapling_ui/dimensions/the_end",
+                "bindings": [
+                  { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+                  { "binding_type": "view", "source_property_name": "(('%.17s' * #form_button_text) - ('%.16s' * #form_button_text))", "target_property_name": "#dimension" },
+                  { "binding_type": "view", "source_property_name": "(#dimension = 2)", "target_property_name": "#visible" }
+                ]
+              }}
+            ]
+          }}
+        ]
+      }}
+    ],
+
+    "bindings": [
+      { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+      { "binding_type": "view", "source_property_name": "(not (#form_button_text = 'fp:ignore'))", "target_property_name": "#visible" }
+    ]
+  }
+}

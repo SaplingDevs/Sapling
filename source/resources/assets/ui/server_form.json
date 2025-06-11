@@ -1,0 +1,83 @@
+{
+  "namespace": "server_form",
+  
+  "main_screen_content": { "size": [ "100%", "100%" ] },
+
+  "third_party_server_screen@common.base_screen": {
+    "$screen_content": "server_form.main_screen_content",
+    "$screen_animations": [
+      "@sa_lib::animations.screen_exit_animation_push_fade",
+      "@sa_lib::animations.screen_exit_animation_pop_fade",
+      "@sa_lib::animations.screen_entrance_animation_push_fade",
+      "@sa_lib::animations.screen_entrance_animation_pop_fade"
+    ],
+    "button_mappings": [{
+      "from_button_id": "button.menu_cancel",
+      "to_button_id": "button.menu_exit",
+      "mapping_type": "global"
+    }]
+  },
+  
+
+  // Action Form Data
+  "long_form": {
+    "type": "panel",
+    "size": ["100%", "100%"],
+    "controls": [
+      {
+        "long_form@common_dialogs.main_panel_no_buttons": {
+          "$title_panel": "common_dialogs.standard_title_label",
+          "$title_size": ["100% - 14px", 10],
+          "size": [225, 200],
+          "$text_name": "#title_text",
+          "$title_text_binding_type": "none",
+          "$child_control": "server_form.long_form_panel",
+          "layer": 2,
+          "bindings": [
+            {
+              "binding_name": "#title_text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#title_text * '%.1s') = '!')",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      { "HomeForm@fp_forms::home.HomeForm": {} },
+      { "InfoForm@cmp_forms::info.InfoForm": {} }
+    ]
+  },
+
+  // Modal Form Data
+  "custom_form": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "custom_form@common_dialogs.main_panel_no_buttons": {
+          "$title_panel": "common_dialogs.standard_title_label",
+          "$title_size": [ "100% - 14px", 10 ],
+          "size": [225, 200],
+          "$text_name": "#title_text",
+          "$title_text_binding_type": "none",
+          "$child_control": "server_form.custom_form_panel",
+          "layer": 2,
+          "bindings": [
+            {
+              "binding_name": "#title_text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((#title_text * '%.1s') = '!')",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      { "ConnectForm@fp_forms::connect.ConnectForm": {} },
+      { "ImportForm@fp_forms::import.ImportForm": {} }
+    ]
+  }
+}

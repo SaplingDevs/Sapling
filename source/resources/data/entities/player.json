@@ -1,0 +1,424 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "minecraft:player",
+      "is_spawnable": false,
+      "is_summonable": false,
+      "is_experimental": false
+    },
+
+    "component_groups": {
+      "minecraft:add_bad_omen": {
+        "minecraft:spell_effects": {
+          "add_effects": [
+            {
+              "effect": "bad_omen",
+              "duration": 6000,
+              "display_on_screen_animation": true
+            }
+          ]
+        },
+        "minecraft:timer": {
+          "time": [ 0.0, 0.0 ],
+          "looping": false,
+          "time_down_event": {
+            "event": "minecraft:clear_add_bad_omen",
+            "target": "self"
+          }
+        }
+      },
+      "minecraft:clear_bad_omen_spell_effect": {
+        "minecraft:spell_effects": {
+        }
+      },
+      "minecraft:raid_trigger": {
+        "minecraft:raid_trigger": {
+          "triggered_event": {
+            "event": "minecraft:remove_raid_trigger",
+            "target": "self"
+          }
+        },
+        "minecraft:spell_effects": {
+          "remove_effects": "bad_omen"
+        }
+      }
+    },
+
+    "components": {
+      "minecraft:experience_reward": {
+        "on_death": "Math.Min(query.player_level * 7, 100)"
+      },
+      "minecraft:type_family": {
+        "family": [ "player" ]
+      },
+      "minecraft:is_hidden_when_invisible": {
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/empty.json"
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:can_climb": {
+      },
+      "minecraft:movement": {
+        "value": 0.1
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": { "test": "in_lava", "subject": "self", "operator": "==", "value": true },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:attack": {
+        "damage": 1
+      },
+      "minecraft:player.saturation": {
+        "value": 20
+      },
+      "minecraft:player.exhaustion": {
+        "value": 0,
+        "max": 4
+      },
+      "minecraft:player.level": {
+        "value": 0,
+        "max": 24791
+      },
+      "minecraft:player.experience": {
+        "value": 0,
+        "max": 1
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": -1,
+        "inhale_time": 3.75,
+        "generates_bubbles": false
+      },
+      "minecraft:nameable": {
+        "always_show": true,
+        "allow_name_tag_renaming": false
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:insomnia": {
+        "days_until_insomnia": 3
+      },
+      "minecraft:rideable": {
+        "seat_count": 2,
+        "family_types": [
+          "parrot_tame"
+        ],
+        "pull_in_entities": true,
+        "seats": [
+          {
+            "position": [ 0.4, -0.2, -0.1 ],
+            "min_rider_count": 0,
+            "max_rider_count": 0,
+            "lock_rider_rotation": 0
+          },
+          {
+            "position": [ -0.4, -0.2, -0.1 ],
+            "min_rider_count": 1,
+            "max_rider_count": 2,
+            "lock_rider_rotation": 0
+          }
+        ]
+      },
+      "minecraft:scaffolding_climber": {},
+      "minecraft:environment_sensor": {
+        "triggers": [
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_mob_effect",
+                  "subject": "self",
+                  "value": "bad_omen"
+                },
+                {
+                  "test": "is_in_village",
+                  "subject": "self",
+                  "value": true
+                }
+              ]
+            },
+            "event": "minecraft:trigger_raid"
+          },
+
+          { "filters": { "all_of": [ { "test": "light_level", "value": 0, "subject": "self" } ] }, "event": "sa:client_light:0" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 1, "subject": "self" } ] }, "event": "sa:client_light:1" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 2, "subject": "self" } ] }, "event": "sa:client_light:2" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 3, "subject": "self" } ] }, "event": "sa:client_light:3" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 4, "subject": "self" } ] }, "event": "sa:client_light:4" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 5, "subject": "self" } ] }, "event": "sa:client_light:5" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 6, "subject": "self" } ] }, "event": "sa:client_light:6" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 7, "subject": "self" } ] }, "event": "sa:client_light:7" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 8, "subject": "self" } ] }, "event": "sa:client_light:8" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 9, "subject": "self" } ] }, "event": "sa:client_light:9" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 10, "subject": "self" } ] }, "event": "sa:client_light:10" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 11, "subject": "self" } ] }, "event": "sa:client_light:11" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 12, "subject": "self" } ] }, "event": "sa:client_light:12" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 13, "subject": "self" } ] }, "event": "sa:client_light:13" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 14, "subject": "self" } ] }, "event": "sa:client_light:14" },
+          { "filters": { "all_of": [ { "test": "light_level", "value": 15, "subject": "self" } ] }, "event": "sa:client_light:15" },
+
+          { "filters": { "all_of": [ { "test": "is_difficulty", "value": "peaceful", "subject": "self" } ] }, "event": "star:0010:0" },
+          { "filters": { "all_of": [ { "test": "is_difficulty", "value": "easy", "subject": "self" } ] }, "event": "star:0010:1" },
+          { "filters": { "all_of": [ { "test": "is_difficulty", "value": "normal", "subject": "self" } ] }, "event": "star:0010:2" },
+          { "filters": { "all_of": [ { "test": "is_difficulty", "value": "hard", "subject": "self" } ] }, "event": "star:0010:3" },
+
+          { "filters": { "all_of": [ { "test": "is_in_village", "value": true, "subject": "self" } ] }, "event": "sa:isVillage:true" },
+          { "filters": { "all_of": [ { "test": "is_in_village", "value": false, "subject": "self" } ] }, "event": "sa:isVillage:false" },
+
+          { "filters": { "all_of": [ { "test": "is_underground", "value": true, "subject": "self" } ] }, "event": "sa:isUnderground:true" },
+          { "filters": { "all_of": [ { "test": "is_underground", "value": false, "subject": "self" } ] }, "event": "sa:isUnderground:false" },
+
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "bamboo", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:bamboo_jungle"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "bamboo", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:bamboo_jungle_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "basalt_deltas", "subject": "self" }]}, "event": "sa:client_biome:basalt_deltas"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "beach", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }]}, "event": "sa:client_biome:beach"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:birch_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:birch_forest_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:birch_forest_hills_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:birch_forest_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "cherry_grove", "subject": "self" }]}, "event": "sa:client_biome:cherry_grove"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "beach", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:cold_beach"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:cold_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:cold_taiga"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:cold_taiga_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:cold_taiga_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "crimson_forest", "subject": "self" }]}, "event": "sa:client_biome:crimson_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:deep_cold_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "deep_dark", "subject": "self" }]}, "event": "sa:client_biome:deep_dark"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:deep_frozen_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "lukewarm", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:deep_lukewarm_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "lukewarm", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }]}, "event": "sa:client_biome:deep_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:deep_warm_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "desert", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:desert"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "desert", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:desert_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "desert", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:desert_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "dripstone_caves", "subject": "self" }]}, "event": "sa:client_biome:dripstone_caves"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "forest", "subject": "self" }, { "test": "has_biome_tag", "value": "edge", "subject": "self" }]}, "event": "sa:client_biome:extreme_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }, { "test": "has_biome_tag", "value": "edge", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "forest", "subject": "self" }]}, "event": "sa:client_biome:extreme_hills_edge"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "forest", "subject": "self" }, { "test": "has_biome_tag", "value": "edge", "subject": "self" }]}, "event": "sa:client_biome:extreme_hills_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }, { "test": "has_biome_tag", "value": "forest", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:extreme_hills_plus_trees"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "forest", "subject": "self" }]}, "event": "sa:client_biome:extreme_hills_plus_trees_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "flower_forest", "subject": "self" }]}, "event": "sa:client_biome:flower_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "forest", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }, { "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "roofed", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }]}, "event": "sa:client_biome:forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "forest", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "birch", "subject": "self" }, { "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "roofed", "subject": "self" }, { "test": "has_biome_tag", "value": "extreme_hills", "subject": "self" }]}, "event": "sa:client_biome:forest_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }, { "test": "has_biome_tag", "value": "monster", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:frozen_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "frozen_peaks", "subject": "self" }]}, "event": "sa:client_biome:frozen_peaks"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "river", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }]}, "event": "sa:client_biome:frozen_river"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "grove", "subject": "self" }]}, "event": "sa:client_biome:grove"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "nether_wastes", "subject": "self" }]}, "event": "sa:client_biome:hell"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ice", "subject": "self" }, { "test": "has_biome_tag", "value": "mountain", "subject": "self" }]}, "event": "sa:client_biome:ice_mountains"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ice_plains", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:ice_plains"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ice_plains", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:ice_plains_spikes"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jagged_peaks", "subject": "self" }]}, "event": "sa:client_biome:jagged_peaks"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jungle", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "edge", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "bamboo", "subject": "self" }]}, "event": "sa:client_biome:jungle"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jungle", "subject": "self" }, { "test": "has_biome_tag", "value": "edge", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "bamboo", "subject": "self" }]}, "event": "sa:client_biome:jungle_edge"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jungle", "subject": "self" }, { "test": "has_biome_tag", "value": "edge", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "bamboo", "subject": "self" }]}, "event": "sa:client_biome:jungle_edge_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jungle", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "edge", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "bamboo", "subject": "self" }]}, "event": "sa:client_biome:jungle_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "jungle", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "edge", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "bamboo", "subject": "self" }]}, "event": "sa:client_biome:jungle_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "monster", "subject": "self" }, { "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:legacy_frozen_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "lukewarm", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:lukewarm_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "lush_caves", "subject": "self" }]}, "event": "sa:client_biome:lush_caves"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mangrove_swamp", "subject": "self" }]}, "event": "sa:client_biome:mangrove_swamp"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "meadow", "subject": "self" }]}, "event": "sa:client_biome:meadow"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mega", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:mega_taiga"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:mega_taiga_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:mesa"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "plateau", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:mesa_bryce"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:mesa_plateau"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:mesa_plateau_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:mesa_plateau_stone"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mesa", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:mesa_plateau_stone_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mooshroom_island", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "shore", "subject": "self" }]}, "event": "sa:client_biome:mushroom_island"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mooshroom_island", "subject": "self" }, { "test": "has_biome_tag", "value": "shore", "subject": "self" }]}, "event": "sa:client_biome:mushroom_island_shore"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "deep", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }, { "test": "has_biome_tag", "value": "frozen", "subject": "self" }, { "test": "has_biome_tag", "value": "lukewarm", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "plains", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:plains"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:redwood_tiaga_hills_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }]}, "event": "sa:client_biome:redwood_tiaga_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "river", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "frozen", "subject": "self" }]}, "event": "sa:client_biome:river"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "roofed", "subject": "self" }]}, "event": "sa:client_biome:roofed_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "roofed", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:roofed_forest_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "savanna", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }]}, "event": "sa:client_biome:savanna"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "savanna", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "plateau", "subject": "self" }]}, "event": "sa:client_biome:savanna_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "savanna", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:savanna_plateau"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "savanna", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "plateau", "subject": "self" }]}, "event": "sa:client_biome:savanna_plateau_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "snowy_slopes", "subject": "self" }]}, "event": "sa:client_biome:snowy_slopes"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "soulsand_valley", "subject": "self" }]}, "event": "sa:client_biome:soulsand_valley"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "beach", "subject": "self" }, { "test": "has_biome_tag", "value": "stone", "subject": "self" }]}, "event": "sa:client_biome:stone_beach"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "mountains", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "cherry_grove", "subject": "self" }, { "test": "has_biome_tag", "value": "grove", "subject": "self" }, { "test": "has_biome_tag", "value": "jagged_peaks", "subject": "self" }, { "test": "has_biome_tag", "value": "meadow", "subject": "self" }]}, "event": "sa:client_biome:stony_peaks"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "plains", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:sunflower_plains"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "swamp", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:swampland"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "swamp", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }]}, "event": "sa:client_biome:swampland_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:taiga"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "hills", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "mutated", "subject": "self" }, { "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:taiga_hills"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "taiga", "subject": "self" }, { "test": "has_biome_tag", "value": "mutated", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "hills", "subject": "self" }, { "test": "has_biome_tag", "value": "mega", "subject": "self" }, { "test": "has_biome_tag", "value": "cold", "subject": "self" }]}, "event": "sa:client_biome:taiga_mutated"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "the_end", "subject": "self" }]}, "event": "sa:client_biome:the_end"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "ocean", "subject": "self" }, { "test": "has_biome_tag", "value": "warm", "subject": "self" }], "none_of": [{ "test": "has_biome_tag", "value": "deep", "subject": "self" }]}, "event": "sa:client_biome:warm_ocean"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "warped_forest", "subject": "self" }]}, "event": "sa:client_biome:warped_forest"},
+          {"filters": {"all_of": [{ "test": "has_biome_tag", "value": "pale_garden", "subject": "self" }]}, "event": "sa:client_biome:pale_garden"}
+        ]
+      }
+    },
+
+    "events": {
+      "sa:client_light:0": {},
+      "sa:client_light:1": {},
+      "sa:client_light:2": {},
+      "sa:client_light:3": {},
+      "sa:client_light:4": {},
+      "sa:client_light:5": {},
+      "sa:client_light:6": {},
+      "sa:client_light:7": {},
+      "sa:client_light:8": {},
+      "sa:client_light:9": {},
+      "sa:client_light:10": {},
+      "sa:client_light:11": {},
+      "sa:client_light:12": {},
+      "sa:client_light:13": {},
+      "sa:client_light:14": {},
+      "sa:client_light:15": {},
+
+      "star:0010:0": {},
+      "star:0010:1": {},
+      "star:0010:2": {},
+      "star:0010:3": {},
+
+      "sa:isVillage:true": {},
+      "sa:isVillage:false": {},
+
+      "sa:isUnderground:true": {},
+      "sa:isUnderground:false": {},
+
+      "sa:client_biome:bamboo_jungle": {},
+      "sa:client_biome:bamboo_jungle_hills": {},
+      "sa:client_biome:basalt_deltas": {},
+      "sa:client_biome:beach": {},
+      "sa:client_biome:birch_forest": {},
+      "sa:client_biome:birch_forest_hills": {},
+      "sa:client_biome:birch_forest_hills_mutated": {},
+      "sa:client_biome:birch_forest_mutated": {},
+      "sa:client_biome:cherry_grove": {},
+      "sa:client_biome:cold_beach": {},
+      "sa:client_biome:cold_ocean": {},
+      "sa:client_biome:cold_taiga": {},
+      "sa:client_biome:cold_taiga_hills": {},
+      "sa:client_biome:cold_taiga_mutated": {},
+      "sa:client_biome:crimson_forest": {},
+      "sa:client_biome:deep_cold_ocean": {},
+      "sa:client_biome:deep_dark": {},
+      "sa:client_biome:deep_frozen_ocean": {},
+      "sa:client_biome:deep_lukewarm_ocean": {},
+      "sa:client_biome:deep_ocean": {},
+      "sa:client_biome:deep_warm_ocean": {},
+      "sa:client_biome:desert": {},
+      "sa:client_biome:desert_hills": {},
+      "sa:client_biome:desert_mutated": {},
+      "sa:client_biome:dripstone_caves": {},
+      "sa:client_biome:extreme_hills": {},
+      "sa:client_biome:extreme_hills_edge": {},
+      "sa:client_biome:extreme_hills_mutated": {},
+      "sa:client_biome:extreme_hills_plus_trees": {},
+      "sa:client_biome:extreme_hills_plus_trees_mutated": {},
+      "sa:client_biome:flower_forest": {},
+      "sa:client_biome:forest": {},
+      "sa:client_biome:forest_hills": {},
+      "sa:client_biome:frozen_ocean": {},
+      "sa:client_biome:frozen_peaks": {},
+      "sa:client_biome:frozen_river": {},
+      "sa:client_biome:grove": {},
+      "sa:client_biome:hell": {},
+      "sa:client_biome:ice_mountains": {},
+      "sa:client_biome:ice_plains": {},
+      "sa:client_biome:ice_plains_spikes": {},
+      "sa:client_biome:jagged_peaks": {},
+      "sa:client_biome:jungle": {},
+      "sa:client_biome:jungle_edge": {},
+      "sa:client_biome:jungle_edge_mutated": {},
+      "sa:client_biome:jungle_hills": {},
+      "sa:client_biome:jungle_mutated": {},
+      "sa:client_biome:legacy_frozen_ocean": {},
+      "sa:client_biome:lukewarm_ocean": {},
+      "sa:client_biome:lush_caves": {},
+      "sa:client_biome:mangrove_swamp": {},
+      "sa:client_biome:meadow": {},
+      "sa:client_biome:mega_taiga": {},
+      "sa:client_biome:mega_taiga_hills": {},
+      "sa:client_biome:mesa": {},
+      "sa:client_biome:mesa_bryce": {},
+      "sa:client_biome:mesa_plateau": {},
+      "sa:client_biome:mesa_plateau_mutated": {},
+      "sa:client_biome:mesa_plateau_stone": {},
+      "sa:client_biome:mesa_plateau_stone_mutated": {},
+      "sa:client_biome:mushroom_island": {},
+      "sa:client_biome:mushroom_island_shore": {},
+      "sa:client_biome:ocean": {},
+      "sa:client_biome:plains": {},
+      "sa:client_biome:redwood_tiaga_hills_mutated": {},
+      "sa:client_biome:redwood_tiaga_mutated": {},
+      "sa:client_biome:river": {},
+      "sa:client_biome:roofed_forest": {},
+      "sa:client_biome:roofed_forest_mutated": {},
+      "sa:client_biome:savanna": {},
+      "sa:client_biome:savanna_mutated": {},
+      "sa:client_biome:savanna_plateau": {},
+      "sa:client_biome:savanna_plateau_mutated": {},
+      "sa:client_biome:snowy_slopes": {},
+      "sa:client_biome:soulsand_valley": {},
+      "sa:client_biome:stone_beach": {},
+      "sa:client_biome:stony_peaks": {},
+      "sa:client_biome:sunflower_plains": {},
+      "sa:client_biome:swampland": {},
+      "sa:client_biome:swampland_mutated": {},
+      "sa:client_biome:taiga": {},
+      "sa:client_biome:taiga_hills": {},
+      "sa:client_biome:taiga_mutated": {},
+      "sa:client_biome:the_end": {},
+      "sa:client_biome:warm_ocean": {},
+      "sa:client_biome:warped_forest": {},
+      "sa:client_biome:pale_garden": {},
+      
+      "minecraft:gain_bad_omen": {
+        "add": {
+          "component_groups": [
+            "minecraft:add_bad_omen"
+          ]
+        }
+      },
+      "minecraft:clear_add_bad_omen": {
+        "remove": {
+          "component_groups": [
+            "minecraft:add_bad_omen"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:clear_bad_omen_spell_effect"
+          ]
+        }
+      },
+      "minecraft:trigger_raid": {
+        "add": {
+          "component_groups": [ "minecraft:raid_trigger" ]
+        }
+      },
+      "minecraft:remove_raid_trigger": {
+        "remove": {
+          "component_groups": [ "minecraft:raid_trigger" ]
+        }
+      }
+    }
+  }
+}

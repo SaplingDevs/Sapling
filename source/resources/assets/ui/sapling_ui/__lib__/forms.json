@@ -1,0 +1,22 @@
+{
+  "namespace": "sa_lib::forms",
+
+  "ActionFormData": {
+    "$identifier|default": "!",
+    "$render|default": [],
+
+    // Element
+    "type": "panel",
+    "size": [ "default", "default" ],
+     "layer": 1,
+    "controls": "$render",
+    "bindings": [
+      { "binding_name": "#title_text" },
+      { 
+        "binding_type": "view", 
+        "source_property_name": "(#title_text = $identifier)", 
+        "target_property_name": "#visible"
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "namespace": "sa_cmp::buttons",
+
+  // Styled Buttons
+  "OreUI_White@sa_cmp::buttons.OreUI_Template": {
+    "$default_button_texture": "textures/sapling_ui/buttons/normal/default",
+    "$hover_button_texture": "textures/sapling_ui/buttons/normal/hover",
+    "$pressed_button_texture": "textures/sapling_ui/buttons/normal/hover",
+    "$locked_button_texture": "textures/sapling_ui/buttons/normal/hover"
+  },
+
+  "OreUI_Red@sa_cmp::buttons.OreUI_Template": {
+    "$default_button_texture": "textures/sapling_ui/buttons/danger/default",
+    "$hover_button_texture": "textures/sapling_ui/buttons/danger/hover",
+    "$pressed_button_texture": "textures/sapling_ui/buttons/danger/hover",
+    "$locked_button_texture": "textures/sapling_ui/buttons/danger/hover",
+    "$default_text_color": "$c_azure",
+    "$default_checked_text_color": "$c_azure"
+  },
+
+  // Templates
+  "OreUI_Template@common_buttons.light_text_button": {
+    // Button Style
+    "size": [ "50%", 26 ],
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "$border_visible": false,
+    "$default_text_color": "$oreui_dark",
+    "$hover_text_color": "$c_azure",
+    "$default_checked_text_color": "$oreui_dark",
+    "$hover_checked_text_color": "$c_azure",
+    // Button Config
+    "$pressed_button_name": "button.form_button_click",
+    "bindings": [
+      { "binding_type": "collection_details", "binding_collection_name": "form_buttons" }
+    ]
+  }
+}

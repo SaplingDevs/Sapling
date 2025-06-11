@@ -1,0 +1,129 @@
+{
+  "namespace": "cmp_forms::info",
+
+  "InfoForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "!generic:info",
+    "$render": [{ "Content@cmp_forms::info.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "image",
+    "size": [ 250, 200 ],
+    "use_anchored_offset": true,
+    "texture": "textures/ui/White",
+    "color": "$oreui_component",
+    "controls": [
+      { "FormSections@cmp_forms::info.FormSections": {} }
+    ]
+  },
+
+  "FormSections": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      { "HeaderSection@cmp_forms::info.HeaderSection": {} },
+      { "ContentSection@cmp_forms::info.ContentSection": {} }
+    ]
+  },
+
+   /* Form Sections */
+  "HeaderSection": {
+    "type": "panel",
+    "size": [ "100%", 18 ],
+    "controls": [
+      { "FormHeader@cmp_forms::info.FormHeader": {} }
+    ]
+  },
+
+  "ContentSection": {
+    "type": "panel",
+    "size": [ "100%", "100% - 18px" ],
+    "controls": [
+      { "Buttons@common.scrolling_panel" : {
+        "offset": [ 0, 0 ],
+        "size": [ "100% - 6px", "100% - 6px" ],
+        "$show_background": false,
+        "$scrolling_content": "cmp_forms::info.ContentManager",
+        "$scroll_size": [ 5, "100% - 4px" ],
+        "$scrolling_pane_size": [ "100%", "100%" ],
+        "$scrolling_pane_offset": [ 0, 0 ],
+        "$scroll_bar_right_padding_size": [ 0, 0 ]
+      }}
+    ]
+  },
+
+  /* Form factories */
+  "ContentManager": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "orientation": "vertical",
+    "controls": [
+      { "Body": { 
+        "type": "panel",
+        "size": [ "100%", "100% - 60px" ],
+        "controls": [ 
+          { "BodyText": {
+            "type": "label",
+            "offset": [2,2],
+            "size": ["100%", "default"],
+            "anchor_from": "top_left",
+            "anchor_to": "top_left",
+            "text": "#form_text"
+          }}
+        ]
+      }},
+
+      { "Buttons": {
+        "type": "stack_panel",
+        "size": [ "100%", 60 ],
+        "orientation": "vertical",
+        "collection_name": "custom_form",
+        "controls": [
+          { "Return@sa_cmp::buttons.OreUI_White": { 
+            "collection_index": 0,
+            "size": [ "100%", 26 ],
+            "$button_text": "Return"
+          }},
+
+          { "Exit@sa_cmp::buttons.OreUI_Red": { 
+            "size": [ "100%", 26 ],
+            "$button_text": "Exit",
+            "$pressed_button_name": "button.menu_exit"
+          }}
+        ]
+      }}
+    ]
+  },
+
+  /* Form Components */
+  // Header
+  "FormHeader": {
+    "layer": 1,
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/White",
+    "color": "$oreui_gray",
+    "controls": [ { 
+      "header": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", 16 ],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "texture": "textures/ui/White",
+        "color": "$oreui_white",
+        "controls": [ { 
+          "title": {
+            "type": "label",
+            "offset": [ 4, 0 ],
+            "text": "Warning!",
+            "color": "$oreui_dark",
+            "font_type": "MinecraftTen",
+            "anchor_from": "left_middle",
+            "anchor_to": "left_middle"
+          }
+        }]
+      }
+    }]
+  }
+}

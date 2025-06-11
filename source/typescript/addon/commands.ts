@@ -1,2 +1,5 @@
 import "addon/commands/sapling"
 import "addon/commands/func"
+import "addon/commands/prof"
+import "addon/commands/render"
+import "addon/commands/fakeplayer"

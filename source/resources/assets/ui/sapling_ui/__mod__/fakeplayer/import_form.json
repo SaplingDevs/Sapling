@@ -1,0 +1,123 @@
+{
+  "namespace": "fp_forms::import",
+
+  "ImportForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "!fp:import",
+    "$render": [{ "Content@fp_forms::import.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "image",
+    "size": [ 250, 200 ],
+    "use_anchored_offset": true,
+    "texture": "textures/ui/White",
+    "color": "$oreui_component",
+    "controls": [
+      { "FormSections@fp_forms::import.FormSections": {} }
+    ]
+  },
+
+  "FormSections": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      { "HeaderSection@fp_forms::import.HeaderSection": {} },
+      { "ContentSection@fp_forms::import.ContentSection": {} }
+    ]
+  },
+
+   /* Form Sections */
+  "HeaderSection": {
+    "type": "panel",
+    "size": [ "100%", 18 ],
+    "controls": [
+      { "FormHeader@fp_forms::import.FormHeader": {} }
+    ]
+  },
+
+  "ContentSection": {
+    "type": "panel",
+    "size": [ "100%", "100% - 18px" ],
+    "controls": [
+      { "Buttons@common.scrolling_panel" : {
+        "offset": [ 0, 0 ],
+        "size": [ "100% - 6px", "100% - 6px" ],
+        "$show_background": false,
+        "$scrolling_content": "fp_forms::import.ButtonsFactory",
+        "$scroll_size": [ 5, "100% - 4px" ],
+        "$scrolling_pane_size": [ "100%", "100%" ],
+        "$scrolling_pane_offset": [ 0, 0 ],
+        "$scroll_bar_right_padding_size": [ 0, 0 ]
+      }}
+    ]
+  },
+
+  /* Form factories */
+  "ButtonsFactory": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "orientation": "vertical",
+    "controls": [
+      { "ManagerControls@fp_forms::import.ManagerControls": {} }
+    ]
+  },
+
+  /* Form Components */
+  // Header
+  "FormHeader": {
+    "layer": 1,
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/White",
+    "color": "$oreui_gray",
+    "controls": [ { 
+      "header": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", 16 ],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "texture": "textures/ui/White",
+        "color": "$oreui_white",
+        "controls": [ { 
+          "title": {
+            "type": "label",
+            "offset": [ 4, 0 ],
+            "text": "Fakeplayer Manager: Import",
+            "color": "$oreui_dark",
+            "font_type": "MinecraftTen",
+            "anchor_from": "left_middle",
+            "anchor_to": "left_middle"
+          }
+        }]
+      }
+    }]
+  },
+
+  // Button Managers
+  "ManagerControls": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "orientation": "vertical",
+    "collection_name": "custom_form",
+    "controls": [
+      { "PlayersInput@fp_forms::import.PlayersInput": {} },
+      { "ImportPlayers@fp_forms::import.ImportPlayers": {} }
+    ]
+  },
+
+  "PlayersInput@server_form.custom_input": { 
+    "collection_index": 0,
+    "$max_text_edit_length": 65535,
+    "$option_text_edit_control_size": [ "100%", 80 ]
+  },
+
+  "ImportPlayers@sa_cmp::buttons.OreUI_White": {
+    "collection_index": 1,
+    "size": [ "100%", 26 ],
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "$pressed_button_name": "button.submit_custom_form",
+    "$button_text": "Import players"
+  }
+}

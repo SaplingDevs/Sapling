@@ -34,23 +34,27 @@ const conversionTypes: ConversionConfig[] = [
 ];
 
 export function cauldronConcrete(event: EntitySpawnAfterEvent) {
-  const item = event.entity?.getComponent("item")?.itemStack;
-  if (!item) return;
+  try {
+    const item = event.entity?.getComponent("item")?.itemStack;
+    if (!item) return;
 
-  const config = conversionTypes[0];
-  if (config.enabled() && config.check(item)) {
-    event.entity.addTag(config.tag);
-  }
+    const config = conversionTypes[0];
+    if (config.enabled() && config.check(item)) {
+      event.entity.addTag(config.tag);
+    }
+  } catch {}
 }
 
 export function cauldronMud(event: EntitySpawnAfterEvent) {
-  const item = event.entity?.getComponent("item")?.itemStack;
-  if (!item) return;
+  try {
+    const item = event.entity?.getComponent("item")?.itemStack;
+    if (!item) return;
 
-  const config = conversionTypes[1];
-  if (config.enabled() && config.check(item)) {
-    event.entity.addTag(config.tag);
-  }
+    const config = conversionTypes[1];
+    if (config.enabled() && config.check(item)) {
+      event.entity.addTag(config.tag);
+    }
+  } catch {}
 }
 
 export function cauldronConversion() {
