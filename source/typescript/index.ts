@@ -1,4 +1,5 @@
 import "config/gamerules"
+import "config/gametest"
 import "addon/events"
 import "addon/commands"
 import "addon/modules"

@@ -20,5 +20,8 @@
     "@minecraft/server-ui": "2.1.0-beta.1.21.90-preview.27",
     "esbuild": "^0.25.5",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@minecraft/server-gametest": "^1.0.0-beta.1.21.84-stable"
   }
 }

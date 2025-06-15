@@ -106,12 +106,59 @@
     ]
   },
 
-  "PlayersInput@server_form.custom_input": { 
+  // Text Area
+  "PlayersInput@fp_forms::import.PlayersInput_Text": { 
     "collection_index": 0,
-    "$max_text_edit_length": 65535,
-    "$option_text_edit_control_size": [ "100%", 80 ]
+    "$option_text_edit_control_size": [ "100%", 132 ],
+  
+    // Config
+    "$option_label": "#custom_text",
+    "$option_place_holder_text": "#custom_placeholder_text",
+    "$text_edit_box_placeholder_content_binding_name": "$option_place_holder_text",
+    "$text_edit_box_placeholder_content_binding_type": "collection",
+    "$text_edit_box_grid_collection_name": "custom_form",
+    "$text_edit_box_content_binding_type": "collection",
+    "$text_edit_box_content_binding_name": "#custom_input_text",
+    "$option_binding_name": "#custom_input_text",
+    "$text_box_enabled_binding_name": "#custom_input_enabled",
+    "$text_box_name": "custom_input",
+    "$label_bindings": [
+      { "binding_name": "#custom_text", "binding_type": "collection", "binding_collection_name": "custom_form" }
+    ]
   },
 
+  "PlayersInput_Text@settings_common.option_generic": {
+    "$option_place_holder_text|default": "",
+    "$max_text_edit_length|default": 65000,
+    "$control_name": "fp_forms::import.PlayersInput_Text_Control"
+  },
+
+  "PlayersInput_Text_Control@common.text_edit_box": {
+    "$option_text_edit_control_size|default": [ "100%", "30px" ],
+    "size": "$option_text_edit_control_size",
+    "max_length": "$max_text_edit_length",
+    "enabled_newline": true,
+    "$text_edit_box_content_binding_name": "$option_binding_name",
+    "$text_edit_box_binding_collection_name": "$option_binding_name",
+    "$text_edit_box_binding_type": "global",
+    "$text_box_enabled_binding_name": "$option_enabled_binding_name",
+    "enabled": "$enabled",
+    "$place_holder_text": "$option_place_holder_text",
+    "$text_box_tts_header": "$option_label",
+    "$tts_override_control_value|default": " ",
+    "tts_override_control_value": "$tts_override_control_value",
+
+    "variables": [
+      {
+        "requires": "(not $option_enabled_binding_name or not $enabled)",
+        "$text_box_enabled_binding_name": "#not_data_bound",
+        "$text_edit_box_enabled_binding_type": "none"
+      }
+    ]
+  },
+
+
+  // Submit
   "ImportPlayers@sa_cmp::buttons.OreUI_White": {
     "collection_index": 1,
     "size": [ "100%", 26 ],

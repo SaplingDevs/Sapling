@@ -8,13 +8,30 @@
     // Element
     "type": "panel",
     "size": [ "default", "default" ],
-     "layer": 1,
+    "layer": 1,
     "controls": "$render",
     "bindings": [
       { "binding_name": "#title_text" },
       { 
         "binding_type": "view", 
         "source_property_name": "(#title_text = $identifier)", 
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+
+  "FormBackground": {
+    "layer": -2,
+    "fill": true,
+    "alpha": 0.6,
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/Black",
+    "bindings": [
+      { "binding_name": "#title_text" },
+      { 
+        "binding_type": "view", 
+        "source_property_name": "(('%.1s' * #title_text) = '!')", 
         "target_property_name": "#visible"
       }
     ]

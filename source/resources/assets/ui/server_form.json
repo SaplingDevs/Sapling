@@ -45,8 +45,12 @@
           ]
         }
       },
+      // Custom Forms
       { "HomeForm@fp_forms::home.HomeForm": {} },
-      { "InfoForm@cmp_forms::info.InfoForm": {} }
+      { "InfoForm@cmp_forms::info.InfoForm": {} },
+
+      // Background 
+      { "FormBackground@sa_lib::forms.FormBackground": {} }
     ]
   },
 
@@ -76,8 +80,12 @@
           ]
         }
       },
+      // Custom Forms
       { "ConnectForm@fp_forms::connect.ConnectForm": {} },
-      { "ImportForm@fp_forms::import.ImportForm": {} }
+      { "ImportForm@fp_forms::import.ImportForm": {} },
+
+      // Background 
+      { "FormBackground@sa_lib::forms.FormBackground": {} }
     ]
   }
 }

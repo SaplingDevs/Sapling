@@ -111,8 +111,28 @@
     "controls": [
       // External Controls (UI Config)
       { "External": {
-        "type": "panel",
-        "size": [ "50%", "100%" ]
+        "type": "stack_panel",
+        "size": [ "50%", "100%" ],
+        "orientation": "horizontal",
+        "collection_name": "form_buttons",
+        "controls": [
+          { "Prev@sa_cmp::buttons.OreUI_White": { 
+            "collection_index": 22, 
+            "size": [ 26, 26 ],
+            "$button_text": "<", 
+            "$hover_button_texture": "textures/sapling_ui/buttons/danger/default",
+            "$pressed_button_texture": "textures/sapling_ui/buttons/danger/default",
+            "$locked_button_texture": "textures/sapling_ui/buttons/normal/locked"
+          }},
+          { "Next@sa_cmp::buttons.OreUI_White": { 
+            "collection_index": 23, 
+            "size": [ 26, 26 ],
+            "$button_text": ">", 
+            "$hover_button_texture": "textures/sapling_ui/buttons/danger/default",
+            "$pressed_button_texture": "textures/sapling_ui/buttons/danger/default",
+            "$locked_button_texture": "textures/sapling_ui/buttons/normal/locked"
+          }}
+        ]
       }},
 
       // Form Controls (Scripting)

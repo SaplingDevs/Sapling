@@ -28,6 +28,10 @@ system.afterEvents.scriptEventReceive.subscribe((Event) => {
     const DBSaved = JSON.stringify(globalThis.BStorage[DatabaseID])
     world.setDynamicProperty(DatabaseID, DBSaved); 
   }
+
+  else if (action === "/delete") {
+    world.setDynamicProperty(DatabaseID); 
+  }
 });
 
 type DataBaseValue = string|number|boolean|object
@@ -55,6 +59,10 @@ export class DataBaseBuilder {
   // Database methods
   set(key: string, value: DataBaseValue): DataBaseBuilder {
     this.__database_fallback(() => {
+      if (!globalThis.BStorage[this.DatabaseID]) {
+        globalThis.BStorage[this.DatabaseID] = {};
+      }
+
       if (!globalThis.BStorage[this.DatabaseID][key]) this.size++;
       globalThis.BStorage[this.DatabaseID][key] = value;
 
@@ -63,6 +71,7 @@ export class DataBaseBuilder {
 
     return this;
   }
+
 
   get(key: string, fallback: DataBaseValue = false): DataBaseValue {
     return globalThis.BStorage[this.DatabaseID][key] || fallback;
@@ -100,6 +109,15 @@ export class DataBaseBuilder {
     return this;
   }
 
+  deleteDB() {
+    this.__database_fallback(() => {
+      delete globalThis.BStorage[this.DatabaseID]
+      this.__send_event("/delete");
+    });
+
+    return this;
+  }
+
   // Internal core
   private __send_event(EventID: string) {
     system.run(() => system.sendScriptEvent(`${DataBaseBuilder.EventID}${EventID}`, this.DatabaseID));
@@ -119,8 +137,6 @@ export class DataBaseBuilder {
       const action = Event.id.replace(DataBaseBuilder.EventID, "");
 
       if (action !== "/loaded" || DatabaseID !== this.DatabaseID) return;
-
-      console.log(DatabaseID, "Loaded!");
 
       this.loaded = true;
       system.afterEvents.scriptEventReceive.unsubscribe(register);
