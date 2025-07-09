@@ -13,7 +13,7 @@ gt.register('fakeplayer', 'instance', (test) => {
 // Load gametest instance
 function LoadInstance() {
 	const over = world.getDimension("overworld");
-	const c = 1000000;
+	const c = -1000000;
 	
 	if (LoadInstance.loaded) return;
 

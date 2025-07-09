@@ -1,0 +1,21 @@
+{
+  "namespace": "fp_forms::spectate",
+
+  "SpectateForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "?fp:spectate",
+    "$render": [{ "Content@fp_forms::spectate.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "collection_name": "form_buttons",
+    "controls": [ 
+      { "btn@sa_cmp::buttons.OreUI_Dark": {
+        "size": [ 26, 26 ],
+        "$button_text": "C",
+        "collection_index": 0
+      } }
+    ]
+  }
+}

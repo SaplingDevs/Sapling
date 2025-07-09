@@ -1,0 +1,21 @@
+{
+  "namespace": "sa_lib::chest_ui",
+
+  "form_item_render": {
+    "type": "custom",
+    "size": [ 14, 14 ],
+    "renderer": "inventory_item_renderer",
+    "bindings": [
+      {
+        "binding_name": "#form_button_texture",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      { 
+        "binding_type": "view",
+        "source_property_name": "(#form_button_texture * 1)",
+        "target_property_name": "#item_id_aux"
+      }
+    ]
+  }
+}

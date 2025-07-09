@@ -18,6 +18,15 @@
     "$default_checked_text_color": "$c_azure"
   },
 
+  "OreUI_Dark@sa_cmp::buttons.OreUI_Template": {
+    "$default_button_texture": "textures/sapling_ui/buttons/dark/default",
+    "$hover_button_texture": "textures/sapling_ui/buttons/dark/hover",
+    "$pressed_button_texture": "textures/sapling_ui/buttons/dark/hover",
+    "$locked_button_texture": "textures/sapling_ui/buttons/dark/hover",
+    "$default_text_color": "$c_azure",
+    "$default_checked_text_color": "$c_azure"
+  },
+
   // Templates
   "OreUI_Template@common_buttons.light_text_button": {
     // Button Style

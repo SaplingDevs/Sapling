@@ -1,4 +1,5 @@
 import type { CustomCommand, CustomCommandOrigin, CustomCommandResult } from "@minecraft/server";
+import Fakeplayer from "classes/Fakeplayer";
 
 export type Vec3 = { 
   x: number;
@@ -24,3 +25,8 @@ export {
   CustomCommandResult as CommandResult,
   CustomCommandStatus as CommandStatus
 } from "@minecraft/server";
+
+export type FakeplayerManagerResponse = {
+  Fakeplayer: Fakeplayer;
+  Owner: string;
+}

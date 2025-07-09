@@ -1,4 +1,4 @@
-import { EntityType, EntityTypes, system, world } from "@minecraft/server";
+import { EntityTypes, system, world } from "@minecraft/server";
 import { Utils } from "classes/Utils";
 import { CommandOrigin, CommandParamType, CommandResult, CommandStatus, PermissionLevel } from "types";
 import { CommandBuilder } from "~/server/Command";

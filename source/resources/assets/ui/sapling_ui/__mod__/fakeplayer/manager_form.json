@@ -1,0 +1,465 @@
+{
+  "namespace": "fp_forms::manager",
+  
+  "ManagerForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "!fp:manager",
+    "$render": [{ "Content@fp_forms::manager.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "image",
+    "size": [ "70%", "70%" ],
+    "use_anchored_offset": true,
+    "texture": "textures/ui/White",
+    "color": "$oreui_component",
+    "controls": [
+      { "FormSections@fp_forms::manager.FormSections": {} }
+    ]
+  },
+
+  "FormSections": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      { "HeaderSection@fp_forms::manager.HeaderSection": {} },
+      { "ContentSection@fp_forms::manager.ContentSection": {} }
+    ]
+  },
+
+   /* Form Sections */
+  "HeaderSection": {
+    "type": "panel",
+    "size": [ "100%", 18 ],
+    "controls": [
+      { "FormHeader@fp_forms::manager.FormHeader": {} }
+    ]
+  },
+
+  /* Form factories */
+  "ContentSection": {
+    "type": "stack_panel",
+    "size": [ "100% - 6px", "100% - 24px" ],
+    "orientation": "horizontal",
+    "controls": [
+      { "left_panel@common.empty_panel": {
+        "size": [ "100% - 150px", "100%" ],
+        "controls": [
+          // Background
+          { "bg": {
+            "type": "image", 
+            "anchor_from": "bottom_middle", 
+            "anchor_to": "bottom_middle", 
+            "size": [ "100% - 8px", "100% - 2px" ], 
+            "texture": "textures/sapling_ui/buttons/dark/default",
+            "controls": [
+              { "Buttons@common.scrolling_panel" : {
+                "offset": [ 0, 0 ],
+                "size": [ "100% - 6px", "100% - 6px" ],
+                "$show_background": false,
+                "$scrolling_content": "fp_forms::manager.ButtonsFactory",
+                "$scroll_size": [ 5, "100% - 4px" ],
+                "$scrolling_pane_size": [ "100%", "100%" ],
+                "$scrolling_pane_offset": [ 0, 0 ],
+                "$scroll_bar_right_padding_size": [ 0, 0 ]
+              }}
+            ]
+          }}
+        ]
+      }},
+      { "right_panel": {
+        "type": "stack_panel",
+        "size": [ 150, "100%" ],
+        "orientation": "vertical",
+        "controls": [
+          { "SingleActions": {
+            "type": "stack_panel",
+            "size": [ 150, "100% - 98px" ],
+            "orientation": "vertical",
+            "collection_name": "form_buttons",
+            "controls": [
+              { "PlayerLocation@fp_forms::manager.PlayerLocation": {} },
+              { "offset@common.empty_panel": { "size": [ 0, 4 ] } },
+              { "PlayerLeave@sa_cmp::buttons.OreUI_Red": {
+                "size": [ "100%", 26 ],
+                "collection_index": 43,
+                "$button_text": "Leave"
+              }}
+            ]
+          }},
+          { "PlayerInv@common.empty_panel": {
+            "size": [ 150, 98 ],
+            "controls": [
+              { "PlayerContainer@fp_forms::manager.PlayerContainer": {} }
+            ]
+          }}
+        ]
+      }}
+    ]
+  },
+
+  "ButtonsFactory": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "collection_name": "form_buttons",
+    "controls": [
+      { "Spectate@sa_cmp::buttons.OreUI_White": { 
+        "collection_index": 44, 
+        "size": [ "100%", 26 ],
+        "$button_text": "Spectate",
+        "$locked_button_texture": "textures/sapling_ui/buttons/normal/locked"
+      }},
+      { "Attack@fp_forms::manager.RepeatButton": { "$start": 45, "$label": "Attack" } },
+      { "Jump@fp_forms::manager.RepeatButton": { "$start": 47, "$label": "Jump" } },
+      { "Interact@fp_forms::manager.RepeatButton": { "$start": 49, "$label": "Interact" } },
+      { "Use@fp_forms::manager.RepeatButton": { "$start": 51, "$label": "Use" } },
+      { "Shift@fp_forms::manager.ActionButton": { "$index": 53, "$button_text": "Shift" } }
+    ]
+  },
+
+  /* Form Components */
+  // Header
+  "FormHeader": {
+    "layer": 1,
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/White",
+    "color": "$oreui_gray",
+    "controls": [ { 
+      "header": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", 16 ],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "texture": "textures/ui/White",
+        "color": "$oreui_white",
+        "controls": [ { 
+          "title": {
+            "type": "label",
+            "offset": [ 4, 0 ],
+            "text": "Fakeplayer Manager: Player Control",
+            "color": "$oreui_dark",
+            "font_type": "MinecraftTen",
+            "anchor_from": "left_middle",
+            "anchor_to": "left_middle"
+          }
+        }]
+      }
+    }]
+  },
+
+  // Button Managers
+  "PlayerContainer": {
+    "type": "stack_panel",
+    "size": [ 150, 98 ],
+    "orientation": "vertical",
+    "anchor_to": "bottom_middle",
+    "anchor_from": "bottom_middle",
+    "controls": [
+      { "Equipment@fp_forms::manager.Equipment": {} }, 
+      { "Inventory@fp_forms::manager.Inventory": {} }
+    ] 
+  },
+
+  // Inventory buttons
+  "Inventory": {
+    "type": "image",
+    "size": [ 150, 74 ],
+    "texture": "textures/sapling_ui/buttons/normal/default",
+    "color": "$oreui_dark",
+    "controls": [ { "InventorySlots@fp_forms::manager.InventorySlots": {} } ]
+  },
+
+  "Equipment": {
+    "type": "image",
+    "size": [ 150, 24 ],
+    "texture": "textures/sapling_ui/buttons/normal/default",
+    "controls": [ { "EquipmentSlots@fp_forms::manager.EquipmentSlots": {} } ]
+  },
+
+  "InventorySlots": {
+    "type": "stack_panel",
+    "size": [ 144, 66 ],
+    "offset": [ 0, -1 ],
+    "orientation": "vertical",
+    "controls": [
+      // Inventory
+      { "items_1@fp_forms::manager.slots_factoy": { "$start_index": 0 } },
+      { "items_2@fp_forms::manager.slots_factoy": { "$start_index": 9 } },
+      { "items_3@fp_forms::manager.slots_factoy": { "$start_index": 18 } },
+      // Hotbar
+      { "offset@common.empty_panel": { "size": [ 0, 2 ] } },
+      { "items_4@fp_forms::manager.slots_factoy": { "$start_index": 27 } }
+    ]
+  },
+
+  "EquipmentSlots": {
+    "$mode": "light",
+    "type": "stack_panel",
+    "size": [ 144, 16 ],
+    "offset": [ 0, -1 ],
+    "orientation": "horizontal",
+    "collection_name": "form_buttons",
+    "controls": [
+      // Armor
+      { "head@fp_forms::manager.slot": { "$index": 36, "$texture": "textures/sapling_ui/item_cell/slots/head" } },
+      { "chest@fp_forms::manager.slot": { "$index": 37, "$texture": "textures/sapling_ui/item_cell/slots/chest" } },
+      { "legs@fp_forms::manager.slot": { "$index": 38, "$texture": "textures/sapling_ui/item_cell/slots/legs" } },
+      { "feet@fp_forms::manager.slot": { "$index": 39, "$texture": "textures/sapling_ui/item_cell/slots/feet" } },
+      // Offhand
+      { "offset1@common.empty_panel": { "size": [ 8, 0 ] } },
+      { "offhand@fp_forms::manager.slot": { "$index": 40, "$texture": "textures/sapling_ui/item_cell/slots/shield" } },
+      // Drop All
+      { "offset2@common.empty_panel": { "size": [ 38, 0 ] } },
+      { "DropAll@fp_forms::manager.DropAll": { "collection_index": 41 }}
+    ]
+  },
+
+  "slots_factoy": {
+    "$start_index|default": 0,
+    "type": "stack_panel",
+    "size": [ 144, 16 ],
+    "orientation": "horizontal",
+    "collection_name": "form_buttons",
+    "controls": [
+      { "slot_1@fp_forms::manager.slot": { "$index": "($start_index + 0)" } },
+      { "slot_2@fp_forms::manager.slot": { "$index": "($start_index + 1)" } },
+      { "slot_3@fp_forms::manager.slot": { "$index": "($start_index + 2)" } },
+      { "slot_4@fp_forms::manager.slot": { "$index": "($start_index + 3)" } },
+      { "slot_5@fp_forms::manager.slot": { "$index": "($start_index + 4)" } },
+      { "slot_6@fp_forms::manager.slot": { "$index": "($start_index + 5)" } },
+      { "slot_7@fp_forms::manager.slot": { "$index": "($start_index + 6)" } },
+      { "slot_8@fp_forms::manager.slot": { "$index": "($start_index + 7)" } },
+      { "slot_9@fp_forms::manager.slot": { "$index": "($start_index + 8)" } }
+    ]
+  },
+
+  "slot@common.empty_panel": {
+    "$index|default": 0,
+    "$mode|default": "dark",
+    "$texture|default": "textures/sapling_ui/transparent",
+    "size": [ 16, 16 ],
+    "collection_index": "$index",
+    "controls": [
+      { "item_bg": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", "100%" ],
+        "texture": "('textures/sapling_ui/item_cell/' + $mode)",
+        "controls": [ 
+          { "placeholder": { 
+            "layer": 2,
+            "type": "image",
+            "size": [ 12, 12 ],
+            "texture": "$texture",
+            "bindings": [
+              { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+              { "binding_type": "view", "source_property_name": "(not((#form_button_text * 1) > 0))", "target_property_name": "#visible" }
+            ]
+          }}
+        ]
+      }},
+      { "item_render@sa_lib::chest_ui.form_item_render": { 
+        "layer": 4
+      }},
+      { "item_stack": {
+        "type": "label",
+        "layer": 6,
+        "text": "#raw_text",
+        "font_scale_factor": 0.9,
+        "anchor_to": "bottom_right",
+        "anchor_from": "bottom_right",
+        "shadow": true,
+        "bindings": [
+          { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+          { "binding_type": "view", "source_property_name": "#form_button_text", "target_property_name": "#raw_text" },
+          { "binding_type": "view", "source_property_name": "((#form_button_text * 1) > 1)", "target_property_name": "#visible" }
+        ] 
+      }},
+      { "btn@common_buttons.light_text_button": {
+        "layer": 8,
+        "size": [ "100%", "100%" ],
+        "$border_visible": false,
+        "$default_button_texture": "textures/ui/Black",
+        "$hover_button_texture": "textures/ui/White",
+        "$pressed_button_texture": "textures/ui/White",
+        "$locked_button_texture": "textures/sapling_ui/transparent",
+        
+        "$pressed_alpha": 0.1,
+        "$default_button_alpha": 0,
+        "$default_hover_alpha": 0.1,
+        "$default_pressed_alpha": 0.1,
+
+        "$pressed_button_name": "button.form_button_click",
+        "$button_text": "#null",
+        "$button_text_binding_type": "collection",
+        "$button_text_grid_collection_name": "form_buttons",
+        "bindings": [
+          { 
+            "binding_type": "collection_details",
+            "binding_collection_name": "form_buttons"
+          },
+          {
+            "binding_name": "#form_button_texture",
+            "binding_type": "collection",
+            "binding_collection_name": "form_buttons"
+          },
+          { 
+            "binding_type": "view",
+            "source_property_name": "(not(#form_button_texture = 'NaN'))",
+            "target_property_name": "#enabled"
+          }
+        ]
+      }}
+    ]
+  },
+
+
+  // Actions buttons
+  "ActionButton@sa_cmp::buttons.OreUI_Dark": {
+    "$index|default": 0,
+    "size": [ "100%", 26 ],
+    "collection_index": "$index"
+  },
+
+  "RepeatButton": {
+    "$start|default": 0,
+    "$label|default": "",
+    "type": "stack_panel",
+    "size": [ "100%", 26 ],
+    "orientation": "horizontal",
+    "collection_name": "form_buttons",
+    "controls": [
+      { "action@fp_forms::manager.ActionButton": { "$index": "$start", "$button_text": "$label", "size": [ "100% - 28px", 26 ] } },
+      { "offset@common.empty_panel": { "size": [ 2, 0 ] } },
+      { "repeat_buttons": {
+        "type": "stack_panel",
+        "size": [ 26, 26 ],
+        "collection_name": "form_buttons",
+        "controls": [
+          { "repeat@fp_forms::manager.ActionButton": { 
+            "$button_text": "R",
+            "$index": "($start + 1)", 
+            "bindings": [
+              { "binding_type": "collection_details", "binding_collection_name": "form_buttons" },
+              { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+              { "binding_type": "view", "source_property_name": "(not (#form_button_text = 'R'))", "target_property_name": "#visible" }
+            ]
+          }},
+
+          { "stop@sa_cmp::buttons.OreUI_Red": { 
+            "$button_text": "S",
+            "size": [ "100%", "100%" ],
+            "collection_index": "($start + 1)", 
+            "bindings": [
+              { "binding_type": "collection_details", "binding_collection_name": "form_buttons" },
+              { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+              { "binding_type": "view", "source_property_name": "(not (#form_button_text = 'S'))", "target_property_name": "#visible" }
+            ]
+          }}
+        ]
+      }}
+    ]
+  },
+
+  "PlayerLocation": {
+    "type": "stack_panel",
+    "size": [ 150, "100%c" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "collection_name": "form_buttons",
+    "controls": [
+      { "offset1@common.empty_panel": { "size": [ 0, 1 ] } },
+      { "label": { 
+        "type": "label",
+        "text": "Player Location", 
+        "color": "$c_azure" 
+      }},
+      { "offset2@common.empty_panel": { "size": [ 0, 1 ] } },
+      { "LocationBtn@fp_forms::manager.LocationBtn": { "collection_index": 42 } }
+    ] 
+  },
+
+  "LocationBtn@common.empty_panel": {
+    "size": [ 150, 26 ],
+    "controls": [
+      { "img": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", "100%"],
+        "texture": "textures/sapling_ui/buttons/dark/default"
+      }},
+      { "text": {
+        "layer": 6,
+        "size": [ 120, 12 ],
+        "anchor_from": "center",
+        "anchor_to": "center",
+        "text_alignment": "center",
+        "text": "#form_button_text",
+        "type": "label",
+        "color": "$c_azure",
+        "bindings": [
+          { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" }
+        ]
+      }},
+      { "btn@common_buttons.light_text_button": {
+        "layer": 8,
+        "size": [ "100%", "100%" ],
+        "$border_visible": false,
+        "$default_button_texture": "textures/ui/Black",
+        "$hover_button_texture": "textures/ui/White",
+        "$pressed_button_texture": "textures/ui/White",
+        "$locked_button_texture": "textures/sapling_ui/transparent",
+        
+        "$pressed_alpha": 0.1,
+        "$default_button_alpha": 0,
+        "$default_hover_alpha": 0.1,
+        "$default_pressed_alpha": 0.1,
+
+        "$pressed_button_name": "button.form_button_click",
+        "$button_text": "#null",
+        "$button_text_binding_type": "collection",
+        "$button_text_grid_collection_name": "form_buttons",
+        "bindings": [ {  "binding_type": "collection_details", "binding_collection_name": "form_buttons" } ]
+      }}
+    ]
+  }, 
+  
+  "DropAll@common.empty_panel": {
+    "size": [ 16, 16 ],
+    "controls": [
+      { "img": {
+        "layer": 2,
+        "type": "image",
+        "size": [ "100%", "100%"],
+        "texture": "textures/sapling_ui/buttons/danger/flat"
+      }},
+      { "text": {
+        "layer": 6,
+        "text": "D",
+        "type": "label",
+        "color": "$c_azure"
+      }},
+      { "btn@common_buttons.light_text_button": {
+        "layer": 8,
+        "size": [ "100%", "100%" ],
+        "$border_visible": false,
+        "$default_button_texture": "textures/ui/Black",
+        "$hover_button_texture": "textures/ui/White",
+        "$pressed_button_texture": "textures/ui/White",
+        "$locked_button_texture": "textures/sapling_ui/transparent",
+        
+        "$pressed_alpha": 0.1,
+        "$default_button_alpha": 0,
+        "$default_hover_alpha": 0.1,
+        "$default_pressed_alpha": 0.1,
+
+        "$pressed_button_name": "button.form_button_click",
+        "$button_text": "#null",
+        "$button_text_binding_type": "collection",
+        "$button_text_grid_collection_name": "form_buttons",
+        "bindings": [ {  "binding_type": "collection_details", "binding_collection_name": "form_buttons" } ]
+      }}
+    ]
+  }
+}

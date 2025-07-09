@@ -39,7 +39,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((#title_text * '%.1s') = '!')",
+              "source_property_name": "((not(('%.1s' * #title_text) = '!')) and (not(('%.1s' * #title_text) = '?')))",
               "target_property_name": "#visible"
             }
           ]
@@ -47,7 +47,9 @@
       },
       // Custom Forms
       { "HomeForm@fp_forms::home.HomeForm": {} },
+      { "SpectateForm@fp_forms::spectate.SpectateForm": {} },
       { "InfoForm@cmp_forms::info.InfoForm": {} },
+      { "ManagerForm@fp_forms::manager.ManagerForm": {} },
 
       // Background 
       { "FormBackground@sa_lib::forms.FormBackground": {} }
@@ -74,7 +76,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((#title_text * '%.1s') = '!')",
+              "source_property_name": "(not(('%.1s' * #title_text) = '!'))",
               "target_property_name": "#visible"
             }
           ]
@@ -83,6 +85,7 @@
       // Custom Forms
       { "ConnectForm@fp_forms::connect.ConnectForm": {} },
       { "ImportForm@fp_forms::import.ImportForm": {} },
+      { "IsoForm@sa_iso::isoview_form.IsoForm": {} },
 
       // Background 
       { "FormBackground@sa_lib::forms.FormBackground": {} }

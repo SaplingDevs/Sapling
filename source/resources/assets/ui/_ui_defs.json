@@ -3,7 +3,7 @@
 		// Lib Files
 		"ui/sapling_ui/__lib__/animations.json",
 		"ui/sapling_ui/__lib__/forms.json",
-		"ui/sapling_ui/__lib__/forms.json",
+		"ui/sapling_ui/__lib__/chest_ui.json",
 
 		// Component Files
 		"ui/sapling_ui/__cmp__/form/info_form.json",
@@ -18,6 +18,11 @@
     // Fakeplayer form files
     "ui/sapling_ui/__mod__/fakeplayer/home_form.json",
     "ui/sapling_ui/__mod__/fakeplayer/connect_form.json",
-    "ui/sapling_ui/__mod__/fakeplayer/import_form.json"
+    "ui/sapling_ui/__mod__/fakeplayer/import_form.json",
+    "ui/sapling_ui/__mod__/fakeplayer/manager_form.json",
+    "ui/sapling_ui/__mod__/fakeplayer/spectate_form.json",
+
+		// Isometric view files
+    "ui/sapling_ui/__mod__/isoview/iso_form.json"
   ]
 }

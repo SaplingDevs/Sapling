@@ -25,21 +25,25 @@
   ],
   "capabilities": ["script_eval"],
   "dependencies": [
-      {
-          "module_name": "@minecraft/server",
-          "version": "2.1.0-beta"
-      },
-      {
-          "module_name": "@minecraft/server-ui",
-          "version": "2.1.0-beta"
-      },
-      {
+    {
+        "module_name": "@minecraft/server",
+        "version": "2.2.0-beta"
+    },
+    {
+        "module_name": "@minecraft/server-ui",
+        "version": "2.1.0-beta"
+    },
+    {
+        "module_name": "@minecraft/debug-utilities",
+        "version": "1.0.0-beta"
+    },
+    {
         "module_name": "@minecraft/server-gametest",
         "version": "1.0.0-beta"
-      },
-      {
-          "uuid": "3f9776bc-1414-4ceb-9d14-298784ddcda3",
-          "version": [ 3, 0, 0 ]
-      }
+    },
+    {
+        "uuid": "3f9776bc-1414-4ceb-9d14-298784ddcda3",
+        "version": [ 3, 0, 0 ]
+    }
   ]
 }

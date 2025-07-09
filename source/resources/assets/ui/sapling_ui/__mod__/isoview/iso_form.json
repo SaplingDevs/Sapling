@@ -1,0 +1,70 @@
+{
+  "namespace": "sa_iso::isoview_form",
+
+  "IsoForm@sa_lib::forms.ActionFormData": {
+    "$identifier": "!sa:isoview",
+    "$render": [{ "Content@sa_iso::isoview_form.FormContent": {} }]
+  },
+
+  "FormContent": {
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "use_anchored_offset": true,
+    "texture": "textures/ui/White",
+    "color": "$oreui_dark",
+    "controls": [ { "ViewInput@sa_iso::isoview_form.ViewInput": {} } ]
+  },
+
+  "ViewInput": {
+    "type": "input_panel",
+    "max_size": [ 70000, 70000 ],
+    "focus_enabled": true,
+		"prevent_touch_input": true,
+		"gesture_tracking_button": "button.turn_structure",
+		"always_handle_controller_direction": true,
+    "button_mappings": [
+			{
+				"from_button_id": "button.menu_select",
+				"to_button_id": "button.turn_structure",
+				"mapping_type": "pressed",
+				"button_up_right_of_first_refusal": true
+			}
+		],
+    "controls": [ { "StructureRender@sa_iso::isoview_form.StructureRender": {} } ]
+  },
+
+  "StructureRender": {
+    "type": "custom",
+    "renderer": "3d_structure_renderer",
+    "property_bag": {
+      "#has_focus": false,
+      "#block_position": [ 0, 0, 0 ],
+      "#bottom_left_block": [ -67, 55, -33 ],
+      "#top_right_block": [ -62, 63, -28 ],
+      "#gesture_mouse_delta_y": -90,
+      "#include_entities": true,
+      "#remove_blocks": false,
+      "#include_players": false
+    },
+    "bindings": [
+      {
+        "binding_type": "view",
+        "source_control_name": "structure_renderer",
+        "source_property_name": "#gesture_delta_source",
+        "target_property_name": "#gesture_delta_source"
+      },
+      {
+        "binding_type": "view",
+        "source_control_name": "structure_renderer",
+        "source_property_name": "#gesture_mouse_delta_x",
+        "target_property_name": "#gesture_mouse_delta_x"
+      },
+      {
+        "binding_type": "view",
+        "source_control_name": "structure_renderer",
+        "source_property_name": "#gesture_mouse_delta_y",
+        "target_property_name": "#gesture_mouse_delta_y"
+      }
+    ]
+  }
+}
