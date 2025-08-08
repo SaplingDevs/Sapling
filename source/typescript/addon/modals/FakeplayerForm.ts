@@ -197,7 +197,6 @@ export function FakeplayerControls(player: Player, { Fakeplayer, Owner }: Fakepl
 
   // @ts-ignore
   ControlsUI.show(player).then(({ canceled, cancelationReason, selection}) => {
-    console.log(canceled ? cancelationReason : selection)
     if (canceled) return;
 
     const inventory = Fakeplayer.getContainer();

@@ -57,10 +57,10 @@ const ClientFeatures = new GameRulePack([
   "minecartStacking",
   "toolChanger",
   "smartHoe",
-  "xpBarMending"
-  // "chunkBorders",
+  "xpBarMending",
+  "handRefill",
+  "containerRefill",
   // "redstoneIndicator",
-  // "collisionBoxes"
 ]);
 
 

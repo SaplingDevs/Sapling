@@ -15,7 +15,6 @@ export function stoneCutterDamage() {
   } catch {}
 }
 
-
 const SwordsDamage = {
   'minecraft:wooden_sword': 6.4,
   'minecraft:golden_sword': 6.4,
