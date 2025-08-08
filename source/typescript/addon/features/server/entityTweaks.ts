@@ -9,30 +9,6 @@ export function phantomDisable({ entity }: EntitySpawnAfterEvent) {
   entity.remove();
 }
 
-export function oldPillagerMethod(Event: EntityDieAfterEvent) {
-  if (!ServerFeatures.DataBase.get("oldpillagermethod")) return;
-	if (Event.deadEntity.typeId !== 'minecraft:pillager') return;
-
-	const player = Event.damageSource.damagingEntity;
-	const entity = Event.deadEntity;
-	
-	const items = entity.dimension.getEntities({
-		location: entity.location,
-		maxDistance: 4,
-		type: 'minecraft:item'
-	});
-	
-	for (const itemEntity of items) {
-		const item = itemEntity.getComponent('item').itemStack;
-		
-		if (item.typeId !== 'minecraft:ominous_bottle') continue;
-		
-		player.runCommand('effect @s bad_omen 6000');
-		itemEntity.kill();
-	}
-}
-
-
 // 5 Ticks
 let tradeTick = false;
 export function infiniteTrades() {

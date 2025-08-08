@@ -27,7 +27,6 @@ const ServerFeatures = new GameRulePack([
   "silkTouchGetSpawners",
   // Entities features
   "phantomDisable",
-  "oldPillagerMethod",
   "infiniteTrades",
   "entityCramming",
   "pigmanFarmWarts",
@@ -60,6 +59,7 @@ const ClientFeatures = new GameRulePack([
   "xpBarMending",
   "handRefill",
   "containerRefill",
+  "toolBreakPrevention",
   // "redstoneIndicator",
 ]);
 
